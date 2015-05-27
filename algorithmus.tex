@@ -5,9 +5,12 @@ Im folgen werde ich zunächst den Algorithmus aus dem Paper beschreiben und erkl
 
 \subsection{Originaler Algorithmus aus dem Paper}\label{paperAlgoChapter}
 Um die Anzahl der Agenten zu ermitteln, schicken sich die Baumknoten gegenseitig Nachrichten, mit der Information, wie viele Agenten mindestens benötigt werden, um den aktuellen Teilbaum zu dekontaminieren.
-\\
-\\
-Als erstes berechnet der Algorithmus alle von allen Knoten ihre Knotengewichte. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. Also für das Knotengewicht vom Knoten x gilt: $\omega(x) = max_{e} \omega(e)$, für jede Kante e inzident zu x.
+
+\begin{mydef}
+	Eine Nachricht wird von einem Knoten x zu einem Knoten y im Baum verschickt. Diese erhält Informationen über den Teilbaum von x, die von Knoten y zur Berechnung der Agenten benötigt werden.
+\end{mydef}
+
+Als erstes berechnet der Algorithmus von allen Knoten ihre Knotengewichte. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. Also für das Knotengewicht vom Knoten x gilt: $\omega(x) = max_{e} \omega(e)$, für jede Kante e inzident zu x.
 \\
 Das Knotengewicht gibt an, wie viele Agenten als Wachen benötigt werden, um den aktuellen Knoten (bzw. den dazugehörigen Teilbaum) vor einem kontaminierten Teilbaum zu schützen.
 \\
@@ -83,7 +86,11 @@ Nachdem die Knotengewichte feststehen, werden die Nachrichten versendet, für di
 %\subsubsection*{Berechnung der minimalen Agenten}
 
 Sobald alle Knoten sowohl an alle Nachbarn eine Nachricht geschickt haben, als auch von allen Nachbarn eine Nachricht erhalten haben (jede Kante im gesamten Baum überträgt genau 2 Nachrichten), hat jeder Knoten alle Informationen die er gebraucht werden, um die minimale Anzahl an Agenten zu errechnen, die für diesen Knoten als Homebase benötigt werden.
-\\
+
+\begin{mydef}
+	Die minimale Anzahl an Agenten $\mu(x)$ ist die Agentenzahl, welche benötigt wird, um den gesamten Baum vom Knoten x aus zu dekontaminieren. Der Knoten x ist die Homebase, da von hier aus die Dekontaminierung beginnt.
+\end{mydef}
+
 Die minimale Agentenanzahl $\mu(x)$, die am Knoten x benötigt werden, wenn dieser als Homebase definiert wird, wird wie folgt berechnet:
 \\
 $\mu(x) = max\{l_{1},  l_{2} + \omega(x)\}$, wobei analog zu der Berechnung der Nachrichten gilt: $l_{1} \ge l_{2}$ sind die größten beiden angekommenen Nachrichten und $\omega(x)$ ist das Knotengewicht von x.
@@ -106,7 +113,7 @@ Nachdem alle Knoten ihr $\mu$ berechnet haben, wird ein Knoten mit minimalen $\m
 
 Die Ergebnisse des im Paper beschriebene Algorithmus stimmt in einigen Fällen nicht mit der Intuition überein, die man bekommt wenn man einige Beispielbäume betrachtet (z.B. Abbildung \ref{fig:negBeispielPaperAlgo}). In dem  angegebenen Beispiel sollte der Knoten x mit 5 Agenten auskommen: Alle 5 Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch 2 Agenten benötigt: Einer hält Wache um die Monotonie zu gewährleisten und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
 \\
-Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist folgender: Der originale Algorithmus plant im Beispiel für den mittleren Knoten 5 Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 kommen, diese dadurch dekontaminiert ist, und wir sie nicht mehr bewachen müssen. Es werden dadurch mehr Agenten eingeplant, als wirklich benötigt werden.
+Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist folgender: Der originale Algorithmus plant im Beispiel für den mittleren Knoten 5 Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, diese dadurch dekontaminiert ist, und wir sie nicht mehr bewachen müssen. Es werden dadurch mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
 Da das Problem, wie erläutert, am Knotengewicht liegt, werde ich im folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig, als auch intuitiv sinnvoll funktioniert:
 \\
@@ -155,6 +162,20 @@ Dazu muss der Algorithmus in Kapitel \ref{paperAlgoChapter} Fall \ref{paperAlgoF
 	\subfigure[Die größte Nachricht (grün), die an x ankommt ist größer als die beiden Kanten $edge_{1}$ und $edge_{2}$ (gelb) und bestimmt dadurch den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.32\textwidth]{bilder/abb_neu_msgData.png}}  
 	
 	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken.} 
+	
+	
+	\begin{theorem}
+		Die Modifikationen des Algorithmus ändern nichts an der linearen Laufzeit.
+	\end{theorem}
+	\begin{proof}
+		Die Grundidee des Algorithmus bleibt erhalten. Jeder Knoten schickt zu all seinen Nachbarn je eine Nachricht. Die Anzahl der Nachrichten ändert sich durch die Modifikation nicht, sondern nur die Berechnung an sich.\\Die Berechnung kann in konstanter Zeit durchgeführt werden, das pro Knoten nur drei Schritte notwendig sind:
+		\begin{enumerate}
+			\item Berechnung der Nachricht durch einfache Addition
+			\item Vergleich der Nachricht (und evt. Anpassen) mit dem Knotengewicht
+			\item Vergleich der Nachricht (und evt. Anpassen) mit der maximalen Nachricht.
+		\end{enumerate}
+		Die lineare Zeit des als Grundlage verwendeten Algorithmus ist im erwähnten Paper bereits bewiesen worden.
+	\end{proof}
 \end{figure} 
 
 

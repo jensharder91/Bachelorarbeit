@@ -1,20 +1,28 @@
 \section{Das Potenzial-Problem}
 
-\subsection{Spezialfall k = 1}
-//algo angeben, wieso ist er liniear? wieso korrekt?
+Im folgenden werde ich mich mit dem sog. Potential-Problem beschäftigen.
+
+\begin{mydef}
+	Das Potential $k$ ist eine Art Kontostand, mit dem eine oder mehrere Kantengewichte reduziert werden können. Die Größe des Potentials gibt an, um wie viel die Gewichte insgesamt reduziert werden dürfen.
+\end{mydef}
+
+Ich betrachte verschiedene, unterschiedlich komplizierte Varianten des Potential-Problems und werde für die jeweilige Variante einen Algorithmus angeben und kurz die Laufzeit begründen.
+
+\subsection{Spezialfall $k = 1$}
+//TODO algo angeben, wieso ist er liniear? wieso korrekt?
 \\
 \\
 Jeder Knoten berechnet im Algorithmus von BARRIÈRE L. et al. die minimale Anzahl von Agenten (siehe oben) und es lässt sich schnell überlegen, dass die Höhe der Agentenanzahl an jedem Knoten von bestimmten Kanten(-gewichten) abhängt.
 \\
 \\
-Die Idee, um das Potenzial-Problem für den Spezialfall k = 1 zu lösen, ist nun, die Abhängigkeiten zu speichern, welche Kante(n) die Agentenzahl in jedem Knoten beeinflusst. Dazu protokollieren wir im Algorithmus, wie jede berechnete Nachricht zustande kommt, also von welchen Kanten sie abhängt.
+Die Idee, um das Potenzial-Problem für den Spezialfall $k = 1$ zu lösen, ist nun, die Abhängigkeiten zu speichern, welche Kante(n) die Agentenzahl in jedem Knoten beeinflusst. Dazu protokollieren wir im Algorithmus (aus Kapitel \ref{modifizierterAlgoChapter}), wie jede berechnete Nachricht zustande kommt, also von welchen Kanten sie abhängt.
 \\
 \\ 
 Wie man in der modifizierten Variante (siehe oben) sehen kann, gibt es drei verschiedene Möglichkeiten, wie eine Nachricht 	$\lambda_{y}$ entstehen kann:
 
 \begin{enumerate}[label=\alph*)]
 	
-	\item aus den beiden größten Kanten $\lambda_{y} \gets edge_{1} + edge_{2}$
+	\item aus den beiden größten Kanten $\lambda_{y} \gets edge_{1} + edge_{2}$ \label{entstehung_nachricht_max1+max2}
 	
 	\item aus der Kante, über welche die Nachricht gerade verschickt wird (diese entspricht dem Knotengewicht) $\lambda_{y} \gets \omega(x)$
 	
@@ -29,34 +37,32 @@ Allerdings gilt für alle Fälle, dass wir uns maximal zwei Kanten merken müsse
 	Wir müssen maximal zwei Kanten pro Nachricht protokollieren. Ansonsten kann das Potential nicht angewendet werden und wir setzen eine "'flag"'
 \end{theorem}
 
-\begin{proof}
-	blabla, hier beweseie ich meine Aussage
-	
-	//TODO ?! beweis, dass nur 2 Kanten in Frage kommen
+\begin{proof}[Widerspruchsbeweis]
+	Wir nehmen an, es könnten mehr als zwei Kanten pro Nachricht protokolliert werden, z.B. drei Kanten. Dies würde bedeuten, dass wir durch Reduzierung einer dieser drei Kanten die Nachricht verkleinern könnten. Allerdings hängt die Berechnung der Nachricht pro Fall von maximal zwei Kanten ab (siehe den gerade genannten Fall \ref{entstehung_nachricht_max1+max2}). Wenn also nun eine der drei Kanten reduziert wird, kann sich maximal nur ein Fall verkleinern. Da die drei Kanten aber auf jeden Fall in zwei Fällen auftreten, würde der nicht veränderte Fall die Nachricht nicht verädnern. Da wir aber gesagt haben, dass alle drei Kanten die Nachricht reduzieren ist dies ein Widerspruch, dass eine Nachricht von mehr als zwei Nachrichten abhängt.
 \end{proof}
 
-Im folgenden werde ich bei allen drei Fällen beschreiben, welche Kanten unter welcher Bedingung protokolliert werden. Protokollieren bedeutet einfach, dass wir bei der Berechnung der Nachricht $\lambda_{y}$ von x nach y  in die Nachricht mit reinschreiben, welche Kanten diese Nachricht bestimmt haben, bzw. wir protokollieren einen "flag", falls dies mehr als zwei Kanten sind.
+Im folgenden werde ich bei allen drei Fällen von oben beschreiben, welche Kanten unter welcher Bedingung protokolliert werden. Protokollieren bedeutet einfach, dass wir bei der Berechnung der Nachricht $\lambda_{y}$ von x nach y  in die Nachricht mit reinschreiben, welche Kanten diese Nachricht bestimmt haben, bzw. wir protokollieren einen "flag", falls dies mehr als zwei Kanten sind.
 
 \begin{enumerate}[label=\alph*)]
 	
-	\item in diesem Standardfall wird die Nachricht aus den beiden größten Kanten berechnet (wie oben beschrieben). Allerdings müssen wir kontrollieren, ob diese zwei Kanten eindeutig sind, oder ob es evtl. mehrere gleich große Kanten gibt. Ist die Wahl der Kanten nicht eindeutig, müssen wir dies bei der Protokollierung mit berücksichtigen:\\
+	\item In diesem Standardfall wird die Nachricht aus den beiden größten Kanten berechnet (wie oben beschrieben). Allerdings müssen wir kontrollieren, ob diese zwei Kanten eindeutig sind, oder ob es evtl. mehrere gleich große Kanten gibt. Ist die Wahl der Kanten nicht eindeutig, müssen wir dies bei der Protokollierung mit berücksichtigen:\\
 	
 		\begin{algorithmic}
 			\If {$edge_{1} == edge_{3}$}
 			\State \uline{protokolliere} "flag"
-			\State//es gibt drei gleichgroße Kanten
+			\State//Es gibt drei gleich große Kanten. Selbst wenn man eine Kante reduziert, wird die Nachricht aus den anderen beiden Kanten berechnet.
 			\ElsIf {$edge_{2} == edge_{3}$}
 			\State \uline{protokolliere} $edge_{1}$
-			\State//die maximale Kante ist eindeutig, die zweit größte nicht
+			\State//Die maximale Kante ist eindeutig, die zweit größte nicht. Es macht also nur Sinn die größte zu reduzieren.
 			\Else
 			\State \uline{protokolliere} $edge_{1}$ und $edge_{2}$
-			\State//sowohl die größte, als auch die zweit größte Kante ist eindeutig
+			\State//Sowohl die größte, als auch die zweit größte Kante ist eindeutig. Wir können eine von den beiden reduzieren, um auch die Nachricht erfolgreich zu reduzieren.
 			\EndIf
 		\end{algorithmic}
 	
-	\item Dieser Fall tritt nur auf, wenn $\omega(x) \geq edge_{1}+edge_{2}$. Da aber $\omega(x)$ so definiert ist, dass es den Wert des größten Kantengewicht inzident zu x hat, muss die Kante ausschlaggebend sein, über die die Nachricht verschickt wird. 
+	\item Die Nachricht ist kleiner als das Knotengewicht: $\omega(x) \geq edge_{1}+edge_{2}$. Da aber $\omega(x)$ so definiert ist, dass es den Wert des größten Kantengewicht inzident zu x hat, muss die Kante ausschlaggebend sein, über die die Nachricht verschickt wird. 
 	\\
-	Diese Kante zwischen x und y ist für den Nachrichtenwert also entscheidend und wird somit in der Nachricht: \uline{Protokolliere} Kante zwischen x und y.
+	Diese Kante zwischen x und y ist für den Nachrichtenwert also entscheidend und wird somit in der Nachricht protokolliert: \uline{Protokolliere} Kante zwischen x und y.
 	
 	\item In diesem Fall bestimmt die größte ankommende Nachricht $l_{1}$ die neu berechnete Nachricht. Da keine weitere Kante mehr Einfluss genommen hat, übernehmen wir die protokollierten Kanten (oder die "flag") aus $l_{1}$ für $\lambda_{y}$: \uline{Protokolliere} das gleiche wie $l_{1}$
 	
@@ -68,7 +74,7 @@ Im folgenden werde ich bei allen drei Fällen beschreiben, welche Kanten unter w
 
 Man muss noch beachten, dass mehrere Fälle gleichzeitig auftreten können. Passiert dies, muss man einen weiteren Test durchführen, ob die verschiedenen Fälle unterschiedlich protokollieren würden.
 \\
-Würden die Fälle verschieden protokollieren, so \uline{protokolliere} "flag", da das Potenzial an dieser Stelle nicht genutzt werden kann, ansonsten behalte die \uline{Protokollierung} bei.
+Würden die Fälle verschieden protokollieren, so protokolliere "flag", da das Potenzial an dieser Stelle nicht genutzt werden kann, ansonsten behalte die Protokollierung bei.
 
 \subsection{Potenzial auf einer Kante mit k > 1}
 
@@ -81,7 +87,7 @@ Um das Problem des Potenzials etwas zu erweitern, betrachte ich im folgenden Abs
 \begin{proof}[Widerspruchsbeweis]
 	Es fällt zunächst auf, dass man nicht garantieren kann, dass sich die Anzahl der benötigten Agenten auf allen Bäumen reduzieren lässt. Hierbei spielt es auch keine Rolle, wie groß das Potenzial k ist, da allein die Eigenschaft, dass man das Potenzial nur auf einer Kante einsetzen kann, genügt, um ein Gegenbeispiel zu finden:
 	
-	Da das Potenzial k beliebig groß ist, kann man eine Kante auf Kantengewicht 1 setzen, man dadurch das größtmögliche Potenzial ausnutzt. Trotzdem ist es nicht möglich bei folgendem Baum die Anzahl der Agenten zu reduzieren:
+	Da das Potenzial k beliebig groß ist, kann man eine Kante auf Kantengewicht 1 setzen, da man dadurch das größtmögliche Potenzial ausnutzt. Trotzdem ist es nicht möglich bei folgendem Baum die Anzahl der Agenten zu reduzieren:
 	
 	\begin{figure}[h]
 		\subfigure[alle Kanten haben Gewicht 4. Alle Knoten benötigen mindestens 8 Agenten.]{\includegraphics[width=0.49\textwidth]{bilder/abb1.png}} 
@@ -90,6 +96,8 @@ Um das Problem des Potenzials etwas zu erweitern, betrachte ich im folgenden Abs
 		\caption{Beispiel, dass Verringerung auf einer Kante nicht zu einer Verringerung der notwendigen Agenten führen muss} 
 	\end{figure} 
 \end{proof}
+
+Trotzdem ist es möglich einen Algorithmus anzugeben, der die Kante auswählt, welche die Agentenanzahl am meisten minimiert, falls dies möglich ist.
 
 
 \subsection*{Algorithmus Idee}
@@ -112,7 +120,7 @@ Um das Problem des Potenzials etwas zu erweitern, betrachte ich im folgenden Abs
 		\item die Kante, auf die das Potential angewendet worden ist
 	\end{itemize}
 	Es bleibt noch zu klären, wie die modifizierte Nachricht berechnet wird:
-	Es gibt mehrere Kanten, auf die das Potential angewendet werden kann um die modifizierte Nachricht zu generieren. Wir müssen auf allen möglichen Kanten das Potential anwenden und dann schauen, wie die Nachricht mit dieser Kantenreduzierung aussehen würde. Wir merken uns den Fall, bei der diese Reduzierung am stärksten ist und verschicken dies als modifizierte Nachricht. 
+	Es gibt mehrere Kanten, auf die das Potential angewendet werden kann um die modifizierte Nachricht zu generieren. Wir müssen auf von allen in frage kommenden Kanten nacheinander das Potential abziehen und dann schauen, wie der Wert der Nachricht mit dieser Kantenreduzierung aussehen würde. Wir merken uns den Fall, bei der diese Reduzierung am stärksten ist und verschicken dies als modifizierte Nachricht. 
 	\\
 	Wir gehen alle Fälle durch, um die modifizierte Nachricht von Knoten x nach y zu berechnen:
 	\begin{enumerate}
