@@ -1,0 +1,69 @@
+\documentclass[12pt, a4paper, german]{article}
+
+\usepackage[ngerman]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{graphicx} 
+\usepackage{subfigure}
+\usepackage{wrapfig}
+\usepackage{adjustbox}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage {ulem}
+%\usepackage{algorithmic}
+\usepackage{algpseudocode}
+
+%definition, theorem, lemma
+\usepackage{amsthm}
+\newtheorem{counter}{Theorem}
+\newtheorem{mydef}[counter]{Definition}
+\newtheorem{theorem}[counter]{Theorem}
+\newtheorem{lemma}[counter]{Lemma}
+
+%seitenrand und zeilenabstand
+\usepackage{setspace}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm}
+
+%style
+\usepackage{BA_Titelseite}
+
+
+%Namen des Verfassers der Arbeit
+\author{Jens Harder}
+%Geburtsdatum des Verfassers
+\geburtsdatum{27. Oktober 1991}
+%Gebortsort des Verfassers
+\geburtsort{Gummersbach}
+%Datum der Abgabe der Arbeit
+\date{\today}
+
+%Name des Betreuers
+\betreuer{Betreuer: PD Dr. E. Langetepe}
+\zweitgutachter{Zweitgutachter: Prof. Dr. H. Röglin}
+\institut{Institut Informatik}
+\title{Optimierung des Indruder - Problems durch Potentialvergabe}
+\ausarbeitungstyp{Bachelorarbeit Informatik}
+
+
+\begin{document}
+	\maketitle
+	\newpage
+	
+	\pagenumbering{arabic}.
+	\tableofcontents
+	
+	\newpage
+	\spacing{1.2}
+	
+	\include{einleitung}
+	
+	\include{algorithmus}
+
+	\include{potenzialproblem}
+	
+	\section{Fazit}
+	
+	
+\end{document}
