@@ -8,11 +8,15 @@
 \usepackage{subfigure}
 \usepackage{wrapfig}
 \usepackage{adjustbox}
-\usepackage{caption}
 \usepackage{enumitem}
 \usepackage {ulem}
 %\usepackage{algorithmic}
 \usepackage{algpseudocode}
+
+%bildunterschrift neben bild
+\usepackage{floatrow}
+%\usepackage{subcaption}
+\usepackage{caption}
 
 %definition, theorem, lemma
 \usepackage{amsthm}
@@ -37,13 +41,13 @@
 %Gebortsort des Verfassers
 \geburtsort{Gummersbach}
 %Datum der Abgabe der Arbeit
-\date{\today}
+\date{21. September 2015}
 
 %Name des Betreuers
 \betreuer{Betreuer: PD Dr. E. Langetepe}
 \zweitgutachter{Zweitgutachter: Prof. Dr. H. Röglin}
 \institut{Institut Informatik}
-\title{Optimierung des Indruder - Problems durch Potentialvergabe}
+\title{Optimierung des Indruder-Problems durch Potentialvergabe}
 \ausarbeitungstyp{Bachelorarbeit Informatik}
 
 
@@ -64,6 +68,18 @@
 	\include{potenzialproblem}
 	
 	\section{Fazit}
+	
+	\newpage
+
+	\renewcommand{\refname}{Literaturquellen}
+	
+	\begin{thebibliography}{99}
+		
+		
+		\bibitem[\textsc{Barrière} et al. 2002]{cima_paper} \textsc{L. Barrière, P. Flocchini, P. Fraigniaud, N. Santoro} (2002): Capture of an Intruder by Mobile Agents. (SPAA'02) Winnipeg, Manitoba, Canada.
+
+		
+	\end{thebibliography} 
 	
 	
 \end{document}
