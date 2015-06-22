@@ -4,9 +4,9 @@ Der Algorithmus berechnet für einen gegebenen Baum mit Kantengewichten die Mind
 
 
 
-\subsection{Originaler Algorithmus aus dem Paper}\label{paperAlgoChapter}
+\subsection{Originaler Algorithmus aus dem Artikel \cite{cima_paper}}\label{paperAlgoChapter}
 
-Zu beginn des Algorithmus, werden von allen Knoten ihre Knotengewichte berechnet. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. 
+Zu Beginn des Algorithmus, werden von allen Knoten ihre Knotengewichte berechnet. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. 
 
 \begin{mydef}
 	Für das Knotengewicht $\omega(x)$ vom Knoten x gilt: $\omega(x) = max_{e} \omega(e)$ für jede Kante e inzident zu x.
@@ -26,7 +26,7 @@ Sei $e = \{x, y\}$ eine Kante inzident zu $x$ und $\lambda_{x}(e)$ die Nachricht
 
 
 
-Da die Rekursionsgleichung etwas kryptisch wirkt, und es sowohl für die Implementierung, als auch für das allgemeine Verständnis anschaulicher ist den Algorithmus durch eine Fallunterscheidung zu betrachten, werde ich im Folgenden drei Fälle erläutern, die im Algorithmus auftauchen können:\\
+Da die Rekursionsgleichung etwas kryptisch wirkt, und es sowohl für die Implementierung, als auch für das allgemeine Verständnis anschaulicher ist, den Algorithmus durch eine Fallunterscheidung zu betrachten, werde ich im Folgenden drei Fälle erläutern, die im Algorithmus auftauchen können:\\
 Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werden können:
 
 \begin{enumerate}
@@ -34,7 +34,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 	\item Fall:
 		
 		%		\begin{minipage}{0.55\textwidth} 
-		Zu beginn des Algorithmus, oder falls keine weitere Nachricht mehr berechnet werden kann, sendet ein beliebiger Blattknoten (, der noch keine Nachricht versendet hat,) seine Nachricht an den eigenen Nachbarn.\\
+		Zu beginn des Algorithmus, oder falls keine weitere Nachricht mehr berechnet werden kann, sendet ein beliebiger Blattknoten, der noch keine Nachricht versendet hat, seine Nachricht an den eigenen Nachbarn.\\
 		
 		Die zu sendende Nachricht $\lambda_{y}$ vom Blatt x an seinen Nachbarknoten y ist dabei nur das eigene Gewicht (Abbildung \ref{abb_leaf}): Es gilt daher $\lambda_{y} = \omega(x)$
 		%		\end{minipage}
@@ -55,7 +55,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 	
 	%				\begin{minipage}{0.50\textwidth} 
 		
-		Um eine Nachricht von x an den Nachbarknoten y zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht an x gesendet hat, nimmt man die 2 größten Nachrichten ($l_{1}$ und $l_{2}$) die bei x angekommen sind. Mit diesen beiden angekommenen Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (siehe auch Abbildung \ref{abb_n-1}): $\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$
+		Um eine Nachricht von x an den Nachbarknoten y zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht an x gesendet hat, nimmt man die zwei größten Nachrichten ($l_{1}$ und $l_{2}$) die bei x angekommen sind. Mit diesen beiden angekommenen Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (siehe auch Abbildung \ref{abb_n-1}): $\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$
 		\\
 		\\	
 		Nach dem Berechnen und Versenden der Nachricht $\lambda_{y}$ muss x auf die letzte ankommende Nachricht (von y) warten. Sobald diese Nachricht angekommen ist, berechnet x die Nachrichten für alle anderen Nachbarknoten, wie im Fall \ref{labelAufUnterfall} beschrieben. 
@@ -79,7 +79,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 		Um eine Nachricht von x an einen Nachbarknoten y zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von x erhalten hat, nimmt man die 2 größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei x angekommen sind. Dabei ist es wichtig, dass weder $l_{1}$ noch $l_{2}$ von y stammen. Die Nachricht von y wird bei dieser Nachrichtenberechnung ignoriert! Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$
 		\\
 		\\
-		Diese Berechnung wird für jeden Nachbarknoten von x wiederholt, sodass jeder Nachbar eine Nachricht von x erhält. Nach diesem Schritt ist der Knoten x mit dem Algorithmus fertig, da er sowohl von jedem Nachbar eine Nachricht erhalten hat, als auch an jeden Nachbar eine Nachricht gesendet hat.
+		Diese Berechnung wird für jeden Nachbarknoten von x wiederholt, so dass jeder Nachbar eine Nachricht von x erhält. Nach diesem Schritt ist der Knoten x mit dem Algorithmus fertig, da er sowohl von jedem Nachbar eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
 %				\end{minipage}
 %				\hfill
 %				\begin{minipage}{0.35\textwidth}
@@ -96,7 +96,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 
 %\subsubsection*{Berechnung der minimalen Agenten}
 
-Sobald alle Knoten sowohl an alle Nachbarn eine Nachricht geschickt haben, als auch von allen Nachbarn eine Nachricht erhalten haben (jede Kante im gesamten Baum überträgt genau 2 Nachrichten), hat jeder Knoten alle Informationen die er gebraucht werden, um die minimale Anzahl an Agenten zu errechnen, die für diesen Knoten als Homebase benötigt werden.
+Sobald alle Knoten sowohl an alle Nachbarn eine Nachricht geschickt haben, als auch von allen Nachbarn eine Nachricht erhalten haben (jede Kante im gesamten Baum überträgt genau zwei Nachrichten), hat jeder Knoten alle Informationen, die gebraucht werden, um die minimale Anzahl an Agenten zu errechnen, die für diesen Knoten als Homebase benötigt werden.
 
 \begin{mydef}
 	Die Anzahl an Agenten $\mu(x)$ ist die Agentenzahl, welche benötigt wird, um den gesamten Baum vom Knoten x aus zu dekontaminieren. $\mu = \min \mu(i)$ für alle Knoten i im Baum, ist die minimale Anzahl an Agenten, die diesen Baum von der Homebase ausgehend dekontaminieren können.
@@ -106,7 +106,7 @@ Sobald alle Knoten sowohl an alle Nachbarn eine Nachricht geschickt haben, als a
 	Die Homebase ein beliebiger Knoten x im Baum, für den gilt: $\mu(x) = \mu$.
 \end{mydef}
 
-Die minimale Agentenanzahl $\mu(x)$, die am Knoten x benötigt werden wird wie folgt berechnet:
+Die minimale Agentenanzahl $\mu(x)$, die am Knoten x benötigt werden, wird wie folgt berechnet:
 \\
 $\mu(x) = max\{l_{1},  l_{2} + \omega(x)\}$, wobei analog zu der Berechnung der Nachrichten gilt: $l_{1} \ge l_{2}$ sind die größten beiden angekommenen Nachrichten und $\omega(x)$ ist das Knotengewicht von x.
 \\
@@ -126,9 +126,9 @@ Nachdem alle Knoten i ihr $\mu(i)$ berechnet haben, wird ein Knoten mit minimale
 		\label{fig:negBeispielPaperAlgo}
 	\end{wrapfigure}
 
-Die Ergebnisse des im Paper beschriebene Algorithmus stimmt in einigen Fällen nicht mit der Intuition überein, die man bekommt wenn man einige Beispielbäume betrachtet (z.B. Abbildung \ref{fig:negBeispielPaperAlgo}). In dem  angegebenen Beispiel sollte der Knoten x mit 5 Agenten auskommen: Alle 5 Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch 2 Agenten benötigt: Einer hält Wache um die Monotonie zu gewährleisten und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
+Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmt in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet (z.B. Abbildung \ref{fig:negBeispielPaperAlgo}). In dem  angegebenen Beispiel sollte der Knoten x mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
 \\
-Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist folgender: Der originale Algorithmus plant im Beispiel für den mittleren Knoten 5 Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, diese dadurch dekontaminiert ist, und wir sie nicht mehr bewachen müssen. Es werden dadurch mehr Agenten eingeplant, als wirklich benötigt werden.
+Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist folgender: Der originale Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, diese dadurch dekontaminiert ist, und wir sie nicht mehr bewachen müssen. Es werden dadurch mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
 Da das Problem, wie erläutert, am Knotengewicht liegt, werde ich im folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig, als auch intuitiv sinnvoll funktioniert:
 \\
@@ -149,7 +149,7 @@ Dazu muss der Algorithmus in Kapitel \ref{paperAlgoChapter} wie folgt abgeänder
 		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, sodass die Berechnung auch klappt, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu x und nicht inzident zu y  zutrifft.
 	
 	\item
-		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, dass $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall bedeutet dass, dass das Kantengewicht der Kante, über die wir die Nachricht nach y schicken größer ist als die berechnete Nachricht. Da dies nicht sein darf, da wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht die wir an y schicken entsprechend anpssen (Beispiel in Abbildung \ref{modifiziert_b}):
+		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, dass $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall bedeutet dass, dass das Kantengewicht der Kante, über die wir die Nachricht nach y schicken größer ist als die berechnete Nachricht. Da dies nicht sein darf, da wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht die wir an y schicken entsprechend anpassen (Beispiel in Abbildung \ref{modifiziert_b}):
 		
 		\begin{algorithmic}
 			\If {$\lambda_{y} \leq \omega(x)$}
@@ -216,11 +216,11 @@ Dazu muss der Algorithmus in Kapitel \ref{paperAlgoChapter} wie folgt abgeänder
 		Die Modifikationen des Algorithmus ändern nichts an der linearen Laufzeit.
 	\end{theorem}
 	\begin{proof}
-		Die Grundidee des Algorithmus bleibt erhalten. Jeder Knoten schickt zu all seinen Nachbarn je eine Nachricht. Die Anzahl der Nachrichten ändert sich durch die Modifikation nicht, sondern nur die Berechnung an sich.\\Die Berechnung kann in konstanter Zeit durchgeführt werden, das pro Knoten nur drei Schritte notwendig sind:
+		Die Grundidee des Algorithmus bleibt erhalten. Jeder Knoten schickt zu all seinen Nachbarn je eine Nachricht. Die Anzahl der Nachrichten ändert sich durch die Modifikation nicht, sondern nur die Berechnung an sich.\\Die Berechnung kann in konstanter Zeit durchgeführt werden, dass pro Knoten nur drei Schritte notwendig sind:
 		\begin{enumerate}
 			\item Berechnung der Nachricht durch einfache Addition
-			\item Vergleich der Nachricht (und evt. Anpassen) mit dem Knotengewicht
-			\item Vergleich der Nachricht (und evt. Anpassen) mit der maximalen Nachricht.
+			\item Vergleich der Nachricht (und evtl. Anpassen) mit dem Knotengewicht
+			\item Vergleich der Nachricht (und evtl. Anpassen) mit der maximalen Nachricht.
 		\end{enumerate}
 		Die lineare Zeit des als Grundlage verwendeten Algorithmus ist im erwähnten Paper bereits bewiesen worden.
 	\end{proof}
