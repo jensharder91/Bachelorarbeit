@@ -1,4 +1,6 @@
 \documentclass[12pt, a4paper, german]{article}
+%\documentclass[a4paper,12pt,twoside,notitlepage]{report}    %danny
+
 
 \usepackage[ngerman]{babel}
 \usepackage[utf8x]{inputenc}
@@ -27,11 +29,70 @@
 
 %seitenrand und zeilenabstand
 \usepackage{setspace}
-\usepackage{geometry}
-\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm}
+%\usepackage{geometry}
+%\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=3cm}
+\usepackage[paper=a4paper,top=3.0cm,bottom=3.0cm,left=2.8cm,right=2.8cm,twoside]{geometry}
 
 %style
 \usepackage{BA_Titelseite}
+
+
+%style the section
+\usepackage[explicit]{titlesec}
+\usepackage{ulem}
+
+
+%%%%%%%%%  nice >>chapter<< style
+%\titleformat{\chapter}[display]
+%{\bfseries\large}
+%{\filleft\MakeUppercase{\chaptertitlename} \large\thechapter}
+%{2ex}
+%{\titlerule\vspace{2ex}\filleft}
+%\titleformat{name=\chapter,numberless}[display]
+%{\bfseries\large}
+%{\titlerule}
+%{-7ex}
+%{\filleft\MakeUppercase}[\vspace{5ex}]
+%\titlespacing*{\chapter}{0pt}{120pt}{6pt}
+
+
+%custom section
+%\newcommand*{\mysectionstyle}{%
+	\titleformat{\section}[frame]
+		{\normalfont}
+		{\filright
+			\Huge
+			\enspace \thesection\enspace}
+		{8pt}
+		{\Huge\bfseries\filcenter #1}
+	\titlespacing*{\section}
+		{0pt}{1\baselineskip}{2\baselineskip}
+%}
+
+%default section
+%\newcommand*{\defaultsectionstyle}{%
+%	\titleformat{\section}
+%		{\normalfont\Large\bfseries}{\thesection}{1em}{#1}		
+%	\titlespacing*{\section}
+%		{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+%}
+
+
+\titleformat{\subsection}
+	{\normalfont\large\bfseries}{\thesubsection}{1em}{\uline{#1}}		
+\titlespacing*{\subsection}
+	{0pt}{2\baselineskip}{1.5\baselineskip}
+	
+\titleformat{\subsubsection}
+	{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}		
+\titlespacing*{\subsubsection}
+	{0pt}{1.5\baselineskip}{1\baselineskip}
+
+
+
+
+
+
 
 
 %Namen des Verfassers der Arbeit
@@ -51,16 +112,23 @@
 \ausarbeitungstyp{Bachelorarbeit Informatik}
 
 
+%absätze nicht mehr einrücken
+\setlength\parindent{0pt}
+
 \begin{document}
 	\maketitle
 	\newpage
 	
-	\pagenumbering{arabic}.
+	\pagenumbering{arabic}
+	\doublespacing
+%	\defaultsectionstyle
 	\tableofcontents
 	
 	\newpage
 	\spacing{1.2}
 	
+	
+%	\mysectionstyle
 	\include{einleitung}
 	
 	\include{algorithmus}
@@ -71,6 +139,7 @@
 	
 	\newpage
 
+%	\defaultsectionstyle
 	\renewcommand{\refname}{Literaturquellen}
 	
 	\begin{thebibliography}{99}

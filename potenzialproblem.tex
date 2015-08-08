@@ -103,7 +103,7 @@ Um das Potential-Problem etwas zu erweitern, betrachte ich im folgenden Abschnit
 Trotzdem ist es möglich einen Algorithmus anzugeben, der die Kante auswählt, welche die Agentenanzahl am meisten minimiert, falls es eine solche Kante gibt.
 
 
-\subsection*{Algorithmus Idee}
+\subsubsection{Algorithmus Idee}
 
 	Auch um dieses Problem zu lösen, muss die in Kaptiel \ref{modifizierterAlgoChapter} benutze Nachricht angepasst werden. Die Idee dieses Algorithmus ist es - ähnlich wie beim Spezialfall $k = 1$ -  Protokoll zu führen. Damit lässt sich im Anschluss bestimmen, welche Kante am sinnvollsten reduziert werden muss.\\
 	Die Idee ist es für jeden Knoten folgende Parameter festzuhalten: 
@@ -114,7 +114,7 @@ Trotzdem ist es möglich einen Algorithmus anzugeben, der die Kante auswählt, w
 	\end{itemize}
 	Hat jeder Knoten am Ende des Algorithmus diese Informationen, kann man mit einem Durchlauf durch alle Knoten das Minimum ermitteln. Da außerdem gespeichert ist, welche Kanten dafür reduziert werden müssen, kann man auf eine dieser Kanten das Potential anwenden, um die Agentenzahl entsprechend zu reduzieren. Wie in Theorem \ref{theorem_max2kanten} argumentiert, kommen immer nur maximal zwei Kanten pro Knoten in Frage.
 	
-	\subsection*{Berechnung der Nachricht}
+	\subsubsection{Berechnung der Nachricht}
 	
 	Um diese Informationen zu generieren, müssen die Nachrichten erweitert werden.
 	Diese enthalten nun mehrere Parameter:
@@ -138,7 +138,7 @@ Trotzdem ist es möglich einen Algorithmus anzugeben, der die Kante auswählt, w
 	Diese Nachrichten werden wie im normalen Algorithmus (Kapitel \ref{kap_algorithmus}) zwischen allen Knoten verschickt, bis jeder Knoten von jedem Nachbar genau eine Nachricht bekommen hat.
 	
 	
-	\subsection*{Berechnung der minimalen Agenten ($\mu$)}
+	\subsubsection{Berechnung der minimalen Agenten ($\mu$)}
 	
 	Um nun das $\hat{\mu}$ jedes Knotens zu berechnen, gehen wir analog zur Berechnung der Nachricht vor. Der einzige Unterschied ist, dass es einen Fall weniger gibt: 
 	\begin{enumerate}
