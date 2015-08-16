@@ -1,4 +1,4 @@
-\section{Das Potential-Problem}
+\section{Das Potential-Problem}\label{kap_pot}
 
 Im folgenden werde ich mich mit dem Potential-Problem beschäftigen.
 
@@ -8,18 +8,20 @@ Im folgenden werde ich mich mit dem Potential-Problem beschäftigen.
 
 Ich betrachte verschiedene, unterschiedlich komplizierte Varianten des Potential-Problems und werde für die jeweilige Variante einen Algorithmus angeben und kurz die Laufzeit begründen.
 
-\subsection{Spezialfall $k = 1$}
+\subsection{Spezialfall $k = 1$}\label{kap_pot=1}
 
 In diesem Kapitel beschreibe ich das Potential-Problem $k = 1$. Dies bedeutet, dass auf genau einer beliebigen Kante das Kantengewicht um genau 1 reduzieren werden darf. Allerdings muss das Gewicht nach der Reduzierung  weiterhin $\geq 1$ sein. Ziel ist es, wie in Definition \ref{def_potential} beschrieben, die Anzahl der Agenten möglichst gut zu reduzieren.
 \\
 \\
 Jeder Knoten berechnet im Algorithmus von \cite{cima_paper} die minimale Anzahl von Agenten (siehe Kapitel \ref{kap_algorithmus}) und es lässt sich schnell überlegen, dass die Höhe der Agentenanzahl an jedem Knoten von bestimmten Kanten mit ihren Gewichten abhängt.
-\\
-\\
+
+
+\subsubsection{Algorithmus Idee}
+
 Die Idee, um das Potential-Problem für den Spezialfall $k = 1$ zu lösen, ist nun, die Abhängigkeiten zu speichern, welche Kanten die Agentenzahl in jedem Knoten beeinflussen. Dazu protokollieren wir im modifizierten Algorithmus (aus Kapitel \ref{modifizierterAlgoChapter}), wie jede berechnete Nachricht zustande kommt, also von welchen Kanten sie abhängt.
 \\
 \\ 
-Wie in der modifizierten Variante des Algorithmus beschrieben, kann man sehen, dass eine Nachricht $\lambda_{y}$ aus drei verschiedenen Fällen entstehen kann:
+Wie in der modifizierten Variante des Algorithmus beschrieben (siehe Kapitel \ref{modifizierterAlgoChapter}), kann man sehen, dass eine Nachricht $\lambda_{y}$ aus drei verschiedenen Fällen entstehen kann:
 
 \begin{enumerate}[label=\alph*)]
 	
@@ -32,15 +34,17 @@ Wie in der modifizierten Variante des Algorithmus beschrieben, kann man sehen, d
 \end{enumerate}
 
 Je nachdem, durch welchen Fall eine Nachricht $\lambda_{y}$ berechnet wird, kommen andere Kanten in Frage, die wir protokollieren müssen.
-Allerdings gilt für alle Fälle, dass wir uns maximal zwei Kanten merken müssen, da wir ansonsten die minimale Agentenzahl nicht verringern können. Gibt es keine oder mehr als zwei Kanten, so merken wir uns nur die Information, dass das Potential an dieser Stelle nicht eingesetzt werden kann, um die Agentenzahl zu reduzieren (wir setzen einen "flag").
+Allerdings gilt für alle Fälle, dass wir uns maximal zwei Kanten merken müssen, da wir ansonsten die minimale Agentenzahl nicht verringern können. Gibt es keine oder mehr als zwei Kanten, so merken wir uns nur die Information, dass das Potential an dieser Stelle nicht eingesetzt werden kann, um die Agentenzahl zu reduzieren (wir setzen einen "'flag"').
 
 \begin{theorem}\label{theorem_max2kanten}
 	Es müssen maximal zwei Kanten pro Nachricht protokolliert werden. Ansonsten kann das Potential nicht angewendet werden und wir setzen eine "'flag"'
 \end{theorem}
 
 \begin{proof}[Widerspruchsbeweis]
-	Wir nehmen an, es könnten mehr als zwei Kanten pro Nachricht protokolliert werden, o.B.d.A. drei Kanten. Dies würde bedeuten, dass wir durch Reduzierung einer dieser drei Kanten die Nachricht verkleinern könnten. Allerdings hängt die Berechnung der Nachricht pro Fall von maximal zwei Kanten ab (siehe den gerade genannten Fall \ref{entstehung_nachricht_max1+max2}). Dies bedeutet, dass die drei Kanten aus zwei verschiedenen Fällen stammen müssen. Wenn also nun eine der drei Kanten reduziert wird, kann sich maximal nur ein Fall verkleinern, der andere bleibt unverändert. Da der Fall ausschlaggebend ist, der die größte Nachricht generiert, wird durch die Reduzierung der Kante die Nachricht nicht verändert. Da wir aber gesagt haben, dass alle drei Kanten die Nachricht reduzieren können, ist dies ein Widerspruch dazu, dass eine Nachricht von mehr als zwei Nachrichten abhängen kann.
+	Wir nehmen an, es könnten mehr als zwei Kanten pro Nachricht protokolliert werden, o.B.d.A. drei Kanten. Dies würde bedeuten, dass wir durch Reduzierung einer dieser drei Kanten die Nachricht verkleinern könnten. Allerdings hängt die Berechnung der Nachricht pro Fall von maximal zwei Kanten ab (siehe den gerade genannten Fall \ref{entstehung_nachricht_max1+max2}). Dies bedeutet, dass die drei Kanten aus zwei verschiedenen Fällen stammen müssen. Wenn also nun eine der drei Kanten reduziert wird, kann sich maximal nur ein Fall verkleinern, der andere bleibt unverändert. Da der Fall ausschlaggebend ist, der die größte Nachricht generiert, wird durch die Reduzierung der Kante die Nachricht nicht verändert, da der nicht veränderte Fall immer noch die alte Nachricht generiert. Da wir aber gesagt haben, dass alle drei Kanten die Nachricht reduzieren können, ist dies ein Widerspruch dazu, dass eine Nachricht von mehr als zwei Nachrichten abhängen kann.
 \end{proof}
+
+\subsubsection{Die Protokollierung}
 
 Im folgenden werde ich bei allen drei möglichen Fällen beschreiben, welche Kanten unter welcher Bedingung protokolliert werden. Um protokollieren zu können, wird die Nachricht (siehe Definition \ref{def_nachricht}) etwas erweitert. Sie enthält nun nicht mehr nur die Anzahl der Agenten, die für den Teilbaum benötigt werden, sondern auch die (bis zu) zwei protokollierten Kanten bzw. einen "flag", falls keine eindeutigen Kanten bestimmt werden konnten.
 
@@ -61,21 +65,36 @@ Im folgenden werde ich bei allen drei möglichen Fällen beschreiben, welche Kan
 			\EndIf
 		\end{algorithmic}
 	
-	\item Die Nachricht ist kleiner als das Knotengewicht: $\omega(x) \geq edge_{1}+edge_{2}$. Da aber $\omega(x)$ so definiert ist, dass es den Wert des größten Kantengewichts inzident zu x hat, muss die Kante ausschlaggebend sein, über die die Nachricht verschickt wird. 
+	\item Die Nachricht ist kleiner als das Knotengewicht: $\omega(x) > edge_{1}+edge_{2}$. Da aber $\omega(x)$ so definiert ist, dass es den Wert des größten Kantengewichts inzident zu x hat, muss die Kante ausschlaggebend sein, über die die Nachricht verschickt wird. 
 	\\
 	Diese Kante zwischen x und y ist für den Nachrichtenwert also entscheidend und wird somit in der Nachricht protokolliert: \uline{Protokolliere} Kante zwischen x und y.
 	
-	\item In diesem Fall bestimmt die größte ankommende Nachricht $l_{1}$ die neu berechnete Nachricht. Da keine weitere Kante mehr Einfluss genommen hat, übernehmen wir die protokollierten Kanten (oder die "flag") aus $l_{1}$ für $\lambda_{y}$: \uline{Protokolliere} das gleiche wie $l_{1}$
+	\item In diesem Fall bestimmt die größte ankommende Nachricht $l_{1}$ die neu berechnete Nachricht. Da keine weitere Kante mehr Einfluss genommen hat, übernehmen wir die protokollierten Kanten (oder die "'flag"') aus $l_{1}$ für $\lambda_{y}$: \uline{Protokolliere} das gleiche wie $l_{1}$
 	
 \end{enumerate}
-Man muss noch beachten, dass mehrere Fälle gleichzeitig auftreten können. Passiert dies, muss man einen weiteren Test durchführen, ob die verschiedenen Fälle unterschiedlich protokollieren würden.
+Wichtig ist noch zu beachten, dass mehrere Fälle gleichzeitig auftreten können. Passiert dies, muss man einen weiteren Test durchführen, ob die verschiedenen Fälle unterschiedliche Kanten / "'flags"' protokollieren würden.
 \\
-Würden die Fälle verschieden protokollieren, so protokolliere "flag", da das Potential an dieser Stelle nicht genutzt werden kann, ansonsten behalte die Protokollierung bei.
-
-\subsection{Potential auf einer Kante mit $k \geq 1$}
+Würden die Fälle verschieden protokollieren, so protokolliere "flag", da es keine eindeutige(n) Kante(n) gibt und somit das Potential an dieser Stelle nicht genutzt werden kann. Würden die verschiedenen Fälle exakt die gleiche(n) Kante(n) protokollieren, so wird diese Protokollierung für $\lambda_{y}$ übernommen.
 
 
-Um das Potential-Problem etwas zu erweitern, betrachte ich im folgenden Abschnitt Potentiale $\geq 1$, allerdings mit der Einschränkung, dass man das gesamte Potential k nur auf einer Kante einsetzen darf.
+\subsubsection{Laufzeit und Korrektheit}
+
+
+	\begin{theorem}
+		Die Protokollierung, und somit die Berechnung der Kante, auf die das Potential $k=1$ angewendet werden sollte, ist in linearer Laufzeit möglich.
+	\end{theorem}
+	\begin{proof}
+		Um die Laufzeit abzuschätzen, reicht es, die Berechnung der Nachrichten zu betrachten, da nur diese für den Algorithmus verändert wurde. Die Anzahl der zu berechnenden Nachrichten weicht nicht von dem Algorithmus in Kapitel \ref{thm_laufzeit_modifikation} ab. Außerdem kann die Protokollierung für jede Kante in konstanter Zeit durchgeführt werden. Für jede Nachrichtenberechnung muss nur eine einfache Fallunterscheidung durchgeführt werden, um zu ermitteln, welche Kante in der aktuellen Nachricht protokolliert werden muss. Da es $O(n)$ viele Nachrichten gibt, die alle in $O(1)$ berechnet werden können, bleibt die Laufzeit in $O(n)$.
+	\end{proof}
+	
+	
+	//TODO Korrektheit
+
+
+\subsection{Potential auf einer Kante mit $k \geq 1$}\label{kap_pot>=1}
+
+
+Um das Potential-Problem etwas zu erweitern, betrachte ich im folgenden Abschnitt Potentiale $k \geq 1$, allerdings mit der Einschränkung, dass man das gesamte Potential k nur auf einer Kante einsetzen darf.
 
 \begin{theorem}
 	Man kann trotz beliebig großen Potential nicht garantieren, dass sich die minimale Anzahl an benötigten Agenten reduziert, wenn das Potential nur auf einer Kante eingesetzt werden darf.
@@ -89,6 +108,7 @@ Um das Potential-Problem etwas zu erweitern, betrachte ich im folgenden Abschnit
 %		\hfill
 
 		\subfigure[eine Kante wurde auf Gewicht 1 geduziert, alle anderen haben weiterhin Gewicht 4. Alle Knoten benötigen trotzdem mindestens 8 Agenten.]{\includegraphics[width=0.65\textwidth]{bilder/abb2.png}} 
+		\captionsetup{width=0.9\textwidth}
 		\caption{Beispiel, dass Verringerung auf einer Kante nicht zu einer Verringerung der notwendigen Agenten führen muss} 
 		\label{abb_gegenbeispielMaxPotential}
 	\end{figure} 
@@ -149,13 +169,45 @@ Trotzdem ist es möglich einen Algorithmus anzugeben, der die Kante auswählt, w
 	Da wir keine Nachricht mehr verschicken müssen, sondern nur noch das $\hat{\mu}$ ausrechnen wollen, gibt es keine Kante mehr, über die eine Nachricht verschickt wird. Ansonsten sind die Fälle mit der Nachrichtenberechnung identisch.\\
 	Nachdem wir für jeden Knoten die drei Parameter ausgerechnet haben, wissen wir für jeden Knoten wie viele Agenten wir brauchen, wenn wir das Potential nicht anwenden (das ganz normale $\mu$); wie viele Agenten wir benötigen, wenn wir das Potential anwenden $\hat{\mu}$; und auf welche Kanten wir das Potential anwenden müssen, um diese Verbesserung zu erreichen (die Kanten, die wir zur Berechnung von $\hat{\mu}$ reduziert haben).\\
 	Durch einen linearen Durchlauf durch alle Knoten können wir nun das Minimum berechnen und die dazugehörige Kante auswählen, auf die das Potential angewendet werden muss.
+	
+	
+	\subsubsection{Laufzeit und Korrektheit}
+	
 	\begin{theorem}
 		Die Berechnung aller Nachrichten und die Bestimmung der Kante, auf die das Potential angewendet werden sollte, ist in linearer Laufzeit möglich.
 	\end{theorem}
 	\begin{proof}
-		Analog zu Theorem \ref{thm_laufzeit_modifikation} wird die Grundidee des Algorithmus nicht verändert. Jeder Knoten schickt zu all seinen Nachbarn je eine Nachricht. Die Anzahl der Nachrichten ändert sich durch die Modifikation nicht, sondern nur die Berechnung an sich.\\Die Berechnung kann auch hier in konstanter Zeit durchgeführt werden, da pro Nachricht nur maximal vier konstante Fälle berechnet werden müssen, und aus diesen das Minimum bestimmt werden muss.
+		Analog zu Theorem \ref{thm_laufzeit_modifikation} wird die Grundidee des Algorithmus nicht verändert. Jeder Knoten schickt zu all seinen Nachbarn je eine Nachricht. Die Anzahl der Nachrichten ändert sich durch die Modifikation nicht, sondern nur die Berechnung an sich.\\Die Berechnung der Nachricht kann auch hier in konstanter Zeit durchgeführt werden, da pro Nachricht nur maximal vier konstante Fälle berechnet werden müssen, und aus diesen das Minimum bestimmt werden muss.\\
+		Auch die Berechnung der minimalen Agenten ist für jeden Knoten in konstanter Zeit möglich, wodurch der ganze Algorithmus eine Laufzeit von $O(n)$ hat.
 	\end{proof}
-	TODO:\\
-	//begründung korrektheit
+	
+	
+	Um nun die Korrektheit des Algorithmus zu zeigen, muss man garantieren, dass jeder Knoten alle ausgehenden Nachrichten richtig berechnet. Wie beschrieben enthält jede Nachricht drei Teilinformationen: $alpha$, die normal berechnete Nachricht; $\beta$, die Nachricht, die man erhält, wenn man im aktuellen Teilbaum das Potential optimal anwendet; und $e_1/e_2$, die zwei Kanten, auf die das Potential angewendet werden muss, um die optimale Nachricht $\beta$ zu erhalten.
+	\\
+	\\
+	Für die Korrektheit dieses Algorithmus ist nur $\beta$ interessant, da $\alpha$ die identische Nachricht aus Kapitel \ref{modifizierterAlgoChapter} ist und wir die Kannten $e_1/e_2$ einfach aktualisieren können, wenn wir $\beta$ verändern. Daher können wir aus folgender Invariante schließen, dass der Algorithmus das Potential bis zum aktuellen Zeitpunkt richtig berechnet hat:
+	
+	\begin{theorem}
+		Jeder Knoten im Baum berechnet korrekt, ob, und wenn ja wo, im aktuellen Teilbaum das gegebene Potential sinnvoll angewendet werden kann. Außerdem wird berechnet, wie groß die benötigte Agentenzahl nach Anwenden des Potentials für diesen Teilbaum ist.
+	\end{theorem}
+	\begin{proof}
+		Um für die Korrektheit dieser Aussage zu argumentieren, muss man sich zwei Arten von Knoten anschauen: Blattknoten und innere Knoten im Baum.\\
+		\\
+		Zuerst betrachten wir die Blattknoten:\\
+		Zu jedem Blatt führt genau eine Kante. Daher kann das Potential nur auf diese eine Kante angewendet werden. Wenn die Nachricht nun von diesem Knoten berechnet wird, muss bei der Berechnung nur überprüft werden, ob das die Nachricht sich verringert, wenn das Kantengewicht um das Potential reduziert wird. Dies ist immer der Fall, wenn das Kantengewicht $> 1$ ist, da dadurch die Kante reduziert werden kann und man daher für diesen Teilbaum weniger Agenten benötigt.
+		\\
+		\\
+		Betrachten wir nun einen beliebigen Knoten $x$ innerhalb des Baumes:\\
+		Wir gehen davon aus, dass bis zu diesem Zeitpunkt alle Nachrichten korrekt berechnet wurden. Dann muss der Knoten $x$ aus allen seinen angekommenen Nachrichten die neue Nachricht berechnen.\\
+		Der Knoten $x$ hat die Information, wie viele Agenten die einzelnen Teilbäume brauchen, wenn das Potential nicht angewendet wird (dies ist die normale Nachricht $\alpha$), und, wie viele Agenten die einzelnen Teilbäume benötigen, wenn das Potential in diesen angewendet wurde (dies ist der $\beta$-Wert der einzelnen Nachrichten). Außerdem kennt der Knoten $x$ all seine inzidenten Kanten.\\
+		Das einzige, was wir jetzt noch garantieren müssen ist, dass der Knoten $x$ alle Informationen aus den einzelnen Teilbäumen und aus seinen inzidenten Kanten richtig zusammensetzt und somit eine Nachricht an einen Knoten $y$ berechnet, die für den gesamten Teilbaum gilt.\\
+		\\
+		Es sind nur drei Kanten bei der Berechnung interessant: Die Kante, über die die Nachricht von $x$ nach $y$ geschickt wird, sowie die zwei größten Kanten $edge_1$ und $edge_2$, inzident zu $x$. Wenn eine andere Kante in diesem Teilbaum besser geeignet ist für das Potential, wurde sie schon in einer der Nachrichten an $x$ gespeichert. 
+		\\
+		\\
+		TODO!!
+	\end{proof}
+	
+	
 
 \subsection{Potential verteilen mit k > 1}
