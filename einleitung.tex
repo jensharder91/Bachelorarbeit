@@ -11,7 +11,7 @@ In der im Paper beschriebenen Variante des "'graph-searching problems"' hat jede
 \\
 Eine wichtige Eigenschaft, die wir aufrecht erhalten wollen, ist die Monotonie. 
 \begin{mydef}\label{def_monotonie}
-	Monotonie bedeutet, dass ein bereits dekontaminierter Knoten nicht mehr kontaminiert werden darf. Der Baum wird also sukzessive dekontaminiert. 
+	Monotonie bedeutet, dass sichergestellt wird, dass ein bereits dekontaminierter Knoten nicht mehr kontaminiert wird, sondern für die restliche Zeit des Algorithmus dekontaminiert bleibt.
 \end{mydef}
 Diese Eigenschaft sagt aus, dass der Einbrecher keine Möglichkeit haben darf, sich über eine Kante auf einen bereits dekontaminierten Knoten zu bewegen. Um dies zu gewährleisten, müssen wir Wachen aufstellen, die bereits dekontaminierte Teilbäume vor dem Einbrecher schützen, sodass dieser nicht an den Wachen vorbei kann. Die Anzahl der benötigten Wachen hängt davon ab, wie groß das Kantengewicht der angrenzenden Teilbäume ist. Gibt es keinen benachbarten Teilbaum, so wird an dieser Stelle keine Wache benötigt.\\
 Die Agenten dekontaminieren die einzelne Teilbäume sukzessive, bis der gesamte Baum bearbeitet wurde und somit dekontaminiert ist. Der Algorithmus ist danach abgeschlossen.
@@ -34,8 +34,8 @@ Bei dieser Bachelorarbeit handelt es sich um eine Variante des "'graph-searching
 Allerdings ist das "'graph-searching"'-Problem NP-vollständig \cite{complexity_paper} auf allgemeinen Graphen. Daher werden sowohl in vielen Papern (z.B. auch \cite{cima_paper}), als auch in dieser Bachelorarbeit, nur Bäume betrachtet. Dadurch ist es möglich, einen linearen Algorithmus anzugeben, in dem die minimale Anzahl an Agenten sowie die dazugehörige Homebase berechnet werden können \cite{cima_paper}.
 \\
 \\
-Generell gibt es sehr viele Varianten des "'graph-searching problems"':\\
-Einige Beispiele (auf Bäumen) sind zum Beispiel das "'Firefighting"'-Problem //TODO QUELLE, "'FireContainment"'-Problem //TODO QUELLE und das "'Two-guards"'-Problem. //TODO QUELLE.
+Generell gibt es sehr viele ähnliche Varianten des "'graph-searching problems"':\\
+Einige Beispiele (auf Bäumen) sind zum Beispiel das "'Firefighting"'-Problem \cite{firefighterproblem_paper}, "'FireContainment"'-Problem //TODO QUELLE und das "'Two-guards"'-Problem. //TODO QUELLE.
 \\
 \\
 Eine weitere sehr ähnliche Variante zu dem Paper "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} ist "'Tree Decontamination with Temporary Immunity"' \cite{tdti_paper}, welches die gleiche Problemstellung hat. Allerdings ist der Unterschied, dass die Kanten alle Gewicht 1 haben, es dafür aber eine Immunitätszeit gibt, in der ein Knoten auch unbewacht nicht wieder kontaminiert werden kann. Allerdings muss, bevor die Immunitätszeit vorüber ist, wieder ein Agent beim Knoten ankommen, um diesen  weiterhin zu schützen.
