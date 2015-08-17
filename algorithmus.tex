@@ -4,9 +4,9 @@ Der Algorithmus berechnet für einen gegebenen Baum mit Kantengewichten die Mind
 
 
 
-\subsection{Originaler Algorithmus aus \cite{cima_paper}}\label{paperAlgoChapter}
+\subsection{Originaler Algorithmus (Grundlage)}\label{paperAlgoChapter}
 
-Zu Beginn des Algorithmus, werden von allen Knoten ihre Knotengewichte berechnet. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. 
+Zu Beginn des Algorithmus aus \cite{cima_paper}, werden von allen Knoten ihre Knotengewichte berechnet. Dieses ergibt sich jeweils aus dem maximalen Kantengewicht aller zu diesem Knoten führenden Kanten. 
 
 \begin{mydef}
 	Für das Knotengewicht $\omega(x)$ vom Knoten x gilt: $\omega(x) = max_{e} \omega(e)$ für jede Kante e inzident zu x.
@@ -174,16 +174,23 @@ Nachdem alle Knoten i ihr $\mu(i)$ berechnet haben, wird ein Knoten mit minimale
 \subsection{Modifikationen am Algorithmus}\label{modifizierterAlgoChapter}
 
 
-	\begin{wrapfigure}{l}{0.65\textwidth}
-		\begin{center}
-			\includegraphics[width=1\textwidth]{bilder/abb_paper_problem.png}
-		\end{center}
-		\caption{Problem mit dem Algorithmus aus dem Paper. Der Knoten x sollte intuitiv mit 5 Agenten auskommen}
-		\label{fig:negBeispielPaperAlgo}
-	\end{wrapfigure}
+%	\begin{wrapfigure}{l}{0.65\textwidth}
+%		\begin{center}
+%			\includegraphics[width=1\textwidth]{bilder/abb_paper_problem.png}
+%		\end{center}
+%		\caption{Problem mit dem Algorithmus aus dem Paper. Der Knoten x sollte intuitiv mit 5 Agenten auskommen}
+%		\label{fig:negBeispielPaperAlgo}
+%	\end{wrapfigure}
 
 Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmt in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet (z.B. Abbildung \ref{fig:negBeispielPaperAlgo}). In dem  angegebenen Beispiel sollte der Knoten x mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
-\\
+
+		\begin{figure}[htb]
+			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_problem.png}
+			\captionsetup{width=0.65\textwidth}
+			\caption{Problem mit dem Algorithmus aus dem Paper. Der Knoten x sollte intuitiv mit 5 Agenten auskommen}
+			\label{fig:negBeispielPaperAlgo}
+		\end{figure}
+
 Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist folgender: Der originale Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, diese dadurch dekontaminiert ist, und wir sie nicht mehr bewachen müssen. Es werden dadurch mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
 Da das Problem, wie erläutert, am Knotengewicht liegt, werde ich im folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig, als auch intuitiv sinnvoll funktioniert:

@@ -79,14 +79,16 @@
 
 
 \titleformat{\subsection}
-	{\normalfont\large\bfseries}{\thesubsection}{1em}{\uline{#1}}		
+	{\normalfont\Large\bfseries}{\thesubsection}{1em}{#1}		
 \titlespacing*{\subsection}
 	{0pt}{1.875\baselineskip}{1.25\baselineskip}
 	
 \titleformat{\subsubsection}
-	{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{#1}		
+	{\normalfont\large\bfseries}{\thesubsubsection}{1em}{#1}		
 \titlespacing*{\subsubsection}
 	{0pt}{1.5\baselineskip}{1\baselineskip}
+
+
 
 
 
@@ -137,7 +139,7 @@
 	
 	\include{applet}
 	
-	\section{Fazit}
+	\include{fazit}
 	
 	\newpage
 
@@ -147,10 +149,16 @@
 	\begin{thebibliography}{99}
 		
 		
-		\bibitem[\textsc{Barrière} et al. 2002]{cima_paper} \textsc{L. Barrière, P. Flocchini, P. Fraigniaud, N. Santoro} (2002): Capture of an Intruder by Mobile Agents. (SPAA'02) Winnipeg, Manitoba, Canada.
+		\bibitem[Ba02]{cima_paper} \textsc{L. Barrière, P. Flocchini, P. Fraigniaud, N. Santoro} (2002): Capture of an Intruder by Mobile Agents. (SPAA'02) Winnipeg, Manitoba, Canada.
+
+		\bibitem[Fl08]{tdti_paper} \textsc{P. Flocchini, B. Mans, N. Santoro} (2008): Tree Decontamination with Temporary Immunity. (ISAAC'08) Gold Coast, Australia.
+		
+		\bibitem[Me88]{complexity_paper} \textsc{N. Megiddo, S. Hakimi, M. Garey, D. Johnson, C. Papadimitriou} (1988): Journal of the Association for Computing Machinery, Vol. 35, No 1, 1988.
 
 		
 	\end{thebibliography} 
+	
+	\include{eidesstattlicheerklaerung}
 	
 	
 \end{document}
