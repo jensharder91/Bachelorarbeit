@@ -56,14 +56,14 @@ Im Folgenden werden wir bei allen drei möglichen Fällen beschreiben, welche Ka
 	
 		\begin{algorithmic}
 			\If {$edge_{1} == edge_{3}$}
-			\State \uline{protokolliere: "flag"}\\
+			\State \uline{protokolliere: "flag"}
 			\LineComment{Es gibt (mindestens) drei gleich große Kanten. Selbst wenn man eine der drei Kanten reduziert, wird die Nachricht aus den anderen beiden Kanten berechnet und dadurch nicht verkleinert.}
 			\ElsIf {$edge_{2} == edge_{3}$}
-			\State \uline{protokolliere: $edge_{1}$}\\
-			//Die maximale Kante ist eindeutig, die zweit größte Kante nicht. Es macht also nur Sinn die größte Kante zu reduzieren.
+			\State \uline{protokolliere: $edge_{1}$}
+			\LineComment{Die maximale Kante ist eindeutig, die zweit größte Kante nicht. Es macht also nur Sinn die größte Kante zu reduzieren.}
 			\Else
-			\State \uline{protokolliere: $edge_{1}$ und $edge_{2}$}\\
-			//Sowohl die größte, als auch die zweit größte Kante ist eindeutig. Wir können eine von den beiden reduzieren, um auch die Nachricht erfolgreich zu verkleinern.
+			\State \uline{protokolliere: $edge_{1}$ und $edge_{2}$}
+			\LineComment{Sowohl die größte, als auch die zweit größte Kante ist eindeutig. Wir können eine von den beiden reduzieren, um auch die Nachricht erfolgreich zu verkleinern.}
 			\EndIf
 		\end{algorithmic}
 	

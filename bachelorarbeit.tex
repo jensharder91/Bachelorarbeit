@@ -13,7 +13,7 @@
 \usepackage{enumitem}
 \usepackage {ulem}
 %\usepackage{algorithmic}
-\usepackage{algorithm}
+%\usepackage{algorithm}
 \usepackage{algpseudocode}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -93,9 +93,16 @@
 
 
 
-
-
-
+%LineComment  (for pseudocode)
+%\algnewcommand{\LineComment}[1]{\newline\begingroup \leftskip4em /* #1 */ \endgroup}
+\algnewcommand{\LineComment}[1]
+	{\begingroup
+		\setlength\parindent{0pt}\par\leftskip1.6em /*
+			\begingroup
+				\setlength\parindent{0pt}\par\leftskip3em\rightskip2\leftskip#1\par
+			\endgroup
+		*/ \par
+	\endgroup}
 
 
 

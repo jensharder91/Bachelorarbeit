@@ -50,12 +50,12 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 		%		\hfill
 		%		\begin{minipage}{0.35\textwidth}
 		
-		\begin{figure}[htb]
-			\includegraphics[width=0.65\textwidth]{bilder/abb_blattknoten.png}
-			\captionsetup{width=0.65\textwidth}
-			\caption{Das Knotengewicht des Blattknotens $x$ (grün) bestimmt den Wert Nachricht $\lambda_{y} = 3$ (blau) zum Nachbarknoten $y$.}
-			\label{abb_leaf}
-		\end{figure}
+%		\begin{figure}[htb]
+%			\includegraphics[width=0.65\textwidth]{bilder/abb_blattknoten.png}
+%			\captionsetup{width=0.65\textwidth}
+%			\caption{Das Knotengewicht des Blattknotens $x$ (grün) bestimmt den Wert Nachricht $\lambda_{y} = 3$ (blau) zum Nachbarknoten $y$.}
+%			\label{abb_leaf}
+%		\end{figure}
 
 %		\end{minipage}
 		
@@ -77,20 +77,18 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 %		\end{wrapfigure}
 		
 		Um eine Nachricht von $x$ an den Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht an $x$ gesendet hat, nimmt man die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bei $x$ angekommen sind. Mit diesen beiden angekommenen Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an $y$ wie folgt berechnet (siehe auch Abbildung \ref{abb_n-1}): $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
-		\\
-		\\	
 		Nach dem Berechnen und Versenden der Nachricht $\lambda_{y}$ muss $x$ auf die letzte ankommende Nachricht (von $y$) warten. Sobald diese Nachricht angekommen ist, berechnet $x$ die Nachrichten für alle anderen Nachbarknoten, wie im Fall \ref{labelAufUnterfall} beschrieben. 
 	%				\end{minipage}
 	%				\hfill
 	%				\begin{minipage}{0.35\textwidth}
 		
 		
-		\begin{figure}[htb]
-			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_n-1knoten.png}
-			\captionsetup{width=0.65\textwidth}
-			\caption{Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb).}
-			\label{abb_n-1}
-		\end{figure}
+%		\begin{figure}[htb]
+%			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_n-1knoten.png}
+%			\captionsetup{width=0.65\textwidth}
+%			\caption{Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb).}
+%			\label{abb_n-1}
+%		\end{figure}
 		
 %		\end{minipage}
 		
@@ -112,26 +110,39 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 %		\end{wrapfigure}
 		
 		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, gehen wir ähnlich wie in Fall \ref{algo_fall_2} vor: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $y$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
-		\\
-		\\
 		Diese Berechnung wird für jeden Nachbarknoten von $x$ wiederholt, so dass jeder Nachbar eine Nachricht von $x$ erhält. Nach diesem Schritt ist die Bearbeitung des Knoten $x$ abgeschlossen, da er sowohl von jedem Nachbar eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
 %				\end{minipage}
 %				\hfill
 %				\begin{minipage}{0.35\textwidth}
 		
 		
-		\begin{figure}[htb]
-			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_nknoten.png}
-			\captionsetup{width=0.65\textwidth}
-			\caption{Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert.}
-			\label{abb_n}
-		\end{figure}
+%		\begin{figure}[htb]
+%			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_nknoten.png}
+%			\captionsetup{width=0.65\textwidth}
+%			\caption{Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert.}
+%			\label{abb_n}
+%		\end{figure}
 		
 %		\end{minipage}
 	
 		
 		
 \end{enumerate}
+
+\begin{figure}[htbp]
+	\subfigure[Das Knotengewicht des Blattknotens $x$ (grün) bestimmt den Wert Nachricht $\lambda_{y} = 3$ (blau) zum Nachbarknoten $y$.
+	\label{abb_leaf}]{\includegraphics[width=0.5\textwidth]{bilder/abb_blattknoten.png}}
+	%	\hfill  
+	%lösche die neue line und füge das \hfill wieder ein um die bilder nebeneiander zu haben
+		
+	\subfigure[Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb). \label{abb_n-1}]{\includegraphics[width=0.5\textwidth]{bilder/abb_paper_n-1knoten.png}} 
+	%	\hfill
+	
+	\subfigure[Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert. \label{abb_n}]{\includegraphics[width=0.5\textwidth]{bilder/abb_paper_nknoten.png}}  
+	
+	\caption{Drei Fälle, die bei dem Algorithmus auftreten können.} 
+	
+\end{figure}
 
 
 %\subsubsection{Berechnung der minimalen Agenten}
@@ -150,9 +161,7 @@ Sobald alle Knoten sowohl an alle Nachbarn eine Nachricht geschickt haben, als a
 \\
 \\
 Die minimale Agentenanzahl $\mu(x)$, die am Knoten $x$ benötigt wird, wird wie folgt berechnet:
-\\
-\\
-$$\mu(x) = max\{l_{1},  l_{2} + \omega(x)\}$$, wobei analog zu der Berechnung der Nachrichten gilt: $l_{1} \ge l_{2}$ sind die größten beiden angekommenen Nachrichten und $\omega(x)$ ist das Knotengewicht von $x$.
+$$\mu(x) = max\{l_{1},  l_{2} + \omega(x)\},$$ wobei analog zu der Berechnung der Nachrichten gilt: $l_{1} \ge l_{2}$ sind die größten beiden angekommenen Nachrichten und $\omega(x)$ ist das Knotengewicht von $x$.
 \\
 \\
 Nachdem alle Knoten $i$ ihr $\mu(i)$ berechnet haben, wird ein Knoten mit minimalem $\mu$ ausgewählt. Dieser ist die neue Homebase, von dem aus $\mu$ viele Agenten den gesamten Baum dekontaminieren können, ohne die Monotonie-Eigenschaft zu verletzen (siehe Definition \ref{def_monotonie}).
@@ -211,8 +220,6 @@ Der Algorithmus in Kapitel \ref{paperAlgoChapter} muss wie folgt abgeändert wer
 	\item 
 		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, nimmt man die Kantengewichte der zwei größten Kanten ($edge_{1}$ und $edge_{2}$), die inzident zu $x$ sind, jedoch nicht zu $y$. Mit den beiden ermittelten Kantengewichten, für die gilt $edge_{1} \ge edge_{2}$, wird die Nachricht $\lambda_{y}$ an $y$ wie auch in Abbildung \ref{modifiziert_a} gezeigt berechnet:
 		$$\lambda_{y} = edge_{1} + edge_{2}$$.
-		\\
-		\\
 		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, sodass die Berechnung auch klappt, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu $x$ und nicht inzident zu $y$ zutrifft (zum Beispiel bei einem Blattknoten).
 	
 	\item
