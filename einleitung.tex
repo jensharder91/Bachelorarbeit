@@ -3,30 +3,30 @@
 Als Grundlage dieser Bachelorarbeit dient ein Algorithmus aus dem Paper "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper}, in der für einen gegebenen gewichteten Baum in linearer Zeit die minimale Anzahl an Agenten berechnet werden soll, die den gesamten Baum dekontaminieren können. Hierbei handelt es sich um eine Variante des "'Graph-searching Problem"'. Graph-searching Probleme sind in der Regel Probleme, in denen auf eine bestimmte Art und Weise ein gegebener Graphen durchsucht werden soll. In vielen Fällen dürfen sich die "'Sucher"' zwischen den Knoten des Graphen nur auf den gegebenen Kanten bewegen.
 \\
 \\
-Allerdings ist das Graph-searching -Problem auf allgemeinen Graphen NP-vollständig \cite{complexity_paper}. Daher werden sowohl in vielen Papern (z.B. auch in "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper}), als auch in dieser Bachelorarbeit, nur Bäume betrachtet. Dadurch ist es möglich, einen linearen Algorithmus anzugeben, in dem die minimale Anzahl an Agenten sowie die dazugehörige Homebase berechnet werden können.
+Allerdings ist das Graph-searching Problem auf allgemeinen Graphen NP-vollständig \cite{complexity_paper}. Daher werden sowohl in vielen Papern (z.B. auch in "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper}), als auch in dieser Bachelorarbeit, nur Bäume betrachtet. Dadurch ist es möglich, einen linearen Algorithmus anzugeben, in dem die minimale Anzahl an Agenten sowie die dazugehörige Homebase berechnet werden können.
 \\
 \\
-Man kann sich das hier behandelte Problem anschaulich wie folgt vorstellen: Ein Einbrecher ist in das Netzwerk (in dieser Variante ein Baum) eingedrungen und soll nun von mobilen Agenten gesucht werden. Sowohl die Agenten, als auch der Einbrecher können sich nur auf den Kanten des Graphen bewegen. Der Algorithmus soll die minimale Anzahl der Agenten berechnen, die nötig sind, um das gesamte Netzwerk systematisch nach dem Einbrecher zu durchsuchen, ohne dass dieser entwischen kann. Ein Knoten, auf dem sich Agenten befinden oder sich bereits welche aufgehalten haben, ist dekontaminiert, solange sichergestellt ist, dass der Einbrecher keine Möglichkeit mehr hat, diesen zu erreichen. Ein Knoten, in dem noch kein Agent gewesen ist, wird als kontaminiert bezeichnet (hier könnte der Einbrecher noch sein). Außerdem gibt der Algorithmus den Startpunkt im Netzwerk an, von dem die Agenten die Suche aufnehmen sollen (die sogenannte Homebase, siehe auch Definition \ref{def_homebase}). Je nachdem, welcher Punkt des Netzwerks als Homebase bestimmt wird, kann sich die Anzahl der benötigten Agenten ändern. Es wird daher die Homebase mit der minimalen Agentenzahl gesucht.
+Man kann sich das hier behandelte Problem anschaulich wie folgt vorstellen: Ein Einbrecher ist in das Netzwerk (in dieser Variante ein Baum) eingedrungen und soll nun von mobilen Agenten gesucht werden. Sowohl die Agenten, als auch der Einbrecher können sich nur auf den Kanten des Graphen bewegen. Der Algorithmus soll die minimale Anzahl der Agenten berechnen, die nötig sind, um das gesamte Netzwerk systematisch nach dem Einbrecher zu durchsuchen, ohne dass dieser entwischen kann. Ein Knoten, auf dem sich Agenten befinden oder sich bereits welche aufgehalten haben, ist dekontaminiert, solange sichergestellt ist, dass der Einbrecher keine Möglichkeit mehr hat, diesen zu erreichen. Ein Knoten, in dem noch kein Agent gewesen ist, wird als kontaminiert bezeichnet, da hier der Einbrecher noch sein könnte. Außerdem gibt der Algorithmus den Startpunkt im Netzwerk an, von dem die Agenten die Suche aufnehmen sollen. Dieser Startpunkt wird auch Homebase genannt (siehe Definition \ref{def_homebase}). Je nachdem, welcher Punkt des Netzwerks als Homebase bestimmt wird, kann sich die Anzahl der benötigten Agenten ändern. Es wird daher die Homebase mit der minimalen Agentenzahl gesucht.
 \\
 \\
-Bei dem Problem "'Capture of an Intruder by Mobile Agents"' ist jede Kante ungerichtet und hat ein Gewicht $\geq 1$. Dieses Gewicht sagt aus, wie viele Agenten mindestens über eine Kante laufen müssen, um diese zu dekontaminieren. Anschaulich kann man sich die Kante als Flur in einem Haus vorstellen. Je nachdem, wie groß und verwinkelt dieser Flur ist, braucht man verschieden viele Agenten, um diesen  zu dekontaminieren.
+Bei dem Problem "'Capture of an Intruder by Mobile Agents"' ist jede Kante ungerichtet und hat ein Gewicht $\omega \geq 1$. Dieses Gewicht sagt aus, wie viele Agenten mindestens über eine Kante laufen müssen, um diese zu dekontaminieren. Anschaulich kann man sich die Kante als einen Flur in einem Haus vorstellen. Je nachdem, wie groß und verwinkelt dieser Flur ist, braucht man unterschiedlich viele Agenten, um diesen  zu dekontaminieren.
 \\
 \\
 Eine wichtige Eigenschaft, die wir aufrecht erhalten wollen, ist die Monotonie. 
 \begin{mydef}\label{def_monotonie}
-	Eine Strategie ist monoton, wenn sichergestellt wird, dass ein bereits dekontaminierter Knoten nicht mehr kontaminiert wird, sondern für die restliche Zeit des Algorithmus dekontaminiert bleibt.
+	Eine Strategie ist monoton, wenn sichergestellt wird, dass ein bereits dekontaminierter Knoten bis zur vollständigen Dekontaminierung des gesamten Graphen nicht erneut kontaminiert wird.
 \end{mydef}
 Diese Eigenschaft sagt aus, dass der Einbrecher keine Möglichkeit haben darf, sich über eine Kante auf einen bereits dekontaminierten Knoten zu bewegen. Um dies zu gewährleisten, müssen wir Wachen aufstellen, die bereits dekontaminierte Teilbäume vor dem Einbrecher schützen, sodass dieser nicht an den Wachen vorbei kann. Die Anzahl der benötigten Wachen hängt davon ab, wie groß das Kantengewicht der angrenzenden Teilbäume ist. Gibt es keinen benachbarten Teilbaum, so wird an dieser Stelle keine Wache benötigt.\\
 Die Agenten dekontaminieren die einzelne Teilbäume sukzessive, bis der gesamte Baum bearbeitet wurde und somit dekontaminiert ist. Der Algorithmus ist danach abgeschlossen.
 
 \subsection{Ziel der Bachelorarbeit}
 
-Das Ziel dieser Bachelorarbeit ist es, auf Grundlage des in "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} beschriebenen Algorithmus weitere Problemstellungen zu betrachten. Ich untersuche im Folgenden, wie sich ein sogenanntes Potential (siehe Definition \ref{def_potential}) auf den Algorithmus auswirkt. Das Potential gibt an, um wie viel eine oder mehrere Kantengewichte reduziert werden können. Ich entwickle Lösungsideen für verschiedene Varianten des Potential-Problems. Der Algorithmus, den ich in dieser Bachelorarbeit angebe, kann dabei ein Potential nutzen, um einzelne Kantengewichte zu verringern. Dadurch sollen die für die Dekontaminierung benötigte Anzahl an Agenten verringert werden. Allerdings ändert sich die minimale Anzahl der Agenten unterschiedlich stark (oder auch gar nicht), je nachdem, welche Kanten durch das Potential reduziert werden, weshalb der Algorithmus das Potential optimal nutzen soll, um die Agentenzahl möglichst stark zu senken.\\
-Außerdem werde ich den entwickelten Algorithmus implementieren.
+Das Ziel dieser Bachelorarbeit ist es, auf Grundlage des in "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} beschriebenen Algorithmus weitere Problemstellungen zu betrachten. Ich untersuche im Folgenden, wie sich ein sogenanntes Potential (siehe Definition \ref{def_potential}) auf den Algorithmus auswirkt. Das Potential gibt an, um wie viel eine oder mehrere Kantengewichte reduziert werden können. Ich entwickle Lösungsideen für verschiedene Varianten des Potential-Problems. Der Algorithmus, den wir in dieser Bachelorarbeit angeben, kann dabei ein Potential nutzen, um einzelne Kantengewichte zu verringern. Dadurch sollen die für die Dekontaminierung benötigte Anzahl an Agenten verringert werden. Allerdings ändert sich die minimale Anzahl der Agenten unterschiedlich stark oder auch gar nicht, je nachdem, welche Kanten durch das Potential reduziert werden. Der Algorithmus soll daher das Potential optimal nutzen, um die Agentenzahl möglichst stark zu senken.\\
+Außerdem werden wir den entwickelten Algorithmus implementieren.
 \\
 \\
 Die Grundlage dieser Implementierung ist aus einer Projektarbeit entstanden, welche im Wintersemester 2014/15 an der Universität Bonn durchgeführt wurde.
-In dieser Projektarbeit habe ich den Algorithmus aus dem Paper "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} in einem Java-Applet visuell dargestellt und implementiert. Im Rahmen dieser Bachelorarbeit erweitere ich dieses Applet mit den neu gewonnenen Erkenntnissen bzw. Algorithmen (siehe Kapitel \ref{modifizierterAlgoChapter} und \ref{kap_pot}). Eine genauere Beschreibung des Applets gebe ich in Kapitel \ref{kap_implementierung}.\\
+In dieser Projektarbeit haben wir den Algorithmus aus dem Paper "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} in einem Java-Applet visuell dargestellt und implementiert. Im Rahmen dieser Bachelorarbeit erweitern wir dieses Applet mit den neu gewonnenen Erkenntnissen bzw. Algorithmen (siehe Kapitel \ref{modifizierterAlgoChapter} und \ref{kap_pot}). Eine genauere Beschreibung des Applets geben wir in Kapitel \ref{kap_implementierung}.\\
 Alle Abbildungen dieser Bachelorarbeit stammen aus dem Applet und sollen die Erklärungen graphisch unterstützen.
 
 
@@ -36,10 +36,10 @@ Alle Abbildungen dieser Bachelorarbeit stammen aus dem Applet und sollen die Erk
 
 Es gibt sehr viele Fragestellungen, die man sich beim "'Graph-searching problems"' stellen kann. Einige sind zum Beispiel \cite{firefighterproblem_paper}:
 \begin{itemize}
-	\item Minimierung der kontaminierten Knoten, wenn sich z.B. ein Feuer oder ein Einbrecher langsam ausbreitet und an einem zufälligen Knoten startet
-	\item Sichere maximal viele Knoten vor einem Einbrecher oder Feuer
-	\item Minimiere die Zeit, den gesamten Baum zu kontaminieren
-	\item Finde die minimale Anzahl an  Agenten, um den Baum komplett zu dekontaminieren
+	\item Minimiere die Anzahl der kontaminierten Knoten, wenn sich z.B. ein Feuer oder ein Einbrecher langsam ausbreitet und an einem zufälligen Knoten startet.
+	\item Sichere maximal viele Knoten vor einem Einbrecher oder Feuer.
+	\item Minimiere die Zeit, den gesamten Baum zu kontaminieren.
+	\item Finde die minimale Anzahl an  Agenten, um den Baum komplett zu dekontaminieren.
 \end{itemize}
 
 Einige dieser Fragestellungen werden in verschiedenen Arbeiten sowohl auf Bäumen, als auch auf allgemeinen Graphen behandelt:\\
@@ -49,7 +49,7 @@ Einige Beispiele sind das "'Firefighting"'-Problem und "'Tree Decontamination wi
 %, "'FireContainment"'-Problem //TODO QUELLE, das "'Two-guards"'-Problem,
 %\\
 %Manchmal wird die gleiche Fragestellung mit einer anderen Grundkonfiguration untersucht: Bei "'Tree Decontamination with Temporary Immunity"' \cite{tdti_paper} wird die gleiche Fragestellung wie bei "'Capture of an Intruder by Mobile Agents"' untersucht. Allerdings gibt es eine sog. Immunitätszeit, in der ein Knoten auch unbewacht nicht wieder kontaminiert werden kann. Allerdings muss, bevor die Immunitätszeit vorüber ist, wieder ein Agent beim Knoten ankommen, um diesen  weiterhin zu schützen.
-"'Searching-problems"' gibt es aber nicht nur auf Graphen: In der Literatur lassen sich viele verschiedene  Varianten finden, so zum Beispiel auf einer Ebene \cite{klein_paper}, einem Gitternetz \cite{grid_paper_96} oder in einem Polygon \cite{polygon_paper}.
+"'Searching-problems"' gibt es aber nicht nur auf Graphen: In der Literatur lassen sich viele verschiedene  Varianten finden, die Searching-Problems auf einer Ebene \cite{klein_paper}, einem Gitternetz \cite{grid_paper_96} oder in einem Polygon \cite{polygon_paper} betrachten.
 %\\
 %\\
 %Eine weitere sehr ähnliche Variante zu dem Paper "'Capture of an Intruder by Mobile Agents"' \cite{cima_paper} ist "'Tree Decontamination with Temporary Immunity"' \cite{tdti_paper}, welches die gleiche Problemstellung hat. Allerdings ist der Unterschied, dass die Kanten alle Gewicht 1 haben, es dafür aber eine Immunitätszeit gibt, in der ein Knoten auch unbewacht nicht wieder kontaminiert werden kann. Allerdings muss, bevor die Immunitätszeit vorüber ist, wieder ein Agent beim Knoten ankommen, um diesen  weiterhin zu schützen.
