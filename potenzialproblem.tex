@@ -249,7 +249,7 @@ Trotzdem ist es möglich, einen Algorithmus anzugeben, der die Kante auswählt, 
 Die nächste Erweiterung des Potentialproblems ist es, Potentiale $k > 1$ zu betrachten, bei denen man das Potential auf verschiedene Kanten verteilen kann.\\
 In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel gesehen, in dem es tatsächlich nötig sein kann, das Potential auf verschiedene Kanten zu verteilen. Dieses Beispiel wollen wir im folgenden etwas erweitern und erläutern:
 
-\begin{theorem}
+\begin{theorem}\label{theorem_pot_auf_linear_vielen_kanten}
 	Es gibt Bäume, bei denen man das Potential auf linear viele Kanten verteilen muss.
 \end{theorem}	
 \begin{proof}
@@ -288,14 +288,14 @@ In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel 
 \end{proof}
 
 
-.........................Bei den Potentialproblemen $k = 1$ (Kapitel \ref{kap_pot=1})und $k \geq 1$ auf einer Kante (Kapitel \ref{kap_pot>=1}) war es relativ einfach zu testen, auf welche Kante das Potential angewendet werden muss, um einen möglichst großen Effekt zu bekommen. Bei jeder Nachrichtenberechnung musste man nur konstant viele Kanten testen und es war daher möglich einen Algorithmus zu entwerfen, der ohne Laufzeitverschlechterung die jeweilige Kante bestimmen konnte.
+Bei den Potentialproblemen $k = 1$ (Kapitel \ref{kap_pot=1})und $k \geq 1$ auf einer Kante (Kapitel \ref{kap_pot>=1}) musste man für jede Nachrichtenberechnung nur konstant viele Kanten testen und es war daher möglich einen Algorithmus zu entwerfen, der ohne Laufzeitverschlechterung die jeweilige Kante bestimmen konnte.
 \\
-\\
-.........................Wenn man das Potential aber auf verschiedene Kanten verteilen möchte, ist dies nicht mehr so leicht möglich. Es gibt nicht mehr nur konstant viele Kanten, die man pro Nachrichtenberechnung kontrollieren muss, sondern es kann passieren, dass man quadratisch viele Kanten in den Nachrichten speichern muss:\\
-Wenn man das Beispiel aus Abbildung \ref{abb_bsp_potverteilen} erweitert (siehe Abbildung \ref{abb_bsp_potverteilen_quadratisch}), sieht man, dass............
-	\begin{figure}[htb]
-		\includegraphics[width=0.65\textwidth]{bilder/abb_bsp_potverteilen_quadratisch.png} 
-		\captionsetup{width=0.65\textwidth}
-		\caption{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung kann eine Komplexität linear zur Knotenanzahl haben.}
-		\label{abb_bsp_potverteilen_quadratisch}
-	\end{figure}
+Diese praktische Eigenschaft scheint bei der Verteilung des Potentials nicht mehr gegeben. Da es nach Theorem \ref{theorem_pot_auf_linear_vielen_kanten} sein kann, dass man das Potential auf fast alle Kanten verteilen muss, kann es passieren, dass alle bisher betrachteten Kanten in der Nachricht gespeichert werden und bei jeder neuen Nachricht mit überprüft werden müssen. In den Varianten, bei denen man das Potential nur auf einer Kante anwenden durfte, war diese Anzahl auf zwei beschränkt (siehe Theorem \ref{theorem_max2kanten}).
+
+
+%	\begin{figure}[htb]
+%		\includegraphics[width=0.65\textwidth]{bilder/abb_bsp_potverteilen_quadratisch.png} 
+%		\captionsetup{width=0.65\textwidth}
+%		\caption{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung kann eine Komplexität linear zur Knotenanzahl haben.}
+%		\label{abb_bsp_potverteilen_quadratisch}
+%	\end{figure}
