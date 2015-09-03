@@ -38,6 +38,7 @@
 
 %style
 \usepackage{BA_Titelseite}
+\usepackage{tabulary} %für die neue titelseite
 
 
 %style the section
@@ -95,13 +96,18 @@
 
 %LineComment  (for pseudocode)
 %\algnewcommand{\LineComment}[1]{\newline\begingroup \leftskip4em /* #1 */ \endgroup}
-\algnewcommand{\LineComment}[1]
-	{\begingroup
-		\setlength\parindent{0pt}\par\leftskip1.6em /*
-			\begingroup
-				\setlength\parindent{0pt}\par\leftskip3em\rightskip2\leftskip#1\par
-			\endgroup
-		*/ \par
+
+%\algnewcommand{\LineComment}[1]
+%	{\begingroup
+%		\setlength\parindent{0pt}\par\leftskip1.6em /*
+%			\begingroup
+%				\setlength\parindent{0pt}\par\leftskip3em\rightskip2\leftskip#1\par
+%			\endgroup
+%		*/ \par
+%	\endgroup}
+
+\algnewcommand{\LineComment}[1]{\begingroup
+	\setlength\parindent{0pt}\par\leftskip1.6em\rightskip3\leftskip /* \newline #1 \newline */ \par
 	\endgroup}
 
 
@@ -129,6 +135,8 @@
 
 \begin{document}
 	\maketitle
+	\include{titelseite}
+	\include{titelseite_ohneLogo}
 	\newpage
 	\pagestyle{empty}
 	\include{eidesstattlicheerklaerung}

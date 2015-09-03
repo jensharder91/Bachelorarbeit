@@ -52,20 +52,24 @@ Im Folgenden werden wir bei allen drei möglichen Fällen beschreiben, welche Ka
 
 \begin{enumerate}[label=\alph*)]
 	
-	\item In diesem Fall wird die Nachricht aus den beiden größten Kanten berechnet ($\lambda_{y} \gets edge_{1} + edge_{2}$). Allerdings müssen wir kontrollieren, ob diese zwei Kanten eindeutig sind, oder ob es evtl. mehrere gleich große Kanten gibt. Ist die Wahl der Kanten nicht eindeutig, müssen wir dies bei der Protokollierung mit berücksichtigen:\\
-	
+	\item In diesem Fall wird die Nachricht aus den beiden größten Kanten berechnet ($\lambda_{y} \gets edge_{1} + edge_{2}$). Allerdings müssen wir kontrollieren, ob diese zwei Kanten eindeutig sind, oder ob es evtl. mehrere gleich große Kanten gibt. Ist die Wahl der Kanten nicht eindeutig, müssen wir dies bei der Protokollierung mit berücksichtigen:
+
 		\begin{algorithmic}
 			\If {$edge_{1} == edge_{3}$}
-			\State \uline{protokolliere: "flag"}
 			\LineComment{Es gibt (mindestens) drei gleich große Kanten. Selbst wenn man eine der drei Kanten reduziert, wird die Nachricht aus den anderen beiden Kanten berechnet und dadurch nicht verkleinert.}
+			\State \uline{protokolliere: "flag"}
+			\newline
 			\ElsIf {$edge_{2} == edge_{3}$}
-			\State \uline{protokolliere: $edge_{1}$}
 			\LineComment{Die maximale Kante ist eindeutig, die zweit größte Kante nicht. Es macht also nur Sinn die größte Kante zu reduzieren.}
+			\State \uline{protokolliere: $edge_{1}$}
+			\newline
 			\Else
-			\State \uline{protokolliere: $edge_{1}$ und $edge_{2}$}
 			\LineComment{Sowohl die größte, als auch die zweit größte Kante ist eindeutig. Wir können eine von den beiden reduzieren, um auch die Nachricht erfolgreich zu verkleinern.}
+			\State \uline{protokolliere: $edge_{1}$ und $edge_{2}$}
+			\newline
 			\EndIf
 		\end{algorithmic}
+		
 	
 	\item Die Nachricht ist kleiner als das Knotengewicht: $\omega(x) > edge_{1}+edge_{2}$. Da aber $\omega(x)$ so definiert ist, dass es den Wert des größten Kantengewichts inzident zu $x$ hat, muss die Kante ausschlaggebend sein, über die die Nachricht verschickt wird. 
 	\\
@@ -126,10 +130,10 @@ Um das Potential-Problem etwas zu erweitern, betrachten wir im folgenden Abschni
 	Da das Potential $k$ beliebig groß ist, kann man die Kante, auf welche man das Potential anwenden möchte, auf Kantengewicht 1 setzen. Dadurch kann man garantieren, dass das größtmögliche Potential eingesetzt worden ist, da jede Kante immer ein Gewicht $\omega \geq 1$ haben muss. Trotzdem ist es nicht möglich bei folgendem Baum die Anzahl der Agenten zu reduzieren (siehe Abbildung \ref{abb_gegenbeispielMaxPotential}). Da dieser Baum absolut symmetrisch ist, spielt es keine Rolle, auf welche der vier Kanten das Potential angewendet wird und das Kantengewicht auf 1 gesetzt wird.
 	
 	\begin{figure}[hbt]
-		\subfigure[alle Kanten haben Gewicht 4. Alle Knoten benötigen mindestens 8 Agenten.]{\includegraphics[width=0.65\textwidth]{bilder/abb1.png}} 
+		\subfigure[alle Kanten haben Gewicht 4. Alle Knoten benötigen mindestens 8 Agenten.]{\includegraphics[width=0.7\textwidth]{bilder/abb1_NEU2.png}} 
 		%		\hfill
 		
-		\subfigure[eine Kante wurde auf Gewicht 1 geduziert, alle anderen haben weiterhin Gewicht 4. Alle Knoten benötigen trotzdem mindestens 8 Agenten.]{\includegraphics[width=0.65\textwidth]{bilder/abb2.png}} 
+		\subfigure[eine Kante wurde auf Gewicht 1 geduziert, alle anderen haben weiterhin Gewicht 4. Alle Knoten benötigen trotzdem mindestens 8 Agenten.]{\includegraphics[width=0.7\textwidth]{bilder/abb2_NEU2.png}} 
 		\captionsetup{width=0.9\textwidth}
 		\caption{Beispiel, dass Verringerung auf einer Kante nicht zu einer Verringerung der notwendigen Agenten führen muss} 
 		\label{abb_gegenbeispielMaxPotential}
@@ -151,6 +155,9 @@ Trotzdem ist es möglich, einen Algorithmus anzugeben, der die Kante auswählt, 
 		\item $e_{1}, e_{2}$: die Kanten, auf die das Potential angewendet werden muss, um $\hat{\mu}(x)$ zu erreichen.
 	\end{itemize}
 	Hat jeder Knoten am Ende des Algorithmus diese Informationen, kann man mit einem Durchlauf durch alle Knoten das Minimum aller $\hat{\mu}$ ermitteln. Dies ist dann die kleinste Anzahl an Agenten, die man durch das Potential erreichen kann. Da außerdem gespeichert ist, welche Kanten dafür reduziert werden müssen, kann man auf eine dieser Kanten das Potential anwenden, um die Agentenzahl entsprechend zu reduzieren. Wie in Theorem \ref{theorem_max2kanten} argumentiert, kommen immer nur maximal zwei Kanten pro Knoten in Frage.
+	
+	
+\newpage
 	
 	\subsubsection{Berechnung der Nachricht}
 	
@@ -256,8 +263,8 @@ In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel 
 	Um dieses Theorem zu beweisen, reicht es aus, ein Beispiel anzugeben, bei dem das Potential tatsächlich auf linear viele Kanten verteilt werden muss. Solch ein Beispiel kann man in Abbildung \ref{abb_bsp_potverteilen} finden. Der Baum besteht aus einem Wurzelknoten, der $n$ viele Kindknoten hat. Alle $n$ Kanten haben das gleiche Kantengewicht $\omega = 5$.
 	
 		\begin{figure}[htb]
-			\includegraphics[width=0.65\textwidth]{bilder/abb_bsp_potverteilen.png} 
-			\captionsetup{width=0.65\textwidth}
+			\includegraphics[width=0.75\textwidth]{bilder/abb_bsp_potverteilen.png} 
+			\captionsetup{width=0.75\textwidth}
 			\caption{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung eine Komplexität linear zur Knotenanzahl haben.}
 			\label{abb_bsp_potverteilen}
 		\end{figure}
@@ -293,7 +300,7 @@ Bei den Potentialproblemen $k = 1$ (Kapitel \ref{kap_pot=1})und $k \geq 1$ auf e
 Diese praktische Eigenschaft scheint bei der Verteilung des Potentials nicht mehr gegeben. Da es nach Theorem \ref{theorem_pot_auf_linear_vielen_kanten} sein kann, dass man das Potential auf fast alle Kanten verteilen muss, kann es passieren, dass alle bisher betrachteten Kanten in der Nachricht gespeichert werden und bei jeder neuen Nachricht mit überprüft werden müssen. In den Varianten, bei denen man das Potential nur auf einer Kante anwenden durfte, war diese Anzahl auf zwei beschränkt (siehe Theorem \ref{theorem_max2kanten}).
 \\
 \\
-Es war daher nicht möglich, im Rahmen dieser Bachelorarbeit eine Algorithmusidee zu entwickeln, um das Potentialproblem $k > 1$, bei dem man das Potential auf mehrere Kanten verteilen kann, effizient zu lösen. Naive würde man das Problem lösen, indem man alle möglichen Kantenkombinationen, wie man das Potential verteilen kann, ausrechnen würde und dann die Kombination auswählt, welche die kleinste Agentenanzahl benötigt.
+Es war daher nicht möglich, im Rahmen dieser Bachelorarbeit eine Algorithmusidee zu entwickeln, um das Potentialproblem $k > 1$, bei dem man das Potential auf mehrere Kanten verteilen kann, effizient zu lösen. Naiv würde man das Problem lösen, indem man alle möglichen Kantenkombinationen, wie man das Potential verteilen kann, ausrechnen würde und dann die Kombination mit der kleinsten Agentenanzahl auswählt.
 
 
 %	\begin{figure}[htb]

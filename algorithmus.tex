@@ -21,7 +21,7 @@ Nachdem für alle Knoten die entsprechenden Gewichte berechnet wurden, werden zw
 \end{mydef}
 
 Die Nachrichten werden nach folgender Rekursionsformel \cite{cima_paper} berechnet:\\
-Sei $e = \{x, y\}$ eine Kante inzident zu $x$ und $\lambda_{x}(e)$ die Nachricht, die über $e$ nach $x$ geschickt wird. Ist $y$ ein Blatt des Baumes, so gilt $\lambda_{x}(e) = \omega(y)$. Ansonsten seien $z_{1}, ..., z_{deg(y)-1}$ die Nachbarn von $y$ ohne $x$, wobei $deg(y)$ der Knotengrad von $y$ ist.  Außerdem gilt $l_{i} = \lambda_{y}(\{y, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$: $$\lambda_{x}(e) = max \{l_{1}, l_{2} + \omega(y)\}.$$
+Sei $e = \{x, y\}$ eine Kante inzident zu $x$ und $\lambda_{x}(e)$ die Nachricht, die über $e$ nach $x$ geschickt wird. Ist $y$ ein Blatt des Baumes, so gilt $\lambda_{x}(e) = \omega(y)$. Ansonsten seien $z_{1}, ..., z_{deg(y)-1}$ die Nachbarn von $y$ ohne $x$, wobei $deg(y)$ der Knotengrad von $y$ ist.  Außerdem gilt $l_{i} = \lambda_{y}(\{y, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$: $$\lambda_{x}(e) = max \{l_{1}, l_{2} + \omega(y)\}$$
 
 \subsubsection{Berechnung der Nachricht}
 
@@ -45,7 +45,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 			
 		Zu Beginn des Algorithmus, oder falls keine weitere Nachricht mehr berechnet werden kann, sendet ein beliebiger Blattknoten, der noch keine Nachricht versendet hat, seine Nachricht an den eigenen Nachbarn.\\
 		
-		Die zu sendende Nachricht $\lambda_{y}$ vom Blatt $x$ an seinen Nachbarknoten $y$ ist dabei nur das eigene Gewicht (Abbildung \ref{abb_leaf}): Es gilt daher $\lambda_{y} = \omega(x)$.
+		Die zu sendende Nachricht $\lambda_{y}$ vom Blatt $x$ an seinen Nachbarknoten $y$ ist dabei nur das eigene Gewicht (Abbildung \ref{abb_leaf}): Es gilt daher $$\lambda_{y} = \omega(x)$$
 		%		\end{minipage}
 		%		\hfill
 		%		\begin{minipage}{0.35\textwidth}
@@ -131,14 +131,14 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 
 \begin{figure}[htbp]
 	\subfigure[Das Knotengewicht des Blattknotens $x$ (grün) bestimmt den Wert Nachricht $\lambda_{y} = 3$ (blau) zum Nachbarknoten $y$.
-	\label{abb_leaf}]{\includegraphics[width=0.5\textwidth]{bilder/abb_blattknoten.png}}
+	\label{abb_leaf}]{\includegraphics[width=0.7\textwidth]{bilder/abb_blattknoten_NEU2.png}}
 	%	\hfill  
 	%lösche die neue line und füge das \hfill wieder ein um die bilder nebeneiander zu haben
 		
-	\subfigure[Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb). \label{abb_n-1}]{\includegraphics[width=0.5\textwidth]{bilder/abb_paper_n-1knoten.png}} 
+	\subfigure[Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb). \label{abb_n-1}]{\includegraphics[width=0.7\textwidth]{bilder/abb_paper_n-1knoten_NEU2.png}} 
 	%	\hfill
 	
-	\subfigure[Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert. \label{abb_n}]{\includegraphics[width=0.5\textwidth]{bilder/abb_paper_nknoten.png}}  
+	\subfigure[Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert. \label{abb_n}]{\includegraphics[width=0.7\textwidth]{bilder/abb_paper_nknoten_NEU2.png}}  
 	
 	\caption{Drei Fälle, die bei dem Algorithmus auftreten können.} 
 	
