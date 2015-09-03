@@ -1,23 +1,14 @@
 \section{Fazit}
 
+Als Grundlage dieser Bachelorarbeit wurde der Algorithmus aus \cite{cima_paper} in Kapitel \ref{paperAlgoChapter} beschrieben und erläutert. Aufbauend auf diesen Algorithmus konnten in dieser Bachelorarbeit einige Erweiterungen entwickelt bzw. neue Aspekte betrachtet werden. Diese sind
+\begin{itemize}
+	\item Modifikation des Algorithmus in Kapitel \ref{modifizierterAlgoChapter}
+	\item Potentialproblem $k = 1$ in Kapitel \ref{kap_pot=1}
+	\item Potentialproblem $k \geq 1$ auf einer Kante in Kapitel \ref{kap_pot>=1}
+	\item Potentialproblem $k > 1$ auf verteilten Kanten in Kapitel \ref{kap_pot>1_verteilt}
+\end{itemize}
 
-Für vereinfachte Problemstellungen ($k = 1$ und $k \geq 1$ auf einer Kante) im Zusammenhang mit der Anwendung eines Potentials auf Bäumen wurden in dieser Bachelorarbeit Erweiterungen des zu Grunde liegenden Algorithmus entwickelt, um in linearer Zeit eine der Kanten zu berechnen, auf der das Potential angewendet werden sollte. Außerdem konnten diese Algorithmen in einem Applet implementiert werden, um so eine visuelle Darstellung der Algorithmen zu ermöglichen.
+Für zwei der Problemstellungen ($k = 1$ und $k \geq 1$ auf einer Kante) im Zusammenhang mit der Anwendung eines Potentials auf Bäumen konnte der modifizierte Algorithmus erweitert werden, um in linearer Zeit eine der Kanten zu berechnen, auf der das Potential angewendet werden sollte. Außerdem konnten diese beiden Algorithmen mit der entsprechenden Erweiterung in einem Applet implementiert werden, um so eine visuelle Darstellung der Algorithmen zu ermöglichen (siehe Kapitel \ref{kap_implementierung}). 
 \\
 \\
-In dieser Arbeit konnte gezeigt werden, weshalb es nötig sein kann, das Potential auf bis zu linear viele Kanten zu verteilen. Allerdings stellte es sich als schwierig heraus, die Kanten zu berechnen, auf die das Potential verteilt werden sollte, und es war nicht möglich, im Rahmen dieser Bachelorarbeit zu dieser Problemstellung einen Algorithmus anzugeben.
-
-//ABER wie in 3.3 beschrieben ist dies eine möglich weitere arbeiten..... zu lösen
-
- Diese Variante des Potentialproblems könnte in zukünftigen Arbeiten weiter untersucht werden, um einen effizienten Algorithmus zu finden, falls dies möglich ist.
-
-
-//was ist eine erweiterung?
-//was genau mache
-//wie in 3.3 dargelegt ist es nicht möglich
-
-//paper wurde in 2.1 abgehandelt... alles andere von mir...
-/all das wurde neu von mir entwickelt
-aufbauend auf 2.1 konnte ich in der ba neue aspekte darstellen. .. diese sind
--...
--...
-
+In dieser Arbeit konnte gezeigt werden, weshalb es nötig sein kann, das Potential auf bis zu linear viele Kanten zu verteilen ($k > 1$ auf verteilten Kanten). Allerdings stellte es sich als schwierig heraus, die Kanten zu berechnen, auf die das Potential verteilt werden sollte. Es war nicht möglich, im Rahmen dieser Bachelorarbeit zu dieser Problemstellung einen Algorithmus anzugeben, sodass diese Variante des Potentialproblems in Form einer zukünftigen Arbeit weiter untersucht werden kann, um evtl. einen effizienten Algorithmus zu finden.
