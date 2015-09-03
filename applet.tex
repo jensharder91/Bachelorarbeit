@@ -8,12 +8,12 @@ Als Bestandteil dieser Bachelorarbeit haben wir das Applet mit der in Kapitel \r
 
 \subsection{Benutzung des Applets}
 
-Im Folgenden werden wir kurz beschreiben, wie das Applet benutzt wird:
+Im Folgenden werden wir kurz beschreiben, wie das Applet benutzt werden kann:
 
 \subsubsection*{Den Baum erstellen und ändern}
 
 Man kann einen Baum (bzw. einen Baumknoten) erstellen, indem man mit einem Linksklick in das leere Applet klickt. Sofort erscheint ein Wurzelknoten.\\
-Mit einem Linksklick auf einen Knoten fügt man ihm einen Kindknoten hinzu. Mit einem Rechtsklick auf einen Knoten wird dieser zusammen mit dem gesamte Teilbaum gelöscht.\\
+Mit einem Linksklick auf einen Knoten fügt man ihm einen Kindknoten hinzu. Mit einem Rechtsklick auf einen Knoten wird dieser zusammen mit dem gesamten Teilbaum gelöscht.\\
 Die Kantengewichte lassen sich ebenfalls mit einem Klick verändern. Ein Linksklick erhöht das entsprechende Kantengewicht um 1, ein Rechtsklick reduziert das Kantengewicht um 1. Allerdings können die Kantengewichte nicht kleiner als 1 werden.
 
 
@@ -22,14 +22,14 @@ Die Kantengewichte lassen sich ebenfalls mit einem Klick verändern. Ein Linkskl
 Nachdem man einen Baum erstellt hat, gibt es mehrere Funktionen, die man auswählen kann:\\
 
 \begin{itemize}
-	\item Man kann sich die Nachrichtenberechnung sowohl von dem ursprünglichen Algorithmus (Kapitel \ref{kap_algorithmus}), als auch von der Modifikation (Kapitel \ref{modifizierterAlgoChapter}) animieren lassen oder sofort das Ergebnis anzeigen. Bei der Animation wird immer angezeigt, wie jede einzelne Nachricht zustande kommt. Dies wird in Kurzform als Text und durch Färbung der einzelnen Elemente des Baumes getan. Nachdem alle Nachrichten verschickt wurden, berechnet jeder Knoten, wie viele Agenten benötigt werden, um den gesamten Baum von diesen Knoten aus zu dekontaminieren. Dieser Wert wird am Ende in jedem Knoten angezeigt. Nach Abschluss des Algorithmus wird einer der Knoten mit minimaler Agentenzahl ausgewählt und als Homebase markiert.
+	\item Man kann die Nachrichtenberechnung sowohl von dem ursprünglichen Algorithmus (Kapitel \ref{kap_algorithmus}), als auch von der Modifikation (Kapitel \ref{modifizierterAlgoChapter}) animieren lassen oder sofort das Ergebnis anzeigen. Bei der Animation wird immer angezeigt, wie jede einzelne Nachricht zustande kommt. Dies wird in Kurzform als Text und durch Färbung der einzelnen Elemente des Baumes verdeutlicht. Nachdem alle Nachrichten verschickt wurden, berechnet jeder Knoten, wie viele Agenten benötigt werden, um den gesamten Baum von diesen Knoten aus zu dekontaminieren. Dieser Wert wird am Ende in jedem Knoten angezeigt. Nach Abschluss des Algorithmus wird einer der Knoten mit minimaler Agentenzahl ausgewählt und als Homebase markiert.
 	
 	\item Alternativ zur Nachrichtenberechnung kann man sich die beiden Algorithmen aus Kapitel \ref{kap_pot} visuell darstellen lassen. Dazu werden ebenfalls die Nachrichten einzeln animiert (oder das Ergebnis sofort angezeigt), allerdings zeigen die Informationen (Text und Einfärbung), wie in jedem einzelnen Schritt die erweiterte Nachricht berechnet wird, die in dem jeweiligen Algorithmus benutzt wird. Man muss beachten, dass die Potentialberechnung nur mit der modifizierten Variante des Algorithmus ausführbar ist. Am Ende dieses Algorithmus wird angezeigt, wie viele Agenten jeder Knoten zu Dekontamination benötigt, welcher Knoten die Homebase ist, und, falls möglich, welche Kante reduziert werden sollte, um die Agentenzahl möglichst weit zu reduzieren.
 	
 	\item Außerdem lässt sich im Applet animieren, wie nach erfolgreicher Nachrichtenberechnung die Dekontamination des Baumes funktioniert. Die Strategie der Agenten ist dabei monoton. Dies bedeutet, dass jeder Knoten, der schon einmal dekontaminiert wurde, nicht mehr kontaminiert werden kann, da an den entsprechenden Stellen im Baum Wachen aufgestellt werden. Sind alle Knoten dekontaminiert, ist der Algorithmus abgeschlossen.
 \end{itemize}
 
-Alle Animationen können entweder als Ganzes abgespielt werden, oder in einer Step-by-step-Animation in Teilen durchgeführt werden. \\
+Alle Animationen können entweder als Ganzes abgespielt oder in einer Step-by-step-Animation in Teilen durchgeführt werden. \\
 Alle Optionen, die im Applet verfügbar sind, werden eingeblendet. Alle in dem Moment nicht verfügbaren Optionen werden ausgeblendet, um eine bessere Übersicht zu gewährleisten.
 
 

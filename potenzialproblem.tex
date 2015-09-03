@@ -253,12 +253,12 @@ In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel 
 	Es gibt Bäume, bei denen man das Potential auf linear viele Kanten verteilen muss.
 \end{theorem}	
 \begin{proof}
-	Um dieses Theorem zu Beweisen, reicht es aus, ein Beispiel anzugeben, bei dem das Potential tatsächlich auf linear viele Kanten verteilt werden muss. Solch ein Beispiel kann man in Abbildung \ref{abb_bsp_potverteilen} finden. Der Baum besteht aus einem Wurzelknoten, der $n$ viele Kindknoten hat. Alle $n$ Kanten haben das gleiche Kantengewicht $\omega = 5$.
+	Um dieses Theorem zu beweisen, reicht es aus, ein Beispiel anzugeben, bei dem das Potential tatsächlich auf linear viele Kanten verteilt werden muss. Solch ein Beispiel kann man in Abbildung \ref{abb_bsp_potverteilen} finden. Der Baum besteht aus einem Wurzelknoten, der $n$ viele Kindknoten hat. Alle $n$ Kanten haben das gleiche Kantengewicht $\omega = 5$.
 	
 		\begin{figure}[htb]
 			\includegraphics[width=0.65\textwidth]{bilder/abb_bsp_potverteilen.png} 
 			\captionsetup{width=0.65\textwidth}
-			\caption{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung kann eine Komplexität linear zur Knotenanzahl haben.}
+			\caption{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung eine Komplexität linear zur Knotenanzahl haben.}
 			\label{abb_bsp_potverteilen}
 		\end{figure}
 		
@@ -273,14 +273,14 @@ In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel 
 		\item aus der Kante, über welche die Nachricht geschickt wird: $\lambda_{x} = edge_{xy}$.
 		\item aus der größten Nachricht: $\lambda_{x} = l_{1}$.
 	\end{enumerate}	
-	Allerdings ist nur der Fall $\lambda_{x} = edge_{1} + edge_{2}$ interessant, da sowohl die Kante $edge_{xy}$ eindeutig ist, als auch die größte angekommene Nachricht.
+	Allerdings ist nur der Fall $\lambda_{x} = edge_{1} + edge_{2}$ interessant, da sowohl die Kante $edge_{xy}$ eindeutig ist als auch die größte angekommene Nachricht.
 	\\
 	\\
 	Wenn man nun eine einzige, beliebige Kante reduziert, wird diese Reduzierung keinen Effekt haben, da diese Kante in der Berechnung $\lambda_{x} = edge_{1} + edge_{2}$ durch eine andere, gleich große Kante, ersetzt wird. Um also das Potential anwenden zu können, sodass tatsächlich die Agentenzahl an einem Knoten $x$ reduziert wird, muss man so lange eine Kante $e$ reduzieren, für die gilt: $\omega(e) = \max_{i} \omega(i)$ für alle zu $y$ inzidenten Kanten $i$, bis gilt $edge_{1} > edge_{2} \geq \dots \geq edge_{deg(y)-1}$
 	\\
-	Sobald diese Bedingung gilt, können die durch das Potential reduzierten Kanten nicht mehr ausgetauscht werden, da es keine Kante mehr gibt, die groß genug wäre. Die Berechnung $\lambda_{x} = edge_{1} + edge_{2}$ ist daher eindeutig und Der Knoten $x$ bekommt eine reduzierte Nachricht und somit eine reduzierte Knotenanzahl.
+	Sobald diese Bedingung gilt, können die durch das Potential reduzierten Kanten nicht mehr ausgetauscht werden, da es keine Kante mehr gibt, die groß genug wäre. Die Berechnung $\lambda_{x} = edge_{1} + edge_{2}$ ist daher eindeutig und im Gegensatz zu der Berechnung ohne Potentialanwendung verringert. Der Knoten $x$ bekommt eine reduzierte Nachricht und somit eine reduzierte Knotenanzahl.
 	\\
-	Dafür muss man genau $n-2$ Kanten reduzieren, da man in dem Beispiel alle Kanten reduzieren muss, außer die Kante $e = {xy}$, über die die Nachricht geschickt wird und die Kante $edge{1}$. Alle $n$ Kanten, abzüglich dieser beiden Kanten ergibt $n-2$ Kanten.
+	Dafür muss man genau $n-2$ Kanten reduzieren, da man in dem Beispiel alle Kanten reduzieren muss, außer die Kante $e = \{xy\}$, über die die Nachricht geschickt wird, und die Kante $edge_{1}$. Alle $n$ Kanten, abzüglich dieser beiden Kanten ergibt $n-2$ Kanten.
 	\\
 	\\
 	Die Idee dieses Beweises lässt sich auch aus Theorem \ref{theorem_max2kanten} herleiten, bei welchem wir eine ähnliche Eigenschaft ausgenutzt haben.
@@ -288,9 +288,12 @@ In Abbildung \ref{abb_gegenbeispielMaxPotential} haben wir bereits ein Beispiel 
 \end{proof}
 
 
-Bei den Potentialproblemen $k = 1$ (Kapitel \ref{kap_pot=1})und $k \geq 1$ auf einer Kante (Kapitel \ref{kap_pot>=1}) musste man für jede Nachrichtenberechnung nur konstant viele Kanten testen und es war daher möglich einen Algorithmus zu entwerfen, der ohne Laufzeitverschlechterung die jeweilige Kante bestimmen konnte.
+Bei den Potentialproblemen $k = 1$ (Kapitel \ref{kap_pot=1})und $k \geq 1$ auf einer Kante (Kapitel \ref{kap_pot>=1}) musste man für jede Nachrichtenberechnung nur konstant viele Kanten testen, und es war daher möglich, einen Algorithmus zu entwerfen, der ohne Laufzeitverschlechterung die jeweilige Kante bestimmen konnte.
 \\
 Diese praktische Eigenschaft scheint bei der Verteilung des Potentials nicht mehr gegeben. Da es nach Theorem \ref{theorem_pot_auf_linear_vielen_kanten} sein kann, dass man das Potential auf fast alle Kanten verteilen muss, kann es passieren, dass alle bisher betrachteten Kanten in der Nachricht gespeichert werden und bei jeder neuen Nachricht mit überprüft werden müssen. In den Varianten, bei denen man das Potential nur auf einer Kante anwenden durfte, war diese Anzahl auf zwei beschränkt (siehe Theorem \ref{theorem_max2kanten}).
+\\
+\\
+Es war daher nicht möglich, im Rahmen dieser Bachelorarbeit eine Algorithmusidee zu entwickeln, um das Potentialproblem $k > 1$, bei dem man das Potential auf mehrere Kanten verteilen kann, effizient zu lösen. Naive würde man das Problem lösen, indem man alle möglichen Kantenkombinationen, wie man das Potential verteilen kann, ausrechnen würde und dann die Kombination auswählt, welche die kleinste Agentenanzahl benötigt.
 
 
 %	\begin{figure}[htb]
