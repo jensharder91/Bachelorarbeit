@@ -17,11 +17,11 @@ Das Knotengewicht gibt an, wie viele Agenten als Wachen benötigt werden, um den
 Nachdem für alle Knoten die entsprechenden Gewichte berechnet wurden, werden zwischen den Baumknoten Nachrichten verschickt. Diese Nachrichten beinhalten die Information, wie viele Agenten benötigt werden, um den entsprechenden Teilbaum zu dekontaminieren.  
 
 \begin{mydef}\label{def_nachricht}
-	Eine Nachricht $\lambda_{x}(e)$ wird von einem Knoten $y$ zu einem Knoten $x$ über die Kante $e$ im Baum verschickt. Diese erhält Informationen über den Teilbaum von $y$, die von Knoten $x$ zur Berechnung der Agenten benötigt werden.
+	Eine Nachricht $\lambda_{y}(e)$ wird von einem Knoten $x$ zu einem Knoten $y$ über die Kante $e$ im Baum verschickt. Diese erhält Informationen über den Teilbaum von $x$, die von Knoten $y$ zur Berechnung der Agenten benötigt werden.
 \end{mydef}
 
 Die Nachrichten werden nach folgender Rekursionsformel \cite{cima_paper} berechnet:\\
-Sei $e = \{x, y\}$ eine Kante inzident zu $x$ und $\lambda_{x}(e)$ die Nachricht, die über $e$ nach $x$ geschickt wird. Ist $y$ ein Blatt des Baumes, so gilt $\lambda_{x}(e) = \omega(y)$. Ansonsten seien $z_{1}, ..., z_{deg(y)-1}$ die Nachbarn von $y$ ohne $x$, wobei $deg(y)$ der Knotengrad von $y$ ist.  Außerdem gilt $l_{i} = \lambda_{y}(\{y, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$: $$\lambda_{x}(e) = max \{l_{1}, l_{2} + \omega(y)\}$$
+Sei $e = \{x, y\}$ eine Kante inzident zu $y$ und $\lambda_{y}(e)$ die Nachricht, die über $e$ nach $y$ geschickt wird. Ist $x$ ein Blatt des Baumes, so gilt $\lambda_{y}(e) = \omega(x)$. Ansonsten seien $z_{1}, ..., z_{deg(x)-1}$ die Nachbarn von $x$ ohne $y$, wobei $deg(x)$ der Knotengrad von $x$ ist.  Außerdem gilt $l_{i} = \lambda_{x}(\{x, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$: $$\lambda_{y}(e) = max \{l_{1}, l_{2} + \omega(x)\}$$
 
 \subsubsection{Berechnung der Nachricht}
 
