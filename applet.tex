@@ -32,77 +32,32 @@ Nachdem man einen Baum erstellt hat, gibt es mehrere Funktionen, die man auswäh
 Alle Animationen können entweder als Ganzes abgespielt oder in einer Step-by-step-Animation in Teilen durchgeführt werden. \\
 Alle Optionen, die im Applet verfügbar sind, werden eingeblendet. Alle in dem Moment nicht verfügbaren Optionen werden ausgeblendet, um eine bessere Übersicht zu gewährleisten.
 
+\clearpage
 
 \subsection{Beispiel aus dem Applet}
 
 
-\begin{figure}[hb]
-	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung1.png} 
-	\captionsetup{width=0.8\textwidth}
-	\caption{Ganz tolles beispiel}
-	\label{abb_erklaerung1}
-\end{figure}
-\begin{figure}[hb]
-	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung2.png} 
-	\captionsetup{width=0.8\textwidth}
-	\caption{Ganz tolles beispiel}
-	\label{abb_erklaerung1}
-\end{figure}
-\begin{figure}[hb]
-	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung3.png} 
-	\captionsetup{width=0.8\textwidth}
-	\caption{Ganz tolles beispiel}
-	\label{abb_erklaerung1}
-\end{figure}
-\begin{figure}[hb]
-	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung4.png} 
-	\captionsetup{width=0.8\textwidth}
-	\caption{Ganz tolles beispiel}
-	\label{abb_erklaerung1}
-\end{figure}
+
 
 
 \begin{figure}[h]
-	\subfigure[Die Nachricht $\lambda_{y}$ (blau) von x zu y hat den Wert 5, da $edge_{1} $ und $edge_{2}$ (beide grün) die entscheidenden Kanten sind.
-	\label{modifiziert_a}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung1.png}}
+	\subfigure[Verschiedene Einstellungs- und Nutzungsmöglichkeiten, welche das Applet bietet, sobald ein Baum erstellt wurde.
+	\label{applet_a}]{\includegraphics[width=0.85\textwidth]{bilder/abb_erklaerung1.png}}
 	%	\hfill  
 	%lösche die neue line und füge das \hfill wieder ein um die bilder nebeneiander zu haben
 	
-	\subfigure[Da das Knotengewicht durch die Kante zwischen x und y bestimmt wird (grün) und dieses größer ist als die Summe der beiden normalen Kanten $edge_{1}$ und $edge_{2}$ (gelb), bestimmt diese Kante den Wert der Nachricht $\lambda_{y} = 5$ (blau). \label{modifiziert_b}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung2.png}} 
+	\subfigure[Informationen über die aktuell berechnete Nachricht, bei allen Algorithmusvarianten (mit Potential oder ohne). \label{applet_b}]{\includegraphics[width=0.85\textwidth]{bilder/abb_erklaerung2.png}} 
 	%	\hfill
 	
-	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht, und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung3.png}}  
-	
-	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht, und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_d}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung4.png}}  
-	
-	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken.} 
-	
-	
-	
-	%%%%%%%%%%%%%%%%%%%%%%%%%
-	
-		\begin{figure}[H]
-			\caption{My Figure}
-			\begin{subfigure}{\textwidth}
-				\caption{Fig 1}
-				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung1.png}
-			\end{subfigure}
-			\begin{subfigure}{\textwidth}
-				\caption{Fig 2}
-				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung2.png}
-			\end{subfigure}
-		\end{figure}
-		\clearpage
-		\begin{figure}[H]
-			\ContinuedFloat % continue from previous page
-			\begin{subfigure}{\textwidth}
-				\caption{Fig 3}
-				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung3.png}
-			\end{subfigure}
-			\begin{subfigure}{\textwidth}
-				\caption{Fig 4}
-				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung4.png}
-			\end{subfigure}
-		\end{figure}
-	
 \end{figure}
+\begin{figure}[h]
+	
+	\ContinuedFloat
+	
+	\subfigure[Nach der Berechnung wird das Ergebnis, auf welche Kanten das Potential eingesetzt werden kann, angezeigt. \label{applet_c}]{\includegraphics[width=0.85\textwidth]{bilder/abb_erklaerung3.png}}  
+	
+	\subfigure[Die Agenten dekontaminieren den Baum suzzessive. Dafür müssen an bestimmten Stellen Wachen aufgestellt werden. \label{applet_d}]{\includegraphics[width=0.85\textwidth]{bilder/abb_erklaerung4.png}}  
+	
+	\caption{Die Anwendung des Applets wird anhand eines Beispiels verdeutlicht.} 
+	
+\end{figure}	
