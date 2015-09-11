@@ -35,4 +35,74 @@ Alle Optionen, die im Applet verfügbar sind, werden eingeblendet. Alle in dem M
 
 \subsection{Beispiel aus dem Applet}
 
-hier ist ein ganz tolles Beispiel....
+
+\begin{figure}[hb]
+	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung1.png} 
+	\captionsetup{width=0.8\textwidth}
+	\caption{Ganz tolles beispiel}
+	\label{abb_erklaerung1}
+\end{figure}
+\begin{figure}[hb]
+	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung2.png} 
+	\captionsetup{width=0.8\textwidth}
+	\caption{Ganz tolles beispiel}
+	\label{abb_erklaerung1}
+\end{figure}
+\begin{figure}[hb]
+	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung3.png} 
+	\captionsetup{width=0.8\textwidth}
+	\caption{Ganz tolles beispiel}
+	\label{abb_erklaerung1}
+\end{figure}
+\begin{figure}[hb]
+	\includegraphics[width=0.8\textwidth]{bilder/abb_erklaerung4.png} 
+	\captionsetup{width=0.8\textwidth}
+	\caption{Ganz tolles beispiel}
+	\label{abb_erklaerung1}
+\end{figure}
+
+
+\begin{figure}[h]
+	\subfigure[Die Nachricht $\lambda_{y}$ (blau) von x zu y hat den Wert 5, da $edge_{1} $ und $edge_{2}$ (beide grün) die entscheidenden Kanten sind.
+	\label{modifiziert_a}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung1.png}}
+	%	\hfill  
+	%lösche die neue line und füge das \hfill wieder ein um die bilder nebeneiander zu haben
+	
+	\subfigure[Da das Knotengewicht durch die Kante zwischen x und y bestimmt wird (grün) und dieses größer ist als die Summe der beiden normalen Kanten $edge_{1}$ und $edge_{2}$ (gelb), bestimmt diese Kante den Wert der Nachricht $\lambda_{y} = 5$ (blau). \label{modifiziert_b}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung2.png}} 
+	%	\hfill
+	
+	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht, und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung3.png}}  
+	
+	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht, und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_d}]{\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung4.png}}  
+	
+	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken.} 
+	
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+		\begin{figure}[H]
+			\caption{My Figure}
+			\begin{subfigure}{\textwidth}
+				\caption{Fig 1}
+				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung1.png}
+			\end{subfigure}
+			\begin{subfigure}{\textwidth}
+				\caption{Fig 2}
+				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung2.png}
+			\end{subfigure}
+		\end{figure}
+		\clearpage
+		\begin{figure}[H]
+			\ContinuedFloat % continue from previous page
+			\begin{subfigure}{\textwidth}
+				\caption{Fig 3}
+				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung3.png}
+			\end{subfigure}
+			\begin{subfigure}{\textwidth}
+				\caption{Fig 4}
+				\includegraphics[width=0.65\textwidth]{bilder/abb_erklaerung4.png}
+			\end{subfigure}
+		\end{figure}
+	
+\end{figure}
