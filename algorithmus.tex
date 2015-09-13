@@ -1,6 +1,6 @@
 \section{Der Algorithmus}\label{kap_algorithmus}
-Im Folgenden werden wir zunächst den Algorithmus aus dem Paper \cite{cima_paper} beschreiben und erklären, sowie im Anschluss einige Modifikationen erläutern, mit denen wir in dieser Bachelorarbeit weiterarbeiten werden.\\
-Der Algorithmus berechnet für einen gegebenen Baum mit Kantengewichten $\omega \geq 1$ die Mindestanzahl an Agenten, die den Baum dekontaminieren können. Außerdem gibt er an, an welchem Knoten diese Agenten ihren Startpunkt haben.
+Im Folgenden wird zunächst der Algorithmus aus dem Paper \cite{cima_paper} beschrieben und erklärt, sowie im Anschluss einige Modifikationen erläutert, mit denen in dieser Bachelorarbeit weitergearbeitet werden soll.\\
+Der Algorithmus berechnet für einen gegebenen Baum mit Kantengewichten $\omega \geq 1$ die Mindestanzahl an Agenten, die den Baum dekontaminieren können. Außerdem gibt er an, welcher Knoten der Startpunkt dieser Agenten ist.
 
 
 \subsection{Ursprünglicher Algorithmus (Grundlage)}\label{paperAlgoChapter}
@@ -23,9 +23,9 @@ Nachdem für alle Knoten die entsprechenden Gewichte berechnet wurden, werden zw
 Die Nachrichten werden nach folgender Rekursionsformel \cite{cima_paper} berechnet:\\
 Sei $e = \{x, y\}$ eine Kante inzident zu $y$ und $\lambda_{y}(e)$ die Nachricht, die über $e$ nach $y$ geschickt wird. Ist $x$ ein Blatt des Baumes, so gilt $\lambda_{y}(e) = \omega(x)$. Ansonsten seien $z_{1}, ..., z_{deg(x)-1}$ die Nachbarn von $x$ ohne $y$, wobei $deg(x)$ der Knotengrad von $x$ ist.  Außerdem gilt $l_{i} = \lambda_{x}(\{x, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$ \cite{cima_paper}: $$\lambda_{y}(e) = max \{l_{1}, l_{2} + \omega(x)\}$$
 
-\subsubsection{Berechnung der Nachricht}
+\subsubsection{Berechnung der Nachrichten}
 
-Um ein besseres Verständnis für die Rekursionsgleichung zu erhalten, und es für die Implementierung anschaulicher ist, den Algorithmus durch eine Fallunterscheidung zu betrachten, werden wir im Folgenden drei Fälle erläutern, die im Algorithmus auftauchen können:\\\\	
+Um ein besseres Verständnis für die Rekursionsgleichung zu erhalten, und es für die Implementierung anschaulicher ist, den Algorithmus durch eine Fallunterscheidung zu betrachten, werden im Folgenden drei Fälle erläutert, die im Algorithmus auftauchen können:\\\\	
 Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werden können:
 
 \begin{enumerate}
@@ -109,7 +109,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 %			\label{abb_n}
 %		\end{wrapfigure}
 		
-		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, gehen wir ähnlich wie in Fall \ref{algo_fall_2} vor: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $y$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
+		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, wird ähnlich wie in Fall \ref{algo_fall_2} vorgegangen: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $y$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
 		Diese Berechnung wird für jeden Nachbarknoten von $x$ wiederholt, so dass jeder Nachbar eine Nachricht von $x$ erhält. Nach diesem Schritt ist die Bearbeitung des Knoten $x$ abgeschlossen, da er sowohl von jedem Nachbarn eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
 %				\end{minipage}
 %				\hfill
@@ -147,7 +147,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 
 %\subsubsection{Berechnung der minimalen Agenten}
 
-\subsubsection{Berechnung der minimalen Agenten}
+\subsubsection{Berechnung der minimalen Agentenzahl}
 
 \begin{mydef}
 	$\mu(x)$ bezeichnet man als Agentenzahl, welche benötigt wird, um den gesamten Baum vom Knoten x aus zu dekontaminieren. 
@@ -195,7 +195,7 @@ Nachdem alle Knoten $i$ ihr $\mu(i)$ berechnet haben, wird ein Knoten mit minima
 %		\label{fig:negBeispielPaperAlgo}
 %	\end{wrapfigure}
 
-Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet. Hierzu schauen wir uns Abbildung \ref{fig:negBeispielPaperAlgo} an. In dem  angegebenen Beispiel steht in jedem Knoten das entsprechende $\mu$, also die Anzahl an Agenten, die benötigt werden, um von dort aus den gesamten Baum zu dekontaminieren. Der Knoten $x$ sollte mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
+Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet. Hierzu schauen wir uns Abbildung \ref{fig:negBeispielPaperAlgo} an. In dem  angegebenen Beispiel (Abb. \ref{fig:negBeispielPaperAlgo}) steht in jedem Knoten das entsprechende $\mu$, also die Anzahl an Agenten, die benötigt werden, um von dort aus den gesamten Baum zu dekontaminieren. Der Knoten $x$ sollte mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
 
 		\begin{figure}[htb]
 			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_problem.png}
@@ -206,21 +206,21 @@ Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fäll
 
 Der Unterschied zwischen dem originalen Algorithmus aus \cite{cima_paper} und der Intuition ist Folgender: Der ursprüngliche Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, und diese dadurch dekontaminiert ist. Es ist daher nicht nötig, diese Kante zu bewachen, und es werden mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
-Da das Problem, wie erläutert, am Knotengewicht liegt, werden wir im Folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig funktioniert, als das gerade beschriebene Problem löst.
+Da das Problem, wie erläutert, am Knotengewicht liegt, wird im Folgenden eine Variante des Algorithmus beschrieben, die anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig funktioniert, als auch das gerade beschriebene Problem löst.
 \\
 \\
-Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht miteinbezogen, sondern dient nur noch dazu, zu überprüfen, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird etwas anders mit den inzidenten Kanten und den bereits angekommenen Nachrichten umgegangen.
+Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht mit einbezogen, sondern dient nur noch zur Überprüfung, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird - wie nachfolgend beschrieben - anders mit den inzidenten Kanten und den bereits angekommenen Nachrichten umgegangen.
 
-\subsubsection{Modifizierte Berechnung der Nachricht}
+\subsubsection{Modifizierte Berechnung der Nachrichten}
 
 Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChapter} muss wie folgt abgeändert werden:
 
 \begin{enumerate}[label=\alph*)]
 	
 	\item 
-		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, nimmt man die Kantengewichte der zwei größten Kanten ($edge_{1}$ und $edge_{2}$), die inzident zu $x$ sind, jedoch nicht zu $y$. Mit den beiden ermittelten Kantengewichten, für die gilt $edge_{1} \ge edge_{2}$, wird die Nachricht $\lambda_{y}$ an $y$ wie auch in Abbildung \ref{modifiziert_a} gezeigt berechnet:
+		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, nimmt man die Kantengewichte der zwei größten Kanten ($edge_{1}$ und $edge_{2}$), die inzident zu $x$ sind, jedoch nicht zu $y$. Mit den beiden ermittelten Kantengewichten, für die gilt $edge_{1} \ge edge_{2}$, wird die Nachricht $\lambda_{y}$ an $y$, wie auch in Abbildung \ref{modifiziert_a} gezeigt, berechnet:
 		$$\lambda_{y} = edge_{1} + edge_{2}$$
-		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, sodass die Berechnung auch klappt, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu $x$ und nicht inzident zu $y$ zutrifft (zum Beispiel bei einem Blattknoten).
+		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, so dass die Berechnung auch funktioniert, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu $x$ und nicht inzident zu $y$ zutrifft (zum Beispiel bei einem Blattknoten).
 	
 	\item
 		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, ob $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall, bedeutet das, dass das Kantengewicht der Kante, über die wir die Nachricht nach $y$ schicken, größer ist als die berechnete Nachricht. Da dies nicht sein darf, weil wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht, die wir an $y$ schicken, entsprechend anpassen (Beispiel in Abbildung \ref{modifiziert_b}):
@@ -232,7 +232,7 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 		\end{algorithmic}
 	
 	\item
-		Außerdem darf die berechnete Nachricht $\lambda_{y}$ nicht kleiner sein als die größte in $x$ angekommene Nachricht $l_{1}$ (außer der Nachricht, die wir evtl. schon von $y$ erhalten haben). Ist die Nachricht $\lambda_{y}$ kleiner als $l_{1}$, würden wir nicht genug Agenten bekommen, um den Teilbaum, aus dem $l_{1}$ kommt, zu dekontaminieren. Wir müssen $\lambda_{y}$ kontrollieren und evtl. wie in Abbildung \ref{modifiziert_c} anpassen:
+		Außerdem darf die berechnete Nachricht $\lambda_{y}$ nicht kleiner sein als die größte in $x$ angekommene Nachricht $l_{1}$ (außer der Nachricht, die wir evtl. schon von $y$ erhalten haben). Ist die Nachricht $\lambda_{y}$ kleiner als $l_{1}$, würden wir nicht genug Agenten bekommen, um den Teilbaum, aus dem $l_{1}$ kommt, zu dekontaminieren. $\lambda_{y}$ muss kontrolliert und evtl. wie in Abbildung \ref{modifiziert_c} angepasst werden:
 		
 		\begin{algorithmic}
 			\If {$\lambda_{y} \leq l_{1}$}
@@ -242,7 +242,7 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 	
 \end{enumerate}
 
-Alle weiteren Erweiterungen des Algorithmus, die wir in dieser Bachelorarbeit erklären und benutzen werden, werden sich immer auf diese Modifikation des Grundalgorithmus beziehen.
+Alle weiteren Erweiterungen des Algorithmus, die in dieser Bachelorarbeit erklärt und benutzt werden, beziehen sich auf diese Modifikation des Grundalgorithmus.
 
 %\begin{figure}
 %	\floatbox[{\capbeside\thisfloatsetup{capbesideposition={right,top},capbesidewidth=4cm}}]{figure}[\FBwidth]
@@ -298,7 +298,7 @@ Alle weiteren Erweiterungen des Algorithmus, die wir in dieser Bachelorarbeit er
 		\begin{enumerate}
 			\item Berechnung der Nachricht durch einfache Addition
 			\item Vergleich der Nachricht (und evtl. Anpassen) mit dem Knotengewicht
-			\item Vergleich der Nachricht (und evtl. Anpassen) mit der maximalen Nachricht.
+			\item Vergleich der Nachricht (und evtl. Anpassen) mit der maximalen Nachricht
 		\end{enumerate}
 		Die lineare Zeit des als Grundlage verwendeten Algorithmus wurde im erwähnten Paper \cite{cima_paper} bereits bewiesen und kann in Theorem \ref{thm_laufzeit} nachgelesen werden.
 	\end{proof}
