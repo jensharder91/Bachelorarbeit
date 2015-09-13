@@ -64,7 +64,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 	\item Fall:\label{algo_fall_2}
 	
 		
-		Der aktuelle Knoten $x$ hat genau $n-1$ Nachrichten erhalten, wobei $n$ die Anzahl der inzidenten Knoten ist. Also er hat von jedem Nachbarn, außer von dem Knoten $y$, eine Nachricht erhalten.
+		Der aktuelle Knoten $x$ hat genau $n-1$ Nachrichten erhalten, wobei $n$ die Anzahl der inzidenten Knoten ist. Also hat er von jedem Nachbarn, außer von dem Knoten $y$, eine Nachricht erhalten.
 		
 %		\begin{minipage}{1\textwidth} 
 	
@@ -95,7 +95,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 		
 	\item Fall:
 	
-		Der aktuelle Knoten $x$ hat bereits von allen $n$ zu ihm inzidenten Knoten eine Nachricht erhalten, selbst jedoch noch nicht zu allen Knoten eine Nachricht gesendet. Diese Nachrichten müssen nun berechnet und versendet werden:\label{labelAufUnterfall}
+		Der aktuelle Knoten $x$ hat bereits von allen $n$ zu ihm inzidenten Knoten eine Nachricht erhalten, selbst jedoch noch nicht zu allen Knoten eine Nachricht gesendet. Diese Nachrichten müssen nun berechnet und versendet werden.\label{labelAufUnterfall}
 		
 		
 %		\begin{minipage}{1\textwidth} 
@@ -110,7 +110,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 %		\end{wrapfigure}
 		
 		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, gehen wir ähnlich wie in Fall \ref{algo_fall_2} vor: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $y$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
-		Diese Berechnung wird für jeden Nachbarknoten von $x$ wiederholt, so dass jeder Nachbar eine Nachricht von $x$ erhält. Nach diesem Schritt ist die Bearbeitung des Knoten $x$ abgeschlossen, da er sowohl von jedem Nachbar eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
+		Diese Berechnung wird für jeden Nachbarknoten von $x$ wiederholt, so dass jeder Nachbar eine Nachricht von $x$ erhält. Nach diesem Schritt ist die Bearbeitung des Knoten $x$ abgeschlossen, da er sowohl von jedem Nachbarn eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
 %				\end{minipage}
 %				\hfill
 %				\begin{minipage}{0.35\textwidth}
@@ -204,14 +204,14 @@ Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fäll
 			\label{fig:negBeispielPaperAlgo}
 		\end{figure}
 
-Der Unterschied zwischen dem originalen Algorithmus und der Intuition ist Folgender: Der ursprüngliche Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, und diese dadurch dekontaminiert ist. Es ist daher nicht nötig, diese Kante zu bewachen, und es werden mehr Agenten eingeplant, als wirklich benötigt werden.
+Der Unterschied zwischen dem originalen Algorithmus aus \cite{cima_paper} und der Intuition ist Folgender: Der ursprüngliche Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, und diese dadurch dekontaminiert ist. Es ist daher nicht nötig, diese Kante zu bewachen, und es werden mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
-Da das Problem, wie erläutert, am Knotengewicht liegt, werden wir im Folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig funktioniert, als das gerade beschriebene Problem löst:
+Da das Problem, wie erläutert, am Knotengewicht liegt, werden wir im Folgenden eine Variante des Algorithmus beschreiben, die etwas anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig funktioniert, als das gerade beschriebene Problem löst.
 \\
 \\
-Im Gegensatz zum originalen Algorithmus wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht miteinbezogen, sondern dient nur noch dazu, zu überprüfen, dass die berechnete Nachricht nicht zu klein ist. Außerdem wird etwas anders mit den inzidenten Kanten und den bereits angekommenen Nachrichten umgegangen.
+Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht miteinbezogen, sondern dient nur noch dazu, zu überprüfen, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird etwas anders mit den inzidenten Kanten und den bereits angekommenen Nachrichten umgegangen.
 
-\subsubsection{Modifizierte Berechnung der Nachricht:}
+\subsubsection{Modifizierte Berechnung der Nachricht}
 
 Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChapter} muss wie folgt abgeändert werden:
 
@@ -219,11 +219,11 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 	
 	\item 
 		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, nimmt man die Kantengewichte der zwei größten Kanten ($edge_{1}$ und $edge_{2}$), die inzident zu $x$ sind, jedoch nicht zu $y$. Mit den beiden ermittelten Kantengewichten, für die gilt $edge_{1} \ge edge_{2}$, wird die Nachricht $\lambda_{y}$ an $y$ wie auch in Abbildung \ref{modifiziert_a} gezeigt berechnet:
-		$$\lambda_{y} = edge_{1} + edge_{2}$$.
+		$$\lambda_{y} = edge_{1} + edge_{2}$$
 		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, sodass die Berechnung auch klappt, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu $x$ und nicht inzident zu $y$ zutrifft (zum Beispiel bei einem Blattknoten).
 	
 	\item
-		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, dass $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall, bedeutet das, dass das Kantengewicht der Kante, über die wir die Nachricht nach $y$ schicken, größer ist als die berechnete Nachricht. Da dies nicht sein darf, weil wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht, die wir an $y$ schicken, entsprechend anpassen (Beispiel in Abbildung \ref{modifiziert_b}):
+		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, ob $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall, bedeutet das, dass das Kantengewicht der Kante, über die wir die Nachricht nach $y$ schicken, größer ist als die berechnete Nachricht. Da dies nicht sein darf, weil wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht, die wir an $y$ schicken, entsprechend anpassen (Beispiel in Abbildung \ref{modifiziert_b}):
 		
 		\begin{algorithmic}
 			\If {$\lambda_{y} \leq \omega(x)$}
@@ -279,10 +279,10 @@ Alle weiteren Erweiterungen des Algorithmus, die wir in dieser Bachelorarbeit er
 %	\hfill  
 %lösche die neue line und füge das \hfill wieder ein um die bilder nebeneiander zu haben
 	
-	\subfigure[Da das Knotengewicht durch die Kante zwischen x und y bestimmt wird (grün) und dieses größer ist als die Summe der beiden normalen Kanten $edge_{1}$ und $edge_{2}$ (gelb), bestimmt diese Kante den Wert der Nachricht $\lambda_{y} = 5$ (blau). \label{modifiziert_b}]{\includegraphics[width=0.65\textwidth]{bilder/abb_neu_edge.png}} 
+	\subfigure[Da das Knotengewicht durch die Kante zwischen x und y bestimmt wird (grün), und dieses größer ist als die Summe der beiden normalen Kanten $edge_{1}$ und $edge_{2}$ (gelb), bestimmt diese Kante den Wert der Nachricht $\lambda_{y} = 5$ (blau). \label{modifiziert_b}]{\includegraphics[width=0.65\textwidth]{bilder/abb_neu_edge.png}} 
 %	\hfill
 	
-	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht, und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.65\textwidth]{bilder/abb_neu_msgData.png}}  
+	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.65\textwidth]{bilder/abb_neu_msgData.png}}  
 	
 	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken.} 
 
