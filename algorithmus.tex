@@ -20,7 +20,7 @@ Nachdem für alle Knoten die entsprechenden Gewichte berechnet wurden, werden zw
 	Eine Nachricht $\lambda_{y}(e)$ wird von einem Knoten $x$ zu einem Knoten $y$ über die Kante $e$ im Baum verschickt. Diese erhält Informationen über den Teilbaum von $x$, die von Knoten $y$ zur Berechnung der Agenten benötigt werden.
 \end{mydef}
 
-Die Nachrichten werden nach folgender Rekursionsformel \cite{cima_paper} berechnet:\\
+Die Nachrichten werden nach folgender Rekursionsformel berechnet:\\
 Sei $e = \{x, y\}$ eine Kante inzident zu $y$ und $\lambda_{y}(e)$ die Nachricht, die über $e$ nach $y$ geschickt wird. Ist $x$ ein Blatt des Baumes, so gilt $\lambda_{y}(e) = \omega(x)$. Ansonsten seien $z_{1}, ..., z_{deg(x)-1}$ die Nachbarn von $x$ ohne $y$, wobei $deg(x)$ der Knotengrad von $x$ ist.  Außerdem gilt $l_{i} = \lambda_{x}(\{x, z_{i}\})$ und sei o.B.d.A. $l_{i} \geq l_{i+1}$ \cite{cima_paper}: $$\lambda_{y}(e) = max \{l_{1}, l_{2} + \omega(x)\}$$
 
 \subsubsection{Berechnung der Nachrichten}
@@ -64,7 +64,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 	\item Fall:\label{algo_fall_2}
 	
 		
-		Der aktuelle Knoten $x$ hat genau $n-1$ Nachrichten erhalten, wobei $n$ die Anzahl der inzidenten Knoten ist. Also hat er von jedem Nachbarn, außer von dem Knoten $y$, eine Nachricht erhalten.
+		Der aktuelle Knoten $x$ hat genau $n-1$ Nachrichten erhalten, wobei $n$ die Anzahl der inzidenten Kanten ist. Also hat er von jedem Nachbarn, außer von dem Knoten $y$, eine Nachricht erhalten.
 		
 %		\begin{minipage}{1\textwidth} 
 	
@@ -109,7 +109,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 %			\label{abb_n}
 %		\end{wrapfigure}
 		
-		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, wird ähnlich wie in Fall \ref{algo_fall_2} vorgegangen: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $y$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
+		Um eine Nachricht von $x$ an einen Nachbarknoten $y$ zu senden, der bis zu diesem Zeitpunkt noch keine Nachricht von $x$ erhalten hat, wird ähnlich wie in Fall \ref{algo_fall_2} vorgegangen: Man nimmt die zwei größten Nachrichten ($l_{1}$ und $l_{2}$), die bereits bei $x$ angekommen sind, aber nicht von Knoten $y$ stammen. Bei der Bestimmung von $l_{1}$ und $l_{2}$ von $x$ wird also die Nachricht $\lambda_{x}$, welche von $y$ kam, ignoriert. Mit den beiden ermittelten Nachrichten $l_{1} \ge l_{2}$ sowie dem Knotengewicht $\omega(x)$ wird die Nachricht $\lambda_{y}$ an y wie folgt berechnet (Abbildung \ref{abb_n}):  $$\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$$
 		Diese Berechnung wird für jeden Nachbarknoten von $x$ wiederholt, so dass jeder Nachbar eine Nachricht von $x$ erhält. Nach diesem Schritt ist die Bearbeitung des Knoten $x$ abgeschlossen, da er sowohl von jedem Nachbarn eine Nachricht erhalten hat, als auch an jeden Nachbarn eine Nachricht gesendet hat.
 %				\end{minipage}
 %				\hfill
