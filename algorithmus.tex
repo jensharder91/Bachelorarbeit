@@ -211,7 +211,7 @@ Da das Problem, wie erläutert, am Knotengewicht liegt, wird im Folgenden eine V
 \\
 Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht mit einbezogen, sondern dient nur noch zur Überprüfung, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird mit den inzidenten Kanten und den bereits angekommenen Nachrichten - wie nachfolgend beschrieben - etwas anders umgegangen.
 
-\subsubsection{Modifizierte Berechnung der Nachrichten}
+\subsubsection{Modifizierte Berechnung}
 
 Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChapter} muss wie folgt abgeändert werden:
 
@@ -242,6 +242,10 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 	
 \end{enumerate}
 
+Die Berechnung der Agentenzahl $\mu(x)$, die an Knoten $x$ benötigt wird, wird analog zur Nachrichtenberechnung ebenfalls verändert:
+$$\mu(x) = max\{edge_{1} + edge_{2},  l_{1}\},$$ wobei analog zu der Berechnung der Nachrichten gilt: $l_{1}$ ist die größte angekommene Nachricht und $edge_{1} \geq edge_{2}$ sind die beiden größten Kanten inzident zu $x$.
+\\
+\\
 Alle weiteren Erweiterungen des Algorithmus, die in dieser Bachelorarbeit erklärt und benutzt werden, beziehen sich auf diese Modifikation des Grundalgorithmus.
 
 %\begin{figure}
