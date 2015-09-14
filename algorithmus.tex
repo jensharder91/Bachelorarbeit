@@ -204,12 +204,12 @@ Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fäll
 			\label{fig:negBeispielPaperAlgo}
 		\end{figure}
 
-Der Unterschied zwischen dem originalen Algorithmus aus \cite{cima_paper} und der Intuition ist Folgender: Der ursprüngliche Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl wir über die Kante mit Gewicht 5 gekommen sind, und diese dadurch dekontaminiert ist. Es ist daher nicht nötig, diese Kante zu bewachen, und es werden mehr Agenten eingeplant, als wirklich benötigt werden.
+Der Unterschied zwischen dem originalen Algorithmus aus \cite{cima_paper} und der Intuition ist Folgender: Der ursprüngliche Algorithmus plant im Beispiel für den mittleren Knoten fünf Wachen ein (das Knotengewicht ist 5), obwohl die Agenten über die Kante mit Gewicht 5 gekommen sind, und diese dadurch dekontaminiert ist. Es ist daher nicht nötig, diese Kante zu bewachen, und es werden mehr Agenten eingeplant, als wirklich benötigt werden.
 \\
-Da das Problem, wie erläutert, am Knotengewicht liegt, wird im Folgenden eine Variante des Algorithmus beschrieben, die anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb man zusätzliche Fälle in den Algorithmus einbauen muss, damit dieser sowohl richtig funktioniert, als auch das gerade beschriebene Problem löst.
+Da das Problem, wie erläutert, am Knotengewicht liegt, wird im Folgenden eine Variante des Algorithmus beschrieben, die anders mit dem Knotengewicht umgeht. Allerdings kommt es zu Fehlern, wenn man nur das Knotengewicht verändert, weshalb zusätzliche Fälle in den Algorithmus eingebaut werden müssen, damit dieser sowohl richtig funktioniert, als auch das gerade beschriebene Problem löst.
 \\
 \\
-Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht mit einbezogen, sondern dient nur noch zur Überprüfung, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird - wie nachfolgend beschrieben - anders mit den inzidenten Kanten und den bereits angekommenen Nachrichten umgegangen.
+Im Gegensatz zum originalen Algorithmus \cite{cima_paper} wird im modifizierten Algorithmus nicht mehr das Knotengewicht in die direkte Berechnung der Nachricht mit einbezogen, sondern dient nur noch zur Überprüfung, ob die berechnete Nachricht nicht zu klein ist. Außerdem wird mit den inzidenten Kanten und den bereits angekommenen Nachrichten - wie nachfolgend beschrieben - etwas anders umgegangen.
 
 \subsubsection{Modifizierte Berechnung der Nachrichten}
 
@@ -223,7 +223,7 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 		Vor der Bestimmung der zwei maximalen Kanten werden $edge_{1}$ und $edge_{2}$ auf 0 initialisiert, so dass die Berechnung auch funktioniert, falls es weniger als zwei Kanten gibt, auf die die Bedingung inzident zu $x$ und nicht inzident zu $y$ zutrifft (zum Beispiel bei einem Blattknoten).
 	
 	\item
-		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, müssen wir noch überprüfen, ob $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall, bedeutet das, dass das Kantengewicht der Kante, über die wir die Nachricht nach $y$ schicken, größer ist als die berechnete Nachricht. Da dies nicht sein darf, weil wir sonst nicht genug Agenten haben würden, um über die Kante zu laufen, müssen wir die Nachricht, die wir an $y$ schicken, entsprechend anpassen (Beispiel in Abbildung \ref{modifiziert_b}):
+		Nachdem die neue Nachricht $\lambda_{y}$ nun berechnet wurde, muss noch überprüft werden, ob $\lambda_{y}$ nicht kleiner ist als das Knotengewicht $\omega(x)$. Ist dies der Fall, bedeutet das, dass das Kantengewicht der Kante, über welche die Nachricht nach $y$ geschickt werden soll, größer ist als die berechnete Nachricht. Da dies nicht sein darf, weil sonst nicht genug Agenten zur Verfügung stehen, um über die Kante zu laufen, muss die Nachricht, die an $y$ geschickt werden soll, entsprechend angepasst werden (Beispiel in Abbildung \ref{modifiziert_b}):
 		
 		\begin{algorithmic}
 			\If {$\lambda_{y} \leq \omega(x)$}
@@ -232,7 +232,7 @@ Die Berechnung der Nachrichten aus dem Algorithmus in Kapitel \ref{paperAlgoChap
 		\end{algorithmic}
 	
 	\item
-		Außerdem darf die berechnete Nachricht $\lambda_{y}$ nicht kleiner sein als die größte in $x$ angekommene Nachricht $l_{1}$ (außer der Nachricht, die wir evtl. schon von $y$ erhalten haben). Ist die Nachricht $\lambda_{y}$ kleiner als $l_{1}$, würden wir nicht genug Agenten bekommen, um den Teilbaum, aus dem $l_{1}$ kommt, zu dekontaminieren. $\lambda_{y}$ muss kontrolliert und evtl. wie in Abbildung \ref{modifiziert_c} angepasst werden:
+		Außerdem darf die berechnete Nachricht $\lambda_{y}$ nicht kleiner sein als die größte in $x$ angekommene Nachricht $l_{1}$ (außer der Nachricht, die evtl. schon von $y$ erhalten worden ist). Ist die Nachricht $\lambda_{y}$ kleiner als $l_{1}$, würden nicht genug Agenten zur Verfügung stehen, um den Teilbaum, aus dem $l_{1}$ kommt, zu dekontaminieren. $\lambda_{y}$ muss kontrolliert und evtl. wie in Abbildung \ref{modifiziert_c} angepasst werden:
 		
 		\begin{algorithmic}
 			\If {$\lambda_{y} \leq l_{1}$}

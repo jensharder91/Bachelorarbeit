@@ -16,7 +16,7 @@ Eine wichtige Eigenschaft, die aufrecht erhalten werden soll, ist die Monotonie.
 \begin{mydef}\label{def_monotonie}
 	Eine Strategie ist monoton, wenn sichergestellt wird, dass ein bereits dekontaminierter Knoten bis zur vollständigen Dekontaminierung des gesamten Graphen nicht erneut kontaminiert wird.
 \end{mydef}
-Diese Eigenschaft sagt aus, dass der Einbrecher keine Möglichkeit haben darf, sich über eine Kante auf einen bereits dekontaminierten Knoten zu bewegen. Um dies zu gewährleisten, müssen wir Wachen aufstellen, die bereits dekontaminierte Teilbäume vor dem Einbrecher schützen, so dass dieser nicht in den bereits dekontaminierten Teilbaum eindringen kann. Die Anzahl der benötigten Wachen hängt davon ab, wie groß das Kantengewicht der angrenzenden Teilbäume ist. Gibt es keinen benachbarten Teilbaum, so wird an dieser Stelle keine Wache benötigt.\\
+Diese Eigenschaft sagt aus, dass der Einbrecher keine Möglichkeit haben darf, sich über eine Kante auf einen bereits dekontaminierten Knoten zu bewegen. Um dies zu gewährleisten, müssen Wachen aufgestellt werden, die bereits dekontaminierte Teilbäume vor dem Einbrecher schützen, so dass dieser nicht in den bereits dekontaminierten Teilbaum eindringen kann. Die Anzahl der benötigten Wachen hängt davon ab, wie groß das Kantengewicht der angrenzenden Teilbäume ist. Gibt es keinen benachbarten Teilbaum, so wird an dieser Stelle keine Wache benötigt.\\
 Die Agenten dekontaminieren die einzelne Teilbäume sukzessive, bis der gesamte Baum bearbeitet wurde und somit dekontaminiert ist. Der Algorithmus ist danach abgeschlossen.
 
 \subsection{Ziel der Bachelorarbeit}
