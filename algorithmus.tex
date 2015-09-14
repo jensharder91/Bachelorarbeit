@@ -140,7 +140,7 @@ Es gibt drei verschiedene Fälle, wie Nachrichten berechnet und verschickt werde
 	
 	\subfigure[Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert. \label{abb_n}]{\includegraphics[width=0.7\textwidth]{bilder/abb_paper_nknoten_NEU2.png}}  
 	
-	\caption{Drei Fälle, die bei dem Algorithmus auftreten können.} 
+	\caption{Drei Fälle, die bei dem Algorithmus auftreten können. (Quelle: Eigene Darstellung im Applet)} 
 	
 \end{figure}
 
@@ -195,12 +195,12 @@ Nachdem alle Knoten $i$ ihr $\mu(i)$ berechnet haben, wird ein Knoten mit minima
 %		\label{fig:negBeispielPaperAlgo}
 %	\end{wrapfigure}
 
-Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet. Hierzu schauen wir uns Abbildung \ref{fig:negBeispielPaperAlgo} an. In dem  angegebenen Beispiel (Abb. \ref{fig:negBeispielPaperAlgo}) steht in jedem Knoten das entsprechende $\mu$, also die Anzahl an Agenten, die benötigt werden, um von dort aus den gesamten Baum zu dekontaminieren. Der Knoten $x$ sollte mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
+Die Ergebnisse des im Artikel beschriebenen Algorithmus stimmen in einigen Fällen nicht mit der Intuition überein, die man bekommt, wenn man einige Beispielbäume betrachtet. Hierzu schauen wir uns Abbildung \ref{fig:negBeispielPaperAlgo} an. In dem  angegebenen Beispiel steht in jedem Knoten das entsprechende $\mu$, also die Anzahl an Agenten, die benötigt werden, um von dort aus den gesamten Baum zu dekontaminieren. Der Knoten $x$ sollte mit fünf Agenten auskommen: Alle fünf Agenten gehen über die erste Kante zum mittleren Knoten. Von dort aus werden nur noch zwei Agenten benötigt: Einer hält Wache, um die Monotonie zu gewährleisten, und der zweite dekontaminiert ein Blatt. Zum Schluss wird das letzte Blatt von einem Agenten dekontaminiert und der Algorithmus ist fertig.
 
 		\begin{figure}[htb]
 			\includegraphics[width=0.65\textwidth]{bilder/abb_paper_problem.png}
 			\captionsetup{width=0.65\textwidth}
-			\caption{Beispiel, warum die modifizierte Variante des Algorithmus benutzt wird. Der Knoten $x$ sollte intuitiv mit 5 Agenten auskommen}
+			\caption{Beispiel, warum die modifizierte Variante des Algorithmus benutzt wird. Der Knoten $x$ sollte intuitiv mit 5 Agenten auskommen. (Quelle: Eigene Darstellung im Applet)}
 			\label{fig:negBeispielPaperAlgo}
 		\end{figure}
 
@@ -284,7 +284,7 @@ Alle weiteren Erweiterungen des Algorithmus, die in dieser Bachelorarbeit erklä
 	
 	\subfigure[Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau). \label{modifiziert_c}]{\includegraphics[width=0.65\textwidth]{bilder/abb_neu_msgData.png}}  
 	
-	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken.} 
+	\caption{Drei Fälle, die bei der Modifizierung des Algorithmus beachtet werden müssen, um alle Spezialfälle abzudecken. (Quelle: Eigene Darstellung im Applet)} 
 
 \end{figure}
 

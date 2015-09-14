@@ -1,9 +1,9 @@
 \section{Implementierung}\label{kap_implementierung}
 
-Im Rahmen einer Projektarbeit im Wintersemester 2014/15 wurde der in \cite{cima_paper} beschriebene Algorithmus in einem Java-Applet implementiert. Ziel war es, den Algorithmus visuell darzustellen und ihn anhand des Applets in einem kurzen Vortrag vorzustellen.
+Im Rahmen meiner Projektarbeit im Wintersemester 2014/15 wurde der in \cite{cima_paper} beschriebene Algorithmus in einem Java-Applet von mir implementiert. Ziel war es, den Algorithmus visuell darzustellen und ihn anhand des Applets in einem kurzen Vortrag vorzustellen.
 \\
 \\
-Als Bestandteil dieser Bachelorarbeit wurde das Applet mit der in Kapitel \ref{modifizierterAlgoChapter} beschriebenen Modifikation erweitert und die in Kapitel \ref{kap_pot} entwickelten Algorithmen in das Applet integriert.
+Als Bestandteil dieser Bachelorarbeit wurde das Applet mit der in Kapitel \ref{modifizierterAlgoChapter} beschriebenen Modifikation erweitert, und die in Kapitel \ref{kap_pot} entwickelten Algorithmen in das Applet integriert.
 
 
 \subsection*{Benutzung des Applets}
@@ -22,7 +22,7 @@ Die Kantengewichte lassen sich ebenfalls mit einem Klick verändern. Ein Linkskl
 Nachdem man einen Baum erstellt hat, gibt es mehrere Funktionen, die ausgewählt werden können.\\
 
 \begin{itemize}
-	\item Man kann die Nachrichtenberechnung sowohl von dem ursprünglichen Algorithmus (Kapitel \ref{kap_algorithmus}), als auch von der Modifikation (Kapitel \ref{modifizierterAlgoChapter}) ausführen. Dazu wählt man in der Kopfzeile im Applet zunächst aus, welcher Algorithmus benutzt werden soll (siehe Abb. \ref{applet_a}). Wird der modifizierte Algorithmus ausgewählt und man möchte diesen ohne Potential berechnen lassen, so gibt man als Potential den Wert 0 ein. Im Anschluss kann mit den verfügbaren Knöpfen in der Fußzeile des Applets ausgewählt werden, ob die Berechnung animiert, oder ob das Ergebnis sofort angezeigt werden soll. Bei der Animation wird immer in der Ecke oben links beschrieben, wie jede einzelne Nachricht zustande kommt. Dazu werden die entsprechenden Elemente des Baums eingefärbt und mit Hilfe des Texts in Kurzform erklärt, woraus die Berechnung entsteht. Ein Beispiel für eine Erklärung der Nachricht lässt sich in Abb. \ref{applet_b} finden. Nachdem alle Nachrichten verschickt wurden, berechnet jeder Knoten, wie viele Agenten benötigt werden, um den gesamten Baum von diesen Knoten aus zu dekontaminieren. Dieser Wert wird am Ende in jedem Knoten angezeigt. Nach Abschluss des Algorithmus wird einer der Knoten mit minimaler Agentenzahl ausgewählt und als Homebase markiert.
+	\item Man kann die Nachrichtenberechnung sowohl von dem ursprünglichen Algorithmus (Kapitel \ref{kap_algorithmus}), als auch von der Modifikation (Kapitel \ref{modifizierterAlgoChapter}) ausführen. Dazu wählt man in der Kopfzeile im Applet zunächst aus, welcher Algorithmus benutzt werden soll (siehe Abb. \ref{applet_a}). Wird der modifizierte Algorithmus ausgewählt und man möchte diesen ohne Potential berechnen lassen, so gibt man als Potential den Wert 0 ein. Im Anschluss kann mit den verfügbaren Knöpfen in der Fußzeile des Applets ausgewählt werden, ob die Berechnung animiert, oder ob das Ergebnis sofort angezeigt werden soll. Bei der Animation wird immer in der Ecke oben links beschrieben, wie jede einzelne Nachricht zustande kommt. Dazu werden die entsprechenden Elemente des Baumes eingefärbt und mit Hilfe des Textes in Kurzform erklärt, woraus die Berechnung entsteht. Ein Beispiel für eine Erklärung der Nachricht lässt sich in Abb. \ref{applet_b} finden. Nachdem alle Nachrichten verschickt wurden, berechnet jeder Knoten, wie viele Agenten benötigt werden, um den gesamten Baum von diesen Knoten aus zu dekontaminieren. Dieser Wert wird am Ende in jedem Knoten angezeigt. Nach Abschluss des Algorithmus wird einer der Knoten mit minimaler Agentenzahl ausgewählt und als Homebase markiert.
 	
 	\item Alternativ zur Nachrichtenberechnung kann man sich die beiden Algorithmen aus Kapitel \ref{kap_pot} visuell darstellen lassen. Möchte man den Algorithmus aus Kapitel \ref{kap_pot=1} auswählen, so gibt man im Applet für das Potential den Wert 1 ein. Soll der Algorithmus aus Kapitel \ref{kap_pot>=1} benutzt werden, so muss für das Potential ein Wert größer als 1 eingegeben werden (siehe Abb. \ref{applet_a}). Wurde der gewollte Algorithmus ausgewählt, kann man sich die Nachrichten einzeln animieren lassen, oder auswählen, dass das Ergebnis sofort angezeigt werden soll. Auch hier wird während der Animation erklärt, wie in jedem einzelnen Schritt die erweiterte Nachricht berechnet wird (siehe Abb. \ref{applet_b}), die in dem jeweiligen Algorithmus benutzt wird. \\
 	Man muss beachten, dass die Potentialberechnung nur mit der modifizierten Variante des Algorithmus ausführbar ist. Am Ende dieses Algorithmus wird angezeigt, wie viele Agenten jeder Knoten zur Dekontamination benötigt, welcher Knoten die Homebase ist, und, falls möglich, welche Kante reduziert werden sollte, um die Agentenzahl möglichst weit zu reduzieren (siehe Abb. \ref{applet_c}).
@@ -31,7 +31,7 @@ Nachdem man einen Baum erstellt hat, gibt es mehrere Funktionen, die ausgewählt
 \end{itemize}
 
 Alle Animationen können entweder als Ganzes abgespielt oder in einer Step-by-step-Animation in Teilen durchgeführt werden. \\
-In der oberen rechten Ecke des Applets wird beschrieben, welche Information das Applet in den einzelnen Knoten anzeigt. Vor und während der Berechnung steht in allen Knoten das entsprechende Knotengewicht (siehe Abb. \ref{applet_a} und \ref{applet_b}), nach der Berechnung wird die minimale Anzahl an Agenten angezeigt, die im entsprechenden Knoten benötigt wird, um den gesamten Baum zu dekontaminieren (Abb. \ref{applet_c}). Bei der Dekontamination erscheint im Knoten die Information, wie viele Agenten sich zu dem Zeitpunkt im Knoten befinden (Abb. \ref{applet_d}).\\
+In der oberen rechten Ecke des Applets wird beschrieben, welche Information das Applet in den einzelnen Knoten anzeigt. Vor und während der Berechnung steht in allen Knoten das entsprechende Knotengewicht (siehe Abb. \ref{applet_a} und \ref{applet_b}). Nach der Berechnung wird die minimale Anzahl an Agenten angezeigt, die im entsprechenden Knoten benötigt wird, um den gesamten Baum zu dekontaminieren (Abb. \ref{applet_c}). Bei der Dekontamination erscheint im Knoten die Information, wie viele Agenten sich zu dem Zeitpunkt im Knoten befinden (Abb. \ref{applet_d}).\\
 Alle Optionen, die im Applet verfügbar sind, werden eingeblendet. Alle in dem Moment nicht verfügbaren Optionen werden ausgeblendet, um eine bessere Übersicht zu gewährleisten.
 
 
@@ -55,6 +55,6 @@ Alle Optionen, die im Applet verfügbar sind, werden eingeblendet. Alle in dem M
 	
 	\subfigure[Die Agenten dekontaminieren den Baum suzzessive. Dafür müssen an bestimmten Stellen Wachen aufgestellt werden. \label{applet_d}]{\includegraphics[width=0.84\textwidth]{bilder/abb_erklaerung4.png}}  
 	
-	\caption{Die Anwendung des Applets wird anhand eines Beispiels verdeutlicht.} 
+	\caption{Die Anwendung des Applets wird anhand eines Beispiels verdeutlicht. (Quelle: Eigene Darstellung im Applet)} 
 	
 \end{figure}	
