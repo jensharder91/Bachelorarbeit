@@ -1,0 +1,555 @@
+\documentclass{beamer}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+%\usetheme{Madrid}Goettingen  Marburg   
+%\usetheme{Amsterdam}
+\usetheme{Madrid}
+
+
+%für zitat
+\usepackage{microtype}
+\usepackage{mdframed}
+
+%caption next to figure
+\usepackage{floatrow}
+\usepackage{graphicx}
+
+%text in ecke
+\usepackage{eso-pic}
+
+%figure in frame
+\usepackage{capt-of}
+
+
+\title{Gewässerschutz in Deutschland}
+\author{Jens Harder}
+\date{21. Mai 2015}
+
+%definition zitat
+\mdfdefinestyle{zitat}{
+	hidealllines=true,leftline=true,linewidth=1.5pt,
+	leftmargin=2.0em,innerleftmargin=1.0em,rightmargin=3.0em,
+	innerrightmargin=0pt,innerbottommargin=0.5em, innertopmargin=0.5em}
+
+
+\begin{document}
+	
+	\begin{frame}
+		\titlepage
+	\end{frame}
+	
+	\begin{frame}
+		\tableofcontents
+	\end{frame}
+	
+	\section{Einleitung}
+	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
+		\setbeamertemplate{background canvas}{
+			\includegraphics[%
+			width=\paperwidth,
+			height=\paperheight]{bilder/wasserschutzgebiet.jpg}
+		}
+		\begin{frame}
+			\frametitle{Einleitung}
+			\large
+			
+			\begin{mdframed}[style=zitat]
+				\textbf{Definition Gewässerschutz:}\\
+				Unter Gewässerschutz versteht man alle Maßnahmen, welche oberirdische Gewässer, Küstengewässer, sowie das Grundwasser vor Verunreinigung schützen.
+			\end{mdframed}
+			
+			\AddToShipoutPictureFG*{
+				\AtPageLowerLeft{\put(0,12){\makebox[\paperwidth][l]{\cite{bildWasserschutzgebiet}}}}
+		   }%
+			
+		\end{frame}
+	}% hier ended die Gültigkeit des Bildeinfügens
+	
+	\begin{frame}
+		\frametitle{Einflüsse auf die Wasserqualität}
+		\LARGE
+		\begin{itemize}
+			\item Beschaffenheit des (Gewässer-)Einzugsgebietes\\ {\normalsize (Größe, Oberflächenbeschaffenheit, Niederschlag, Untergrund, Flächennutzung, Besiedlung)}
+			
+			\item Sauerstoffgehalt des Gewässers		
+				
+			\item Selbstreinigungskraft des Gewässers
+			
+			\item zugefügte Verunreinigung
+
+		\end{itemize}
+	\end{frame}
+		
+	\section{Warum brauchen wir Gewässerschutz?}
+	\begin{frame}
+		\frametitle{Warum brauchen wir Gewässerschutz?}
+		\LARGE
+		
+		\textbf{"'Wasser ist keine übliche Handelsware, sondern ein ererbtes Gut, das geschützt, verteidigt und entsprechend behandelt werden muss."'} \cite{wrrl}
+		
+%		Ohne Wasser kein Leben 
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Warum brauchen wir Gewässerschutz? \\ - Wasser als Lebensgrundlage - }
+		\LARGE
+		\begin{itemize}
+			\item Trinkwasserversorgung 
+			\item Bewässerung für die Landwirtschaft
+			\item Wasserversorgung für die Industrie
+			\item Schifffahrt
+			\item Erzeugung von Strom
+			\item Tourismus
+			\item Gewinnung von Kies als Baumaterial
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Warum brauchen wir Gewässerschutz? \\ - Gewässerschutz ist notwendig! - }
+		\LARGE
+		\begin{itemize}
+			\item Ohne Gewässerschutz wären die Gewässer der Wirtschaft ausgeliefert (Kompromiss)
+			\item Ein "'gesundes"' Gewässer ist robuster gegenüber Schäden
+			\item Sauberes Trinkwasser ist überlebensnotwendig
+		\end{itemize}
+		
+	\end{frame}
+	
+	\section{Gesetzliche Richtlinien}
+	\begin{frame}
+		\frametitle{Gesetzliche Richtlinien}
+		\LARGE
+		
+		\begin{itemize}
+			\item EG-Wasserrahmenrichtlinie (WRRL) bzw. Richtlinie 2000/60/EG
+			
+			\begin{itemize}
+				\LARGE
+				\item Ziel: "'Guter Zustand"' der Gewässer
+				
+				\item EG-Nitratrichtlinie ("'Düngeverordnung"')
+			\end{itemize}
+			
+			\item Wasserhaushaltsgesetz (WHG)
+		\end{itemize}
+	\end{frame}
+	
+	\section{Die Landwirtschaft als Mitverursacher für die Verschmutzung}
+	\begin{frame}
+		\frametitle{Die Landwirtschaft als Mitverursacher für die Verschmutzung}
+		\LARGE
+		
+		\begin{itemize}
+			\item Landwirtschaft als sog. offenes System
+			
+			\item Großteil des Düngers wird nicht von Pflanzen aufgenommen ("'Überdüngung"')
+			
+			\item Gülle von Viehbeständen in Gewässern schädlich
+			
+			\item häusliche oder industrielle Abwasser
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Stickstoff als Hauptproblem für die Verschmutzung}
+		\LARGE
+		
+		\begin{itemize}
+			\item Stickstoff ist lebensnotwendig
+			
+			\item $N_{2}$ hat 78\% Luftanteil
+			
+			\item $N_{2}$  reaktionsträge und damit absolut unschädlich
+			
+			\item Haber-Bosch-Verfahren: $N_{2} + 3H_{2} \rightarrow 2NH_{3}$ (aus Stickstoff wird Mineraldünger)
+		\end{itemize}
+				
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Eutrophierung}
+		\large
+		
+		\begin{mdframed}[style=zitat]
+			\textbf{Definition Eutrophierung:} \\ 
+			Unter Eutrophierung versteht man die unerwünschte Anreicherung eines Gewässers an Nährstoffen, besonders Phosphor- und Stickstoffverbindungen. Dies führt zu einer Übervermehrung von Pflanzen (v.a. Algen) und tierischem Plankton durch "'Überdüngung"'.% \cite[Band 3, S.544]{brockhaus}.
+		\end{mdframed}
+		
+		
+	\end{frame}
+	
+	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
+		\setbeamertemplate{background canvas}{
+			\includegraphics[%
+			width=\paperwidth,
+			height=\paperheight]{bilder/eutrophierung2.jpg}
+		}
+		\begin{frame}[plain]
+			\frametitle{Eutrohphierung}
+			\LARGE
+			
+			\begin{itemize}
+				\item \textcolor{white}{starkes Algen- und Pflanzenwachstum}
+				\item \textcolor{white}{Verminderung des Sauerstoffgehaltes}
+				\item \textcolor{white}{Abschirmung des Sonnenlichtes}
+				\item \textcolor{white}{Gewässer "'kippt"' durch anaerobe Abbauprozesse (Methan, Schwefelwasserstoff)}
+				\item \textcolor{white}{sauerstofffreie und unbelebte Tiefenzonen}
+			\end{itemize}
+			
+		\AddToShipoutPictureFG*{
+			\AtPageLowerLeft{\put(0,3){\makebox[\paperwidth][l]{\textcolor{white}{\cite{eutrophierterFluss}}}}}
+		}%
+		
+		\end{frame}
+		
+	}% hier ended die Gültigkeit des Bildeinfügens
+	
+	\begin{frame}
+		\frametitle{Weitere Verschmutzungsursachen}
+		\LARGE
+		\begin{itemize}
+			\item Sink- und Schwimmstoffe
+			\item Krankheitserreger aus Fäkalien
+			\item zersetzungsunfähige Stoffe
+			\item chemisch/phyikalisch bedenkliche Stoffe \\{\normalsize (Gifte, radioaktive Stoffe, ...)} 
+		\end{itemize}
+	\end{frame}
+
+	
+	\begin{frame}
+		\frametitle{Der langsame Weg der Verschmutzung}
+		\LARGE
+		
+		\begin{itemize}
+			\item Belastung des Grundwassers
+			\begin{itemize}
+				\LARGE
+				\item 70\% unseres Trinkwassers
+				
+				\item langsame Fließgeschwindigkeit
+				
+				\item Wechselwirkungen mit anderen Oberflächengewässern
+				
+				\item diffuse Stoffeinträge
+			\end{itemize}
+			
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Der langsame Weg der Verschmutzung}
+		
+%		\includegraphics[width=\textwidth]{bilder/nitratbelastung_grundwasser.PNG}\\
+%		test
+		
+		\centering
+		\includegraphics[width=0.95\textwidth]{bilder/nitratbelastung_grundwasser.PNG}
+		\captionof{figure}{Nitratbelastung im Grundwasser unter Wald, Grünland, Siedlungen und Acker \cite[S.13]{gewLandwirtschaft}.}
+		\label{abb_nitratbelastung}
+		 
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Der langsame Weg der Verschmutzung}
+		\LARGE
+		
+		\begin{itemize}
+			\item Belastung von Flüssen und Seen
+			\begin{itemize}
+				\LARGE
+				\item Wechselwirkungen mit dem Grundwasser
+				
+				\item weniger punktuelle Schadstoffquellen
+				
+				\item Nur 16\% hatten 2008 Güteklasse I oder II
+				
+			\end{itemize}
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Der langsame Weg der Verschmutzung}
+		
+		\centering
+		\includegraphics[width=0.77\textwidth]{bilder/punkt_diffuse_quellen2.PNG}
+		\captionof{figure}{Stickstoffeinträge aus punktuellen und diffusen Quellen in Oberflächengewässern \cite[S.14]{gewLandwirtschaft}.}
+		\label{abb_punkt_diffuse_quellen}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Der langsame Weg der Verschmutzung}
+		\LARGE
+		
+		\begin{itemize}
+			\item Belastung der Küstengewässer und Meere
+			\begin{itemize}
+				\LARGE
+				\item schädliche Stoffe aus Flüssen
+				
+				\item weltweiter Fischbedarf
+				
+				\item Tourismus
+				
+				\item z.B. Algenpest
+				
+			\end{itemize}
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\section{Gewässerschonende Maßnahmen}
+	\begin{frame}
+		\frametitle{Gewässerschonende Maßnahmen}
+		\LARGE
+		
+		\begin{itemize}
+			\item Größte Aufgabe: Grundwasser schützen
+			
+			\item Weiterbildung der Landwirte
+			
+			\item Mischung aus:
+			
+			\begin{itemize}
+				\LARGE
+				\item Machtstrategie \normalsize (Gesetze und Richtlinien)
+				
+				\LARGE
+				\item Förderstrategie \normalsize (finanzielle Förderungen/Anreize)
+				
+				\LARGE
+				\item Kommunikative Strategie \normalsize(Empfehlungen, Beratungen)
+			\end{itemize}
+				
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Düngen}
+		\LARGE
+		
+		\begin{itemize}
+			\item "'bedarfsorientiert, effizient
+			und verlustarm"' düngen
+			
+			\item Nährstoffbedarfsermittlung
+			
+			\item Hoftorbilanz
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Verbesserte Flächennutzung}
+		\LARGE
+		
+		\begin{columns}[T] % align columns
+			\begin{column}{.48\textwidth}
+				\begin{itemize}
+					\item Wasserschutzgebiete
+					
+					\item Gewässerrandstreifen
+					
+					\item Zwischenfrüchte / Untersaaten
+				\end{itemize}
+			\end{column}%
+			\hfill%
+			\begin{column}{.48\textwidth}
+				\normalsize
+				%		\centering
+				\includegraphics[width=\textwidth]{bilder/uferrandstreifen_feld.PNG}
+				\captionof{figure}{Gewässerrandstreifen, um die Oberflächengewässer zu schonen \cite{bildUferrandstreifen}. }
+				\label{abb_uferschutzstreifen_feld}
+			\end{column}%
+		\end{columns}
+
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Weitere Maßnahmen für saubere Flüsse}
+		\LARGE
+		
+		\begin{itemize}
+			\item z.B. phosphatfreie Wasch- und Reinigungsmittel
+			
+			\item Ausbau bzw. Neubau von Kläranlagen (Reduzierung der Schwermetallbelastung um 90\%)
+			
+			\item viele Maßnahmen sind schwer umzusetzen
+		\end{itemize}
+		
+	\end{frame}
+	
+	\section{Beispiel: Unser Trinkwasser in Bonn}
+	\begin{frame}
+		\frametitle{Beispiel: Unser Trinkwasser in Bonn}
+		\LARGE
+		Trinkwasserversorgung in Bonn:\\
+		\begin{itemize}
+			\item Wahnbachtalsperre
+			\item Grundwasserwerk Hennefer Siegbogen
+			\item Grundwasserwerk Meindorf
+		\end{itemize}
+		
+	\end{frame}
+	
+	
+	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
+		\setbeamertemplate{background canvas}{
+			\includegraphics[%
+			width=\paperwidth,
+			height=\paperheight]{bilder/wahnbachtalsperre2_ab.jpg}
+		}
+		\begin{frame}[plain]
+			\frametitle{Wahnbachtalsperre}
+			
+			\AddToShipoutPictureFG*{
+				\AtPageUpperLeft{\put(247,-40){\makebox[\paperwidth][l]{\cite{bildWahnbachtalsperre}}}}
+			}%
+
+		\end{frame}
+	}% hier ended die Gültigkeit des Bildeinfügens
+	
+	\begin{frame}
+		\frametitle{Wahnbachtalsperre}
+		\LARGE
+		\begin{itemize}
+			
+			\item 3 Gewässerschutzzonen
+				\begin{itemize}
+					\large
+					\item Schutzzone I: Uferbereich
+					\item Schutzzone II: engere Zone
+					\item Schutzzone III: weitere Zone
+				\end{itemize}
+			
+			\item seit 1977/78 Phosphor-Eliminierungsanlage (PEA)
+			
+			\item Kooperation mit der Landwirtschaft
+		\end{itemize}
+	\end{frame}
+	
+	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
+		\setbeamertemplate{background canvas}{
+			\includegraphics[%
+			width=\paperwidth,
+			height=\paperheight]{bilder/grundwasserwerk_unter_sieg.JPG}
+		}
+	\begin{frame}
+		
+		\AddToShipoutPictureFG*{
+			\AtPageUpperLeft{\put(267,-10){\makebox[\paperwidth][l]{\textcolor{white}{\cite{wahnbachtalsperre}}}}}
+		}%
+
+	\end{frame}
+	}% hier ended die Gültigkeit des Bildeinfügens
+	
+	\begin{frame}
+		\frametitle{Wasseraufbereitung}
+		\LARGE
+		Wasserziel: klar, wohlschmeckend, frei von Krankheitserregern und Schadstoffen:
+		\begin{enumerate}
+			\item Flockung
+			\item Mehrschichtfilter
+			\item Ultraschall
+			\item UV-Licht
+			\item Kalkwasser gemischt
+		\end{enumerate}
+	\end{frame}
+	
+	
+	\section{Ausblick auf die Zukunft und Fazit}
+	\begin{frame}
+		\frametitle{Ausblick auf die Zukunft und Fazit}
+		\LARGE
+		
+		\begin{itemize}
+			\item Klimawandel
+			
+			\begin{itemize}
+				\LARGE
+				\item äußere Gegebenheiten ändern sich
+				
+				\item wahrscheinlich mehr Wetterextreme
+				
+				\item Landwirtschaft muss sich anpassen
+				
+				\item wasserschonender Umgang mit Resscourcen
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Ausblick auf die Zukunft und Fazit}
+		\LARGE
+		
+		\begin{itemize}
+			\item Wasseraufbereitung
+			
+			\begin{itemize}
+				\LARGE
+				\item sehr aufwendige Wasseraufbereitung
+				
+				\item Trinkwasserversorgung als Standortvorteil
+				
+				\item jeder einzelne ist beim Gewässerschutz mitverantwortlich
+			\end{itemize}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Ausblick auf die Zukunft und Fazit}
+		\LARGE
+		
+		\textbf{"'Wasser ist keine Ware, sondern ein wesentlicher Bestandteil unseres Lebens, auf den wir nicht verzichten können"'} \cite{wahnbachtalsperre}
+
+		
+	\end{frame}
+	
+	\begin{frame}
+		\begin{center}
+			\LARGE \textbf{Vielen Dank für Ihre Aufmerksamkeit!}
+		\end{center}
+	\end{frame}
+
+	
+	% Literaturliste endgueltig anzeigen
+	\begin{thebibliography}{99}
+		
+		
+		\bibitem[\textsc{Boland} et al. 2003]{landBildung} \textsc{H. Boland, V. Hoffmann, U. J. Nagel} (2003): Landwirtschaftliche Bildung und Beratung zum Gewässerschutz in Deutschland. (Margraf Verlag) Weikersheim.
+		
+		\bibitem[Brockhaus 2005]{brockhaus} Brockhaus (2005): Brockhaus A-Z Wissen. Band 3 und 4. (F.A. Brockhaus) Leipzig/Mannheim.
+		
+		\bibitem[\textsc{Friedl} 2004]{wasserrahmrichtlinie} \textsc{Dipl. Ing. Ch. Friedl} (2004): Die Wasserrahmenlichtlinie - Neues Fundament für den Gewässerschutz in Europa. (Bundesministerium für Umwelt, Naturschutz und Reaktorsicherheit) Berlin.
+		
+		\bibitem[\textsc{Köhler} 1996]{lebensaderRhein} \textsc{Dr. E. Köhler} (1996): Lebensader Rhein. (Vereinigung Deutscher Gewässerschutz e.V.) Bonn.
+		
+		\bibitem[\textsc{Mohupt} et al. 2010]{gewLandwirtschaft} \textsc{V. Mohupt, J. Rechenberg, S. Richter, D. Schulz, R. Wolter} (2010): Gewässerschutz mit der Landwirtschaft. (Umwelt Bundes Amt) Berlin.
+	
+		
+		\bibitem[Wahnbachtalsperre]{wahnbachtalsperre} Die Wahnbachtalsperre: http://www.wahnbachwasser.de/ (letzter Aufruf 17.05.2015)
+		
+		\bibitem[Wasserschutzzonen]{wasserschutzzonen} Die Wasserschutzzonen: http://www.kreis-tir.de/umwelt/wasserrecht/wasserschutzgebiete.html (letzter Aufruf 16.05.2015)
+		
+		\bibitem[Wasserrahmenrichtlinie]{wrrl} Richtlinie 2000/60/EG (Wasserrahmenrichtlinie): http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:2000L0060:20011216:DE:PDF (letzter Aufruf 17.05.2015)
+		
+		\bibitem[Bild eutrophierter Fluss]{eutrophierterFluss} Bild eutrophierter Fluss: http://weltschaukasten.de/wp-content/uploads/DSC0067a\_bearbeitet-1.jpg (letzter Aufruf 17.05.2015)
+		
+		\bibitem[Bild Uferrandstreifen]{bildUferrandstreifen} Bild Uferrandstreifen: http://www.emslandbiber.de/bilder biologie/uferrandstreifen.jpg (letzter Aufruf 17.05.2015)
+		
+		\bibitem[Bild Wahnbachtalsperre]{bildWahnbachtalsperre} Bild Wahnbachtalsperre: http://www.ksta.de/image/view/2012/10/15/20883258,16552674,highRes,maxh,480,maxw,480,Naafbachsperre-01.jpg (letzter Aufruf 15.05.2015)
+		
+		\bibitem[Bild Wasserschutzgebiet]{bildWasserschutzgebiet} Bild Wasserschutzgebiet: http://www.urbane-landwirtschaft.org/sites/www.urbane-landwirtschaft.org/files/Wasserschutzgebiet.jpg (letzter Aufruf 19.05.2015)
+		
+	\end{thebibliography} 
+
+	
+\end{document}
