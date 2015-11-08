@@ -2,11 +2,24 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
+\usepackage{setspace}
 \usepackage[utf8]{inputenc}
 \usepackage[german]{babel}
+\usepackage{algpseudocode}
 %\usetheme{Madrid}Goettingen  Marburg   
 %\usetheme{Amsterdam}
 \usetheme{Madrid}
+
+% theme
+\usetheme{default}
+\usecolortheme{default}
+\usefonttheme{professionalfonts}
+
+\setbeamertemplate{mini frames}[box]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
+\setbeamercovered{highly dynamic}
 
 
 %für zitat
@@ -23,10 +36,13 @@
 %figure in frame
 \usepackage{capt-of}
 
+%aufzählung
+%\usepackage{enumitem}
 
-\title{Gewässerschutz in Deutschland}
+
+\title[Intruder-Problem mit Potentialvergabe]{Optimierung des Intruder-Problems durch Potentialvergabe}
 \author{Jens Harder}
-\date{21. Mai 2015}
+\date{9. November 2015}
 
 %definition zitat
 \mdfdefinestyle{zitat}{
@@ -34,522 +50,510 @@
 	leftmargin=2.0em,innerleftmargin=1.0em,rightmargin=3.0em,
 	innerrightmargin=0pt,innerbottommargin=0.5em, innertopmargin=0.5em}
 
+\newtheorem{counter}{Theorem}
+\newtheorem{mydef}[counter]{Definition}
+%\newtheorem{theorem}[counter]{Theorem}
+%\newtheorem{lemma}[counter]{Lemma}
+
+%LineComment (pseudo)
+\algnewcommand{\LineComment}[1]{\begingroup
+	\setlength\parindent{0pt}\par\leftskip1.6em\rightskip3\leftskip /* #1 */ \par
+	\endgroup}
+
 
 \begin{document}
+	
+	\spacing{1.3}
 	
 	\begin{frame}
 		\titlepage
 	\end{frame}
 	
 	\begin{frame}
+		\frametitle{Inhaltsverzeichnis}
+		\large
+		
 		\tableofcontents
 	\end{frame}
 	
-	\section{Einleitung}
-	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
-		\setbeamertemplate{background canvas}{
-			\includegraphics[%
-			width=\paperwidth,
-			height=\paperheight]{bilder/wasserschutzgebiet.jpg}
-		}
-		\begin{frame}
-			\frametitle{Einleitung}
-			\large
-			
-			\begin{mdframed}[style=zitat]
-				\textbf{Definition Gewässerschutz:}\\
-				Unter Gewässerschutz versteht man alle Maßnahmen, welche oberirdische Gewässer, Küstengewässer, sowie das Grundwasser vor Verunreinigung schützen.
-			\end{mdframed}
-			
-			\AddToShipoutPictureFG*{
-				\AtPageLowerLeft{\put(0,12){\makebox[\paperwidth][l]{\cite{bildWasserschutzgebiet}}}}
-		   }%
-			
-		\end{frame}
-	}% hier ended die Gültigkeit des Bildeinfügens
-	
+	\section{Das Intruder-Problem auf einem Baum}
 	\begin{frame}
-		\frametitle{Einflüsse auf die Wasserqualität}
-		\LARGE
+		\frametitle{Das Intruder-Problem auf einem Baum}
+		\large
 		\begin{itemize}
-			\item Beschaffenheit des (Gewässer-)Einzugsgebietes\\ {\normalsize (Größe, Oberflächenbeschaffenheit, Niederschlag, Untergrund, Flächennutzung, Besiedlung)}
+			\item Gesucht wird ein Eindringling
 			
-			\item Sauerstoffgehalt des Gewässers		
-				
-			\item Selbstreinigungskraft des Gewässers
+			\item Minimale Anzahl an Agenten
 			
-			\item zugefügte Verunreinigung
+			\item Systematisches Absuchen des Baumes
+			
+			\item wichtige Eigenschaft: Monotonie
 
 		\end{itemize}
 	\end{frame}
 		
-	\section{Warum brauchen wir Gewässerschutz?}
-	\begin{frame}
-		\frametitle{Warum brauchen wir Gewässerschutz?}
-		\LARGE
-		
-		\textbf{"'Wasser ist keine übliche Handelsware, sondern ein ererbtes Gut, das geschützt, verteidigt und entsprechend behandelt werden muss."'} \cite{wrrl}
-		
-%		Ohne Wasser kein Leben 
-		
-	\end{frame}
+%	\begin{frame}
+%		\frametitle{Monotonie}
+%		\large
+%		
+%		\begin{mydef}\label{def_monotonie}
+%			Eine Strategie ist monoton, wenn sichergestellt wird, dass ein bereits dekontaminierter Knoten bis zur vollständigen Dekontaminierung des gesamten Graphen nicht erneut kontaminiert wird.
+%		\end{mydef}
+%%		\textbf{"'Eine Strategie ist monoton, wenn sichergestellt wird, dass ein bereits
+%%			dekontaminierter Knoten bis zur vollständigen Dekontaminierung des gesamten Graphen nicht erneut kontaminiert wird."'}
+%	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Warum brauchen wir Gewässerschutz? \\ - Wasser als Lebensgrundlage - }
-		\LARGE
-		\begin{itemize}
-			\item Trinkwasserversorgung 
-			\item Bewässerung für die Landwirtschaft
-			\item Wasserversorgung für die Industrie
-			\item Schifffahrt
-			\item Erzeugung von Strom
-			\item Tourismus
-			\item Gewinnung von Kies als Baumaterial
-		\end{itemize}
-	\end{frame}
+	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
+		\setbeamertemplate{background canvas}{
+			\includegraphics[%
+			width=\paperwidth,
+			height=\paperheight]{bilder/abb_erklaerung4.png}
+		}
+		\begin{frame}[plain]
+			
+%			\AddToShipoutPictureFG*{
+%				\AtPageUpperLeft{\put(247,-40){\makebox[\paperwidth][l]{\cite{bildWahnbachtalsperre}}}}
+%			}%
+			
+		\end{frame}
+	}% hier ended die Gültigkeit des Bildeinfügens
 	
+
+	\section{Ziele der Bachelorarbeit}
 	\begin{frame}
-		\frametitle{Warum brauchen wir Gewässerschutz? \\ - Gewässerschutz ist notwendig! - }
-		\LARGE
-		\begin{itemize}
-			\item Ohne Gewässerschutz wären die Gewässer der Wirtschaft ausgeliefert (Kompromiss)
-			\item Ein "'gesundes"' Gewässer ist robuster gegenüber Schäden
-			\item Sauberes Trinkwasser ist überlebensnotwendig
-		\end{itemize}
-		
-	\end{frame}
-	
-	\section{Gesetzliche Richtlinien}
-	\begin{frame}
-		\frametitle{Gesetzliche Richtlinien}
-		\LARGE
-		
-		\begin{itemize}
-			\item EG-Wasserrahmenrichtlinie (WRRL) bzw. Richtlinie 2000/60/EG
-			
-			\begin{itemize}
-				\LARGE
-				\item Ziel: "'Guter Zustand"' der Gewässer
-				
-				\item EG-Nitratrichtlinie ("'Düngeverordnung"')
-			\end{itemize}
-			
-			\item Wasserhaushaltsgesetz (WHG)
-		\end{itemize}
-	\end{frame}
-	
-	\section{Die Landwirtschaft als Mitverursacher für die Verschmutzung}
-	\begin{frame}
-		\frametitle{Die Landwirtschaft als Mitverursacher für die Verschmutzung}
-		\LARGE
-		
-		\begin{itemize}
-			\item Landwirtschaft als sog. offenes System
-			
-			\item Großteil des Düngers wird nicht von Pflanzen aufgenommen ("'Überdüngung"')
-			
-			\item Gülle von Viehbeständen in Gewässern schädlich
-			
-			\item häusliche oder industrielle Abwasser
-		\end{itemize}
-		
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Stickstoff als Hauptproblem für die Verschmutzung}
-		\LARGE
-		
-		\begin{itemize}
-			\item Stickstoff ist lebensnotwendig
-			
-			\item $N_{2}$ hat 78\% Luftanteil
-			
-			\item $N_{2}$  reaktionsträge und damit absolut unschädlich
-			
-			\item Haber-Bosch-Verfahren: $N_{2} + 3H_{2} \rightarrow 2NH_{3}$ (aus Stickstoff wird Mineraldünger)
-		\end{itemize}
-				
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Eutrophierung}
+		\frametitle{Ziele der Bachelorarbeit}
 		\large
 		
-		\begin{mdframed}[style=zitat]
-			\textbf{Definition Eutrophierung:} \\ 
-			Unter Eutrophierung versteht man die unerwünschte Anreicherung eines Gewässers an Nährstoffen, besonders Phosphor- und Stickstoffverbindungen. Dies führt zu einer Übervermehrung von Pflanzen (v.a. Algen) und tierischem Plankton durch "'Überdüngung"'.% \cite[Band 3, S.544]{brockhaus}.
-		\end{mdframed}
-		
+		\begin{itemize}
+			\item Modifikation des ursprünglichen Algorithmus\\
+				(\textsc{Barriére} et al. (2002): Capture of an Intruder by Mobile Agents.)
+			
+			\item Algorithmus mit Potentialvergabe
+			
+			\begin{itemize}
+				\item $k = 1$ auf einer Kante
+				
+				\item $k \geq 1$ auf einer Kante
+				
+				\item $k > 1$ auf mehrere Kanten verteilt
+			\end{itemize}
+			
+			\item Implementierung der Algorithmen
+			
+		\end{itemize}
 		
 	\end{frame}
 	
-	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
-		\setbeamertemplate{background canvas}{
-			\includegraphics[%
-			width=\paperwidth,
-			height=\paperheight]{bilder/eutrophierung2.jpg}
-		}
-		\begin{frame}[plain]
-			\frametitle{Eutrohphierung}
-			\LARGE
+	\section{Nachrichtenberechnung}
+	
+		\begin{frame}
+			\frametitle{Nachrichtenberechnung}
+			\large
+
 			
 			\begin{itemize}
-				\item \textcolor{white}{starkes Algen- und Pflanzenwachstum}
-				\item \textcolor{white}{Verminderung des Sauerstoffgehaltes}
-				\item \textcolor{white}{Abschirmung des Sonnenlichtes}
-				\item \textcolor{white}{Gewässer "'kippt"' durch anaerobe Abbauprozesse (Methan, Schwefelwasserstoff)}
-				\item \textcolor{white}{sauerstofffreie und unbelebte Tiefenzonen}
+				
+				\item $\omega(e) \geq 1$ ist das Kantengewicht einer Kante $e$
+								
+				\item $\omega(x) = \max_{e} \omega(e)$ für jede zu $x$ inzidente Kante $e$. Dann ist $\omega(x)$ das Knotengewicht des Knoten $x$
+				
+				\item $\mu(x)$ ist die minimale Anzahl an Agenten, die man für den Baum braucht, wenn man von diesem Knoten aus startet
+				
+				\item $\lambda_{y}(e)$  ist der Nachrichtenwert, der über Kante $e$ zu Knoten $y$ geschickt wird
+				
 			\end{itemize}
 			
-		\AddToShipoutPictureFG*{
-			\AtPageLowerLeft{\put(0,3){\makebox[\paperwidth][l]{\textcolor{white}{\cite{eutrophierterFluss}}}}}
-		}%
-		
 		\end{frame}
+	
+%	\begin{frame}
+%		\frametitle{Nachrichtenberechnung in 3 Fällen}
+%		\large
+%		
+%		1. Fall: Blattknoten ($\lambda_{y} = \omega(x)$)
+%		
+%		\centering
+%		\includegraphics[width=.8\textwidth]{bilder/abb_blattknoten_NEU2.png}
+%		\captionof{figure}{Das Knotengewicht des Blattknotens $x$ (grün) bestimmt den Wert Nachricht $\lambda_{y} = 3$ (blau) zum Nachbarknoten $y$.}
+%		
+%	\end{frame}
+%	\begin{frame}
+%		\frametitle{Nachrichtenberechnung in 3 Fällen}
+%		\large
+%		
+%		2. Fall: $n-1$ empfangene Nachrichten ($\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$)
+%		
+%		\centering
+%		\includegraphics[width=.8\textwidth]{bilder/abb_paper_n-1knoten_NEU2.png}
+%		\captionof{figure}{Der Wert der neuen Nachricht $\lambda_{y}$(blau) von Knoten $x$ zu Knoten $y$ beträgt 6, da $l_{2} + \omega(x) = 6$ (grün) größer ist als $l_{1} = 3$ (gelb).}
+%		
+%	\end{frame}
+%	\begin{frame}
+%		\frametitle{Nachrichtenberechnung in 3 Fällen}
+%		\large
+%		
+%		3. Fall: $n$ empfangene Nachrichten ($\lambda_{y} = max\{l_{1},  l_{2} + \omega(x)\}$)
+%		
+%		\centering
+%		\includegraphics[width=.8\textwidth]{bilder/abb_paper_nknoten_NEU2.png}
+%		\captionof{figure}{Die neue Nachricht $\lambda_{y}$ (blau) von Knoten $x$ zu Knoten y hat den Wert 7, da $l_{1} = 7$ (grün) größer ist als $l_{2} + \omega(x) = 6$ (gelb). Die Nachricht von $y$ zu $x$ (mit dem Wert = 3) wird bei dieser Berechnung ignoriert.}
+%		
+%	\end{frame}
+%	
+%	\begin{frame}
+%		\frametitle{Berechnung der minimalen Agentenzahl}
+%		\large
+%		
+%		\begin{itemize}
+%			\item Berechne $\mu(x)$ für jeden Knoten $x$: $\mu(x) = max\{l_{1},  l_{2} + \omega(x)\}$
+%			
+%			\item Durchlauf durch alle Knoten, um das minimale $\mu$ zu finden
+%			
+%			\item Knoten $x$ mit minimalem $\mu$ ist die neue Homebase
+%		\end{itemize}
+%
+%		
+%	\end{frame}
+%	
+%	\begin{frame}
+%		\frametitle{Wofür brauchen wir die Modifikation?}
+%		\large
+%
+%		\begin{columns}[T] % align columns
+%			\begin{column}{.5\textwidth}
+%				\centering
+%				\textbf{Ohne Modifikation}
+%				\includegraphics[width=\textwidth]{bilder/modifikation_ohne.jpg}
+%				\captionof{figure}{Berechnung der Nachrichten mit dem ursprünglichen Algorithmus.}
+%			\end{column}%
+%			\hfill%
+%			\begin{column}{.5\textwidth}
+%				\centering
+%				\textbf{Mit Modifikation}
+%				\includegraphics[width=\textwidth]{bilder/modifikation_mit.jpg}
+%				\captionof{figure}{Berechnung der Nachrichten mit der modifizierten Variante.}
+%			\end{column}
+%		\end{columns}
+%	\end{frame}
+	
 		
-	}% hier ended die Gültigkeit des Bildeinfügens
+	\begin{frame}
+		\frametitle{Modifizierte Nachrichtenberechnung}
+		\large
+		
+		$\lambda_{y} = edge_{1} + edge_{2}$
+		
+		\centering
+		\includegraphics[width=.75\textwidth]{bilder/abb_neu_max1max2.png}
+		\captionof{figure}{Die Nachricht $\lambda_{y}$ (blau) von x zu y hat den Wert 5, da $edge_{1} $ und $edge_{2}$ (beide grün) die entscheidenden Kanten sind.}
+		
+	\end{frame}
+		
+	\begin{frame}
+		\frametitle{Modifizierte Nachrichtenberechnung}
+		\large
+		
+		$\lambda_{y} = \max\{\lambda_{y}, \omega(x)\}$
+		
+		\centering
+		\includegraphics[width=.75\textwidth]{bilder/abb_neu_edge.png}
+		\captionof{figure}{Da das Knotengewicht durch die Kante zwischen x und y bestimmt wird (grün), und dieses größer ist als die Summe der beiden normalen Kanten $edge_{1}$ und $edge_{2}$ (gelb), bestimmt diese Kante den Wert der Nachricht $\lambda_{y} = 5$ (blau).}
+		
+	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Weitere Verschmutzungsursachen}
-		\LARGE
+		\frametitle{Modifizierte Nachrichtenberechnung}
+		\large
+		
+		$\lambda_{y} = \max\{\lambda_{y}, l_{1}\}$
+		
+		\centering
+		\includegraphics[width=.75\textwidth]{bilder/abb_neu_msgData.png}
+		\captionof{figure}{Die größte Nachricht (grün), die an $x$ ankommt, ist größer als die bisher berechnete Nachricht und bestimmt daher den Nachrichtenwert $\lambda_{y} = 8$ (blau).}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Berechnung der minimalen Agentenzahl}
+		\large
+		
 		\begin{itemize}
-			\item Sink- und Schwimmstoffe
-			\item Krankheitserreger aus Fäkalien
-			\item zersetzungsunfähige Stoffe
-			\item chemisch/phyikalisch bedenkliche Stoffe \\{\normalsize (Gifte, radioaktive Stoffe, ...)} 
+			\item Berechne $\mu(x)$ für jeden Knoten $x$: $\mu(x) = max\{edge_{1} + edge_{2},  l_{1}\}$
+			
+			\item Durchlauf durch alle Knoten, um das minimale $\mu$ zu finden
+			
+			\item Knoten $x$ mit minimalem $\mu$ ist die neue Homebase
 		\end{itemize}
+		
+		
 	\end{frame}
 
 	
+	\section{Das Potential-Problem}
 	\begin{frame}
-		\frametitle{Der langsame Weg der Verschmutzung}
-		\LARGE
+		\frametitle{Das Potential-Problem}
+		\large
 		
 		\begin{itemize}
-			\item Belastung des Grundwassers
+			\item Reduziere Kante(n) mit einem Potential $k$
+			
+			\item Kann das Potential immer sinnvoll angewendet werden?
+			
+			\item Auf welche Kanten soll das Potential angewendet werden
+			
+			\item Algorithmus
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\subsection{Potential-Problem $k=1$}
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k = 1$}
+		\large
+		
+		\begin{itemize}
+			\item Idee: Protokolliere die Kanten, von denen der Nachrichtenwert abhängt
+			
+			\item 3 Fälle, von denen die Nachrichten abhängen können:
+			
+				\large
+				\begin{enumerate}[a)]
+					
+					\item $\lambda_{y} \gets edge_{1} + edge_{2}$   (aus den beiden größten Kanten)
+					\label{potk=1_a}
+					
+					\item $\lambda_{y} \gets \omega(x)$   (aus der Kante, über welche die Nachricht gerade verschickt wird (diese entspricht dem Knotengewicht))
+					\label{potk=1_b}
+					
+					\item $\lambda_{y} \gets l_{1}$   (aus der größten angekommenen Nachricht)
+					\label{potk=1_c}
+					
+				\end{enumerate}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k=1$}
+		\large
+		
+		\begin{itemize}
+			\item Fall \ref{potk=1_a}: $\lambda_{y} \gets edge_{1} + edge_{2}$
+			
+			\normalsize
+			\item [ ]
+			\item [ ]
+				\begin{algorithmic}
+					\If {$edge_{1} == edge_{3}$}
+					\LineComment{(mindestens) drei gleich große Kanten}
+					\State protokolliere: "`flag"'
+%					\\
+					\ElsIf {$edge_{2} == edge_{3}$}
+					\LineComment{maximale Kante ist eindeutig}
+					\State protokolliere: $edge_{1}$
+%					\\
+					\Else
+					\LineComment{größte und zweitgrößte Kante ist eindeutig}
+					\State protokolliere: $edge_{1}$ und $edge_{2}$
+					\EndIf
+				\end{algorithmic}
+			
+		\end{itemize}
+				
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k=1$}
+		\large
+		
+		\begin{itemize}
+			\item Fall \ref{potk=1_b}: $\lambda_{y} \gets \omega(x)$
+			
+				\begin{itemize}
+					\item[ ] Die Kante, über die die Nachricht geschickt wird, bestimmt den Nachrichtenwert:\\
+					protokolliere: $e=\{x, y\}$
+				\end{itemize}
+			
+			\item[ ]
+			\item Fall \ref{potk=1_c}: $\lambda_{y} \gets l_{1}$
+			
+				\begin{itemize}
+					\item[ ] Die größte angekommene Nachricht bestimmt den Nachrichtenwert:\\
+					protokolliere: das gleiche wie $l_{1}$
+				\end{itemize}
+			
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k=1$}
+		\large
+		
+		\begin{itemize}
+			\item Berechnung aller $\mu(x)$ analog zur Nachrichtenberechnung
+			
+			\item in jedem Knoten wird protokolliert, von welchen Kanten sie abhängen ($edge_{1}$ udn $edge_{2}$ oder $l_{1}$)
+			
+			\item Potential kann auf eine beliebige Kante $e$ angewendet werden, die in einem Knoten mit minimalem $\mu$ protokolliert wurde
+			
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\subsection{Potential-Problem $k \geq 1$ auf einer Kante}
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k \geq 1$ auf einer Kante}
+		\large
+		
+		\begin{itemize}
+			\item Idee: Protokolliere die Kanten, die am effektivsten reduziert werden können
+			
+			\item Es sind nur 4 Fälle pro Nachrichtenberechnung interessant:
+			
+				\begin{enumerate}[a)]
+					\item $edge_{1}$ (die größte Kante)
+					\item $edge_{2}$ (die zweitgrößte Kante)
+					\item $edge_{xy}$ (die Kante zwischen $x$ und $y$)
+					\item die in $l_{1}$ gespeicherten Kanten
+				\end{enumerate}
+				
+			\item Wende das Potential $k$ auf alle vier Möglichkeiten an, und speichere das beste Ergebnis $\beta$ (Es muss immer gelten $\beta \geq 1$)
+			
+		\end{itemize}
+		
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Das Potential-Problem $k \geq 1$ auf einer Kante}
+		\large
+				
+		\begin{itemize}
+			\item speichere in jeder Nachricht drei Parameter:
+			
 			\begin{itemize}
-				\LARGE
-				\item 70\% unseres Trinkwassers
-				
-				\item langsame Fließgeschwindigkeit
-				
-				\item Wechselwirkungen mit anderen Oberflächengewässern
-				
-				\item diffuse Stoffeinträge
-			\end{itemize}
-			
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Der langsame Weg der Verschmutzung}
-		
-%		\includegraphics[width=\textwidth]{bilder/nitratbelastung_grundwasser.PNG}\\
-%		test
-		
-		\centering
-		\includegraphics[width=0.95\textwidth]{bilder/nitratbelastung_grundwasser.PNG}
-		\captionof{figure}{Nitratbelastung im Grundwasser unter Wald, Grünland, Siedlungen und Acker \cite[S.13]{gewLandwirtschaft}.}
-		\label{abb_nitratbelastung}
-		 
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Der langsame Weg der Verschmutzung}
-		\LARGE
-		
-		\begin{itemize}
-			\item Belastung von Flüssen und Seen
-			\begin{itemize}
-				\LARGE
-				\item Wechselwirkungen mit dem Grundwasser
-				
-				\item weniger punktuelle Schadstoffquellen
-				
-				\item Nur 16\% hatten 2008 Güteklasse I oder II
-				
-			\end{itemize}
-			
-		\end{itemize}
-		
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Der langsame Weg der Verschmutzung}
-		
-		\centering
-		\includegraphics[width=0.77\textwidth]{bilder/punkt_diffuse_quellen2.PNG}
-		\captionof{figure}{Stickstoffeinträge aus punktuellen und diffusen Quellen in Oberflächengewässern \cite[S.14]{gewLandwirtschaft}.}
-		\label{abb_punkt_diffuse_quellen}
-		
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Der langsame Weg der Verschmutzung}
-		\LARGE
-		
-		\begin{itemize}
-			\item Belastung der Küstengewässer und Meere
-			\begin{itemize}
-				\LARGE
-				\item schädliche Stoffe aus Flüssen
-				
-				\item weltweiter Fischbedarf
-				
-				\item Tourismus
-				
-				\item z.B. Algenpest
-				
-			\end{itemize}
-			
-		\end{itemize}
-		
-	\end{frame}
-	
-	\section{Gewässerschonende Maßnahmen}
-	\begin{frame}
-		\frametitle{Gewässerschonende Maßnahmen}
-		\LARGE
-		
-		\begin{itemize}
-			\item Größte Aufgabe: Grundwasser schützen
-			
-			\item Weiterbildung der Landwirte
-			
-			\item Mischung aus:
-			
-			\begin{itemize}
-				\LARGE
-				\item Machtstrategie \normalsize (Gesetze und Richtlinien)
-				
-				\LARGE
-				\item Förderstrategie \normalsize (finanzielle Förderungen/Anreize)
-				
-				\LARGE
-				\item Kommunikative Strategie \normalsize(Empfehlungen, Beratungen)
+				\item $\alpha$: die normal berechnete Nachricht (im modifizierten Algorithmus)
+				\item $\beta$: die modifizierte Nachricht, die durch das Potential am stärksten reduzierte Nachricht
+				\item $e_{1} / e_{2}$: die Kante(n), auf die das Potential angewendet worden ist
 			\end{itemize}
 				
+			\item analog bei Berechnung der minimalen Agentenzahl $\mu(x)$
+			
+			\item[$\rightarrow$] Jeder Knoten hat die Information
+			
+				\begin{itemize}
+					\item auf welchen Wert $\beta$ er reduziert werden kann
+					
+					\item welche Kante(n) $e_{1} / e_{2}$ dafür reduziert werden muss
+				\end{itemize}
+			
 		\end{itemize}
-		
+				
 	\end{frame}
 	
-	\begin{frame}
-		\frametitle{Düngen}
-		\LARGE
-		
-		\begin{itemize}
-			\item "'bedarfsorientiert, effizient
-			und verlustarm"' düngen
-			
-			\item Nährstoffbedarfsermittlung
-			
-			\item Hoftorbilanz
-		\end{itemize}
-	\end{frame}
+%	\begin{frame}
+%		\frametitle{Berechnung der minimalen Agentenzahl}
+%		\large
+%		
+%		
+%	\end{frame}
 	
+	\subsection{Potential-Problem $k > 1$ auf mehreren Kanten}
 	\begin{frame}
-		\frametitle{Verbesserte Flächennutzung}
-		\LARGE
+		\frametitle{Das Potential-Problem $k > 1$ auf mehreren Kanten}
+		\large
+		
+		Es kann tatsächlich notwendig sein, das Potential $k$ auf mehrere Kanten zu verteilen:
 		
 		\begin{columns}[T] % align columns
-			\begin{column}{.48\textwidth}
-				\begin{itemize}
-					\item Wasserschutzgebiete
-					
-					\item Gewässerrandstreifen
-					
-					\item Zwischenfrüchte / Untersaaten
-				\end{itemize}
+			\begin{column}{.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{bilder/abb1_NEU2.png}
+				\captionof{figure}{Alle Kanten haben Gewicht 4. Alle Knoten benötigen mindestens 8 Agenten.}
 			\end{column}%
 			\hfill%
-			\begin{column}{.48\textwidth}
-				\normalsize
-				%		\centering
-				\includegraphics[width=\textwidth]{bilder/uferrandstreifen_feld.PNG}
-				\captionof{figure}{Gewässerrandstreifen, um die Oberflächengewässer zu schonen \cite{bildUferrandstreifen}. }
-				\label{abb_uferschutzstreifen_feld}
-			\end{column}%
+			\begin{column}{.5\textwidth}
+				\centering
+				\includegraphics[width=\textwidth]{bilder/abb2_NEU2.png}
+				\captionof{figure}{Eine Kante wurde auf Gewicht 1 reduziert, alle anderen Kanten haben weiterhin Gewicht 4. Alle Knoten benötigen trotzdem mindestens 8 Agenten.}
+			\end{column}
 		\end{columns}
 
+		
 	\end{frame}
 	
 	\begin{frame}
-		\frametitle{Weitere Maßnahmen für saubere Flüsse}
-		\LARGE
+		\frametitle{Das Potential-Problem $k > 1$ auf mehreren Kanten}
+		\large
 		
-		\begin{itemize}
-			\item z.B. phosphatfreie Wasch- und Reinigungsmittel
-			
-			\item Ausbau bzw. Neubau von Kläranlagen (Reduzierung der Schwermetallbelastung um 90\%)
-			
-			\item viele Maßnahmen sind schwer umzusetzen
-		\end{itemize}
+		Es gibt Bäume, bei denen das Potential auf linear vielen Kanten verteilt werden muss (hier auf $n-2$):
+		
+			\includegraphics[width=\textwidth]{bilder/abb_bsp_potverteilen.png}
+			\captionof{figure}{Die Mindestanzahl an benötigten Kanten kann bei der Potentialverteilung eine Komplexität linear zur Knotenanzahl haben.}
 		
 	\end{frame}
-	
-	\section{Beispiel: Unser Trinkwasser in Bonn}
-	\begin{frame}
-		\frametitle{Beispiel: Unser Trinkwasser in Bonn}
-		\LARGE
-		Trinkwasserversorgung in Bonn:\\
-		\begin{itemize}
-			\item Wahnbachtalsperre
-			\item Grundwasserwerk Hennefer Siegbogen
-			\item Grundwasserwerk Meindorf
-		\end{itemize}
-		
-	\end{frame}
-	
-	
-	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
-		\setbeamertemplate{background canvas}{
-			\includegraphics[%
-			width=\paperwidth,
-			height=\paperheight]{bilder/wahnbachtalsperre2_ab.jpg}
-		}
-		\begin{frame}[plain]
-			\frametitle{Wahnbachtalsperre}
-			
-			\AddToShipoutPictureFG*{
-				\AtPageUpperLeft{\put(247,-40){\makebox[\paperwidth][l]{\cite{bildWahnbachtalsperre}}}}
-			}%
 
-		\end{frame}
-	}% hier ended die Gültigkeit des Bildeinfügens
-	
+	\section{Fazit und Aussicht}
 	\begin{frame}
-		\frametitle{Wahnbachtalsperre}
-		\LARGE
+		\frametitle{Fazit und Aussicht}
+		\large
+		
+		In dieser Bachelorarbeit war es möglich
 		\begin{itemize}
-			
-			\item 3 Gewässerschutzzonen
-				\begin{itemize}
-					\large
-					\item Schutzzone I: Uferbereich
-					\item Schutzzone II: engere Zone
-					\item Schutzzone III: weitere Zone
-				\end{itemize}
-			
-			\item seit 1977/78 Phosphor-Eliminierungsanlage (PEA)
-			
-			\item Kooperation mit der Landwirtschaft
+				\item eine Modifikation des Algorithmus zu entwickeln
+				\item einen Algorithmus für das Potential-Problem $k = 1$ zu entwickeln
+				\item das Potential-Problem $k \geq 1$ auf einer Kante zu lösen
+				\item zu Argumentieren, dass es nötig sein kann, das Potential auf mehrere Kanten aufzuteilen
 		\end{itemize}
-	\end{frame}
-	
-	{% Ab hier wird das Bild Hintergrundfüllend eingefügt
-		\setbeamertemplate{background canvas}{
-			\includegraphics[%
-			width=\paperwidth,
-			height=\paperheight]{bilder/grundwasserwerk_unter_sieg.JPG}
-		}
-	\begin{frame}
 		
-		\AddToShipoutPictureFG*{
-			\AtPageUpperLeft{\put(267,-10){\makebox[\paperwidth][l]{\textcolor{white}{\cite{wahnbachtalsperre}}}}}
-		}%
-
-	\end{frame}
-	}% hier ended die Gültigkeit des Bildeinfügens
-	
-	\begin{frame}
-		\frametitle{Wasseraufbereitung}
-		\LARGE
-		Wasserziel: klar, wohlschmeckend, frei von Krankheitserregern und Schadstoffen:
-		\begin{enumerate}
-			\item Flockung
-			\item Mehrschichtfilter
-			\item Ultraschall
-			\item UV-Licht
-			\item Kalkwasser gemischt
-		\end{enumerate}
-	\end{frame}
-	
-	
-	\section{Ausblick auf die Zukunft und Fazit}
-	\begin{frame}
-		\frametitle{Ausblick auf die Zukunft und Fazit}
-		\LARGE
-		
-		\begin{itemize}
-			\item Klimawandel
-			
-			\begin{itemize}
-				\LARGE
-				\item äußere Gegebenheiten ändern sich
-				
-				\item wahrscheinlich mehr Wetterextreme
-				
-				\item Landwirtschaft muss sich anpassen
-				
-				\item wasserschonender Umgang mit Resscourcen
-			\end{itemize}
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Ausblick auf die Zukunft und Fazit}
-		\LARGE
-		
-		\begin{itemize}
-			\item Wasseraufbereitung
-			
-			\begin{itemize}
-				\LARGE
-				\item sehr aufwendige Wasseraufbereitung
-				
-				\item Trinkwasserversorgung als Standortvorteil
-				
-				\item jeder einzelne ist beim Gewässerschutz mitverantwortlich
-			\end{itemize}
-		\end{itemize}
-	\end{frame}
-	
-	\begin{frame}
-		\frametitle{Ausblick auf die Zukunft und Fazit}
-		\LARGE
-		
-		\textbf{"'Wasser ist keine Ware, sondern ein wesentlicher Bestandteil unseres Lebens, auf den wir nicht verzichten können"'} \cite{wahnbachtalsperre}
-
+	  	 Das Potential-Problem $k > 1$ auf verteilten Kanten konnte im Rahmen dieser Bachelorarbeit nicht gelöst werden, und könnte in Form einer zukünftigen Arbeit weiter untersucht werden.
 		
 	\end{frame}
 	
 	\begin{frame}
 		\begin{center}
-			\LARGE \textbf{Vielen Dank für Ihre Aufmerksamkeit!}
+			\large \textbf{Vielen Dank für Ihre Aufmerksamkeit!}
 		\end{center}
 	\end{frame}
 
 	
 	% Literaturliste endgueltig anzeigen
-	\begin{thebibliography}{99}
+	\begin{frame}
+		\frametitle{Quellen}
+		\large
 		
+		\begin{itemize}
+			\item Dieser Vortrag basiert auf der Bachelorarbeit "`Optimierung des Intruder-Problems durch Potentialvergabe"'
+			
+			\item Alle Abbildungen stammen aus dem im Rahmen dieser Bachelorarbeit entwickelten Applet
+			
+			\item Die Bachelorarbeit basiert auf dem Paper:\\
+					\textsc{L. Barrière, P. Flocchini, P. Fraigniaud, N. Santoro} (2002): Capture of an Intruder by Mobile Agents. (SPAA'02) Winnipeg, Manitoba, Canada.
+		\end{itemize}
 		
-		\bibitem[\textsc{Boland} et al. 2003]{landBildung} \textsc{H. Boland, V. Hoffmann, U. J. Nagel} (2003): Landwirtschaftliche Bildung und Beratung zum Gewässerschutz in Deutschland. (Margraf Verlag) Weikersheim.
-		
-		\bibitem[Brockhaus 2005]{brockhaus} Brockhaus (2005): Brockhaus A-Z Wissen. Band 3 und 4. (F.A. Brockhaus) Leipzig/Mannheim.
-		
-		\bibitem[\textsc{Friedl} 2004]{wasserrahmrichtlinie} \textsc{Dipl. Ing. Ch. Friedl} (2004): Die Wasserrahmenlichtlinie - Neues Fundament für den Gewässerschutz in Europa. (Bundesministerium für Umwelt, Naturschutz und Reaktorsicherheit) Berlin.
-		
-		\bibitem[\textsc{Köhler} 1996]{lebensaderRhein} \textsc{Dr. E. Köhler} (1996): Lebensader Rhein. (Vereinigung Deutscher Gewässerschutz e.V.) Bonn.
-		
-		\bibitem[\textsc{Mohupt} et al. 2010]{gewLandwirtschaft} \textsc{V. Mohupt, J. Rechenberg, S. Richter, D. Schulz, R. Wolter} (2010): Gewässerschutz mit der Landwirtschaft. (Umwelt Bundes Amt) Berlin.
+	\end{frame}
 	
-		
-		\bibitem[Wahnbachtalsperre]{wahnbachtalsperre} Die Wahnbachtalsperre: http://www.wahnbachwasser.de/ (letzter Aufruf 17.05.2015)
-		
-		\bibitem[Wasserschutzzonen]{wasserschutzzonen} Die Wasserschutzzonen: http://www.kreis-tir.de/umwelt/wasserrecht/wasserschutzgebiete.html (letzter Aufruf 16.05.2015)
-		
-		\bibitem[Wasserrahmenrichtlinie]{wrrl} Richtlinie 2000/60/EG (Wasserrahmenrichtlinie): http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:2000L0060:20011216:DE:PDF (letzter Aufruf 17.05.2015)
-		
-		\bibitem[Bild eutrophierter Fluss]{eutrophierterFluss} Bild eutrophierter Fluss: http://weltschaukasten.de/wp-content/uploads/DSC0067a\_bearbeitet-1.jpg (letzter Aufruf 17.05.2015)
-		
-		\bibitem[Bild Uferrandstreifen]{bildUferrandstreifen} Bild Uferrandstreifen: http://www.emslandbiber.de/bilder biologie/uferrandstreifen.jpg (letzter Aufruf 17.05.2015)
-		
-		\bibitem[Bild Wahnbachtalsperre]{bildWahnbachtalsperre} Bild Wahnbachtalsperre: http://www.ksta.de/image/view/2012/10/15/20883258,16552674,highRes,maxh,480,maxw,480,Naafbachsperre-01.jpg (letzter Aufruf 15.05.2015)
-		
-		\bibitem[Bild Wasserschutzgebiet]{bildWasserschutzgebiet} Bild Wasserschutzgebiet: http://www.urbane-landwirtschaft.org/sites/www.urbane-landwirtschaft.org/files/Wasserschutzgebiet.jpg (letzter Aufruf 19.05.2015)
-		
-	\end{thebibliography} 
+	
+%	\begin{thebibliography}{99}
+%
+%		
+%		\bibitem[]{}Alle Abbildungen stammen aus dem im Rahmen dieser Bachelorarbeit entwickelten Applet
+%		
+%		
+%		\bibitem[Ba02]{cima_paper} \textsc{L. Barrière, P. Flocchini, P. Fraigniaud, N. Santoro} (2002): Capture of an Intruder by Mobile Agents. (SPAA'02) Winnipeg, Manitoba, Canada.
+%		
+%		\bibitem[Fi09]{firefighterproblem_paper} \textsc{S. Finbow, G. MacGillivray} (2009): The Firefighter Problem: A survey of results, directions and questions.
+%		AUSTRALASIAN JOURNAL OF COMBINATORICS Vol. 43 (2009), Pages 57–77
+%		
+%		\bibitem[Kl14]{klein_paper} \textsc{R. Klein, E. Langetepe, C.  Levcopoulos} (2014): A Fire Fighter's Problem. arXiv:1412.6065
+%		
+%		\bibitem[Me88]{complexity_paper} \textsc{N. Megiddo, S. Hakimi, M. Garey, D. Johnson, C. Papadimitriou} (1988): The Complexity of Searching a Graph. Journal of the ACM, Vol. 35, No 1, 1988.
+%		
+%		\bibitem[Pa76]{graph_paper_76} \textsc{T. Parson} (1976): Pursuit-evasion problem in a graph. Theory and Applications of Graphs, Lecture Notes in Mathematics, Springer-Verlag, 426-441.
+%
+%		
+%	\end{thebibliography} 
 
 	
 \end{document}

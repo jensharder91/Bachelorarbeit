@@ -1,0 +1,10 @@
+\beamer@endinputifotherversion {3.36pt}
+\select@language {german}
+\beamer@sectionintoc {1}{Das Intruder-Problem auf einem Baum}{3}{0}{1}
+\beamer@sectionintoc {2}{Ziele der Bachelorarbeit}{5}{0}{2}
+\beamer@sectionintoc {3}{Nachrichtenberechnung}{6}{0}{3}
+\beamer@sectionintoc {4}{Das Potential-Problem}{11}{0}{4}
+\beamer@subsectionintoc {4}{1}{Potential-Problem $k=1$}{12}{0}{4}
+\beamer@subsectionintoc {4}{2}{Potential-Problem $k \geq 1$ auf einer Kante}{16}{0}{4}
+\beamer@subsectionintoc {4}{3}{Potential-Problem $k > 1$ auf mehreren Kanten}{18}{0}{4}
+\beamer@sectionintoc {5}{Fazit und Aussicht}{20}{0}{5}
